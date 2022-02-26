@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
+
+.main {
+  background-color: grey;
+}
+.text {
+  height: 30rem;
+  text-align: center;
+  color: white;
+  font-family: "Arimo", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 5rem;
+}
+.text h1 {
+  font-size: 4.4rem;
+}
+.txt {
+  width: 70%;
+  padding-bottom: 3rem;
+}
+.paragraph {
+  width: 45%;
+  text-align: center;
+}
