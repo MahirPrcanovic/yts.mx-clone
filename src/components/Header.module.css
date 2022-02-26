@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
+
+.header {
+  /* background-color: red; */
+  height: 5.5rem;
+  display: grid;
+  grid-template-columns: 0.4fr 1.3fr 1fr;
+  background: #1d1d1d;
+  border-bottom: 2px solid #2f2f2f;
+  font-family: "Arimo", sans-serif;
+}
+.image {
+  height: 75%;
+  width: 70%;
+  background-image: url("../images/yts-logo.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.search {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input {
+  width: 24rem;
+  height: 50%;
+  background-color: #1d1d1d;
+  border: none;
+  color: #919191;
+  font-size: 1.4rem;
+  font-family: inherit;
+  font-weight: bold;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.input:focus {
+  border-color: red;
+  outline: none;
+}
+.input:focus::placeholder {
+  color: transparent;
+}
+.searchIcon {
+  width: 1.7em;
+  height: 1.7rem;
+  stroke: #919191;
+}
+.searchItems {
+  padding: 0.4rem;
+  border: 2px solid #919191;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+}
+.links {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 2rem;
+}
+.list {
+  color: #919191;
+  font-size: 1.4rem;
+  text-decoration: none;
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  font-weight: bold;
+}
+.list:nth-child(2) {
+  color: green;
+}
+.login {
+  color: white;
+  text-decoration: none;
+}
