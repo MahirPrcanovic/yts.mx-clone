@@ -44,7 +44,6 @@
   fill: rgb(113, 184, 113);
 }
 .popularText {
-  /* font-weight: bold; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,4 +62,16 @@
 }
 .linkTxt:hover {
   color: #2b5d8a;
+}
+.popular {
+  width: 90%;
+  height: 45rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4.8rem;
+}
+
+.latest {
+  height: 300rem;
 }
