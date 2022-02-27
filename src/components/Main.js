@@ -1,6 +1,20 @@
 import classes from "./Main.module.css";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import MovieDetail from "./MovieDetail";
 const Main = () => {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("https://yts.mx/api/v2/list_movies.json");
+      const data = await response.json();
+      setData(data);
+    }
+    fetchData();
+  }, []);
+  if (data) {
+    console.log(data.data.movies);
+  }
   return (
     <div className={classes.main}>
       <div className={classes.text}>
@@ -32,7 +46,17 @@ const Main = () => {
           <h2> Popular Downloads</h2>
         </div>
       </div>
-      <div className={classes.popular}></div>
+      <div className={classes.popular}>
+        {data && (
+          <MovieDetail
+            image={data.data.movies[1].background_image}
+            genre={data.data.movies[1].genres}
+            title={data.data.movies[1].title}
+            year={data.data.movies[1].year}
+            rating={data.data.movies[1].rating}
+          />
+        )}
+      </div>
     </div>
   );
 };

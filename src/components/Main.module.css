@@ -1,10 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
 
 .main {
-  background-color: grey;
+  /* background-color: grey; */
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+.main {
+  background-image: url("../images/Background-home.jpg");
+  /* filter: blur(8px); */
+  /* -webkit-filter: blur(8px); */
+  background-position: center;
+  background-size: cover;
 }
 .text {
   width: 90%;
@@ -17,15 +25,17 @@
   gap: 2.4rem;
   justify-content: center;
   align-items: center;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid lightgrey;
+  padding-top: 2rem;
 }
 .title {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
 }
 .description {
-  width: 45%;
+  width: 50%;
   font-size: 1.4rem;
   line-height: 1.6rem;
+  letter-spacing: 0.1px;
 }
 .icon {
   width: 2rem;
@@ -34,13 +44,15 @@
   fill: rgb(113, 184, 113);
 }
 .popularText {
+  /* font-weight: bold; */
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   padding-top: 2rem;
 }
 .popularText > h2 {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
+  font-weight: lighter;
   font-family: "Arimo", sans-serif;
 }
 
