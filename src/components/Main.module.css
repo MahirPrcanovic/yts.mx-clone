@@ -2,25 +2,53 @@
 
 .main {
   background-color: grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .text {
-  height: 30rem;
+  width: 90%;
+  height: 28rem;
   text-align: center;
   color: white;
   font-family: "Arimo", sans-serif;
   display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: 5rem;
+  align-items: center;
+  border-bottom: 2px solid black;
 }
-.text h1 {
-  font-size: 4.4rem;
+.title {
+  font-size: 2.4rem;
 }
-.txt {
-  width: 70%;
-  padding-bottom: 3rem;
-}
-.paragraph {
+.description {
   width: 45%;
-  text-align: center;
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+}
+.icon {
+  width: 2rem;
+  height: 2rem;
+  stroke: rgb(113, 184, 113);
+  fill: rgb(113, 184, 113);
+}
+.popularText {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-top: 2rem;
+}
+.popularText > h2 {
+  font-size: 1.6rem;
+  font-family: "Arimo", sans-serif;
+}
+
+.linkTxt {
+  text-decoration: none;
+  font-size: 1.4rem;
+  color: #428bca;
+}
+.linkTxt:hover {
+  color: #2b5d8a;
 }
