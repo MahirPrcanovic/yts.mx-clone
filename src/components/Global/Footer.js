@@ -40,7 +40,12 @@ const Footer = () => {
         </h3>
       </div>
       <div className={classes.row}>
-        <a href="https://eztv.re" className={classes.link} target="_blank">
+        <a
+          href="https://eztv.re"
+          className={classes.link}
+          target="_blank"
+          rel="noreferrer"
+        >
           EZTV
         </a>{" "}
         -
@@ -48,6 +53,7 @@ const Footer = () => {
           href="https://yifystatus.com"
           className={classes.link}
           target="_blank"
+          rel="noreferrer"
         >
           YIFY Status
         </a>{" "}
@@ -56,6 +62,7 @@ const Footer = () => {
           href="https://ytsproxies.com"
           className={classes.link}
           target="_blank"
+          rel="noreferrer"
         >
           YTS Proxies
         </a>

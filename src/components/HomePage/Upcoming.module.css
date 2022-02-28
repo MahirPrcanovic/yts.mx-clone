@@ -7,10 +7,10 @@
   flex-direction: column;
 }
 .movies {
-  width: 90%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  gap: 4.8rem;
 }
 .title {
   margin-top: 2.4rem;

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import MovieDetail from "../MovieDetail";
+import MovieDetail from "../Global/MovieDetail";
 import classes from "./Upcoming.module.css";
 const Upcoming = () => {
   const data = useFetch({

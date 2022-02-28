@@ -1,7 +1,7 @@
 import classes from "./Main.module.css";
 import { Link } from "react-router-dom";
 import { Fragment } from "react";
-import MovieDetail from "../MovieDetail";
+import MovieDetail from "../Global/MovieDetail";
 import useFetch from "../../hooks/useFetch";
 const Main = () => {
   let rand = Math.floor(1 + Math.random() * (1970 - 1));
@@ -14,6 +14,9 @@ const Main = () => {
     for (let i = 0; i < 4; i++) {
       movieData.push(data.data.movies[i]);
     }
+  }
+  if (data) {
+    console.log(data.data.movies[0]);
   }
   return (
     <Fragment>
