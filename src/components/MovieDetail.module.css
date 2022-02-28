@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow-wrap: break-word;
 }
 .movie {
   display: flex;
@@ -19,15 +20,31 @@
   font-family: "Arimo", sans-serif;
   font-size: 1.2rem;
   font-weight: bold;
+  position: relative;
 }
 .block:hover {
   cursor: pointer;
+}
+.try {
+  justify-content: center;
+  align-items: center;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  cursor: pointer;
+}
+.additional {
+  filter: blur(3px);
 }
 .title:hover {
   cursor: pointer;
   color: #919191;
 }
 .title {
+  width: 80%;
   color: white;
   text-decoration: none;
 }
@@ -47,6 +64,7 @@
   border: none;
   padding: 1rem 2rem;
   cursor: pointer;
+  animation: slidein 0.3s linear;
 }
 .item {
   padding-top: 1rem;
@@ -56,4 +74,29 @@
 }
 .hidden {
   display: none;
+}
+@keyframes slidein {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.animation {
+  /* animation: slidein 0.4s ease-in; */
+  animation: fadeOut 1s ease-in !important;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.fade {
+  animation: fadeOut 3s ease;
 }

@@ -15,9 +15,6 @@ const Main = () => {
     }
     fetchData();
   }, []);
-  if (data) {
-    console.log(data.data.movies);
-  }
   rand = Math.floor(1 + Math.random() * (20 - 1));
   const rand2 = Math.floor(1 + Math.random() * (20 - 1));
   const rand3 = Math.floor(1 + Math.random() * (20 - 1));
