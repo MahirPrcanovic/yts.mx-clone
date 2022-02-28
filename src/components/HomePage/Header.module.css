@@ -1,15 +1,19 @@
 .header {
   /* background-color: red; */
+  width: 100%;
   height: 5.5rem;
   display: grid;
   grid-template-columns: 0.4fr 1.3fr 1fr;
   background: #1d1d1d;
   border-bottom: 2px solid #2f2f2f;
+
+  z-index: 10;
 }
+
 .image {
   height: 75%;
   width: 70%;
-  background-image: url("../images/yts-logo.jpg");
+  background-image: url("../../images/yts-logo.jpg");
   background-position: center;
   background-size: cover;
 }

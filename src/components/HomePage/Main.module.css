@@ -1,16 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
 
 .main {
-  /* background-color: grey; */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 .main {
-  background-image: url("../images/Background-home.jpg");
-  /* filter: blur(8px); */
-  /* -webkit-filter: blur(8px); */
+  background-image: url("../../images/Background-home.jpg");
   background-position: center;
   background-size: cover;
 }
@@ -31,6 +28,7 @@
 .title {
   font-size: 2.2rem;
 }
+
 .description {
   width: 50%;
   font-size: 1.4rem;
@@ -71,7 +69,32 @@
   align-items: center;
   gap: 4.8rem;
 }
-
 .latest {
-  height: 300rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  height: 100rem;
+}
+.latestMoviesContainer {
+  height: 90rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 4.8rem;
+}
+.latestTitle {
+  border-top: 1px solid lightgrey;
+  width: 100%;
+  color: white;
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+.link {
+  text-decoration: none;
+  color: #919191;
+}
+.link:hover {
+  color: white;
 }

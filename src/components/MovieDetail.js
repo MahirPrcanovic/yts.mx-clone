@@ -3,8 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
 
 const MovieDetail = (props) => {
-  console.log(props.title, props.year, props.rating, props.image, props.genre);
-  console.log(typeof props.image);
   const history = useHistory();
   const [showOverlay, setShowOverlay] = useState(false);
   const addClassHandler = () => {
@@ -75,7 +73,7 @@ const MovieDetail = (props) => {
       <Link to="/movies/id" className={classes.title}>
         {props.title}
       </Link>
-      <p>{props.year}</p>
+      <p className={classes.year}>{props.year}</p>
     </div>
   );
 };

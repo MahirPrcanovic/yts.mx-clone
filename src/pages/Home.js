@@ -1,13 +1,13 @@
 import { Fragment } from "react";
-import Header from "../components/Header";
-import Main from "../components/Main";
-import classes from "./Home.module.css";
-
+import Header from "../components/HomePage/Header";
+import Main from "../components/HomePage/Main";
+import Upcoming from "../components/HomePage/Upcoming";
 const Home = () => {
   return (
     <Fragment>
       <Header />
       <Main />
+      <Upcoming />
     </Fragment>
   );
 };

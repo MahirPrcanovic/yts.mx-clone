@@ -12,6 +12,9 @@
   flex-direction: column;
   overflow-wrap: break-word;
 }
+.block:hover {
+  cursor: pointer;
+}
 .movie {
   display: flex;
   flex-direction: column;
@@ -21,9 +24,6 @@
   font-size: 1.2rem;
   font-weight: bold;
   position: relative;
-}
-.block:hover {
-  cursor: pointer;
 }
 .try {
   width: 100%;
@@ -40,14 +40,14 @@
 .additional {
   filter: blur(3px);
 }
-.title:hover {
-  cursor: pointer;
-  color: #919191;
-}
 .title {
   width: 80%;
   color: white;
   text-decoration: none;
+}
+.title:hover {
+  cursor: pointer;
+  color: #919191;
 }
 .icon {
   width: 2.4rem;
@@ -87,7 +87,6 @@
   }
 }
 .animation {
-  /* animation: slidein 0.4s ease-in; */
   animation: fadeOut 1s ease-in !important;
 }
 @keyframes fadeOut {
@@ -108,4 +107,8 @@
   font-weight: bold;
   color: white;
   gap: 0.5rem;
+}
+.year {
+  width: 50%;
+  color: #919191;
 }
