@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
+.container {
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+  background-color: rgb(23, 23, 23);
+}
+.row {
+  font-family: "Arimo", sans-serif;
+  color: white;
+}
+.link {
+  text-decoration: none;
+  color: #919191;
+  font-size: 1.4rem;
+}
+.link:hover {
+  color: white;
+}
