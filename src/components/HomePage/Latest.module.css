@@ -1,6 +1,6 @@
 .container {
-  height: 50rem;
-  background-color: rgb(29, 29, 29);
+  height: 90rem;
+  background-color: rgb(23, 23, 23);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,9 +8,11 @@
 }
 .movies {
   width: 90%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  align-content: center;
+  row-gap: 1.6rem;
 }
 .title {
   margin-top: 2.4rem;

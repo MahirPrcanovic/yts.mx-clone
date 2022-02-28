@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import classes from "./Latest.module.css";
+import { Link } from "react-router-dom";
 import MovieDetail from "../MovieDetail";
-import classes from "./Upcoming.module.css";
-const Upcoming = () => {
+const Latest = () => {
   const data = useFetch({
     url: "https://yts.mx/api/v2/list_movies.json?page=",
-    page: 550,
+    page: 1977,
   });
-  const movies = [];
+  let movies = [];
   if (data) {
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 8; i++) {
       movies.push(data.data.movies[i]);
     }
   }
@@ -40,4 +40,4 @@ const Upcoming = () => {
     </div>
   );
 };
-export default Upcoming;
+export default Latest;

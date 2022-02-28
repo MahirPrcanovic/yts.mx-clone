@@ -9,21 +9,12 @@ const Main = () => {
     url: "https://yts.mx/api/v2/list_movies.json?page=",
     page: rand,
   });
-  const latestMoviesData = useFetch({
-    url: "https://yts.mx/api/v2/list_movies.json?page=",
-    page: 1977,
-  });
-  let latestMovies = [];
   let movieData = [];
-  if (data && latestMoviesData) {
+  if (data) {
     for (let i = 0; i < 4; i++) {
       movieData.push(data.data.movies[i]);
     }
-    for (let i = 0; i < 8; i++) {
-      latestMovies.push(latestMoviesData.data.movies[i]);
-    }
   }
-
   return (
     <Fragment>
       <div className={classes.main}>
@@ -71,30 +62,6 @@ const Main = () => {
                 />
               );
             })}
-        </div>
-        <div className={classes.latest}>
-          <div className={classes.latestTitle}>
-            <h2>Latest YIFY Movies Torrents</h2>
-            <Link to="/browse-movies" className={classes.link}>
-              Browse All
-            </Link>
-          </div>
-          <div className={classes.latestMoviesContainer}>
-            {latestMoviesData &&
-              latestMovies.length !== 0 &&
-              latestMovies.map((movie) => {
-                return (
-                  <MovieDetail
-                    key={movie.id}
-                    image={movie.medium_cover_image}
-                    genre={movie.genres}
-                    title={movie.title}
-                    year={movie.year}
-                    rating={movie.rating}
-                  />
-                );
-              })}
-          </div>
         </div>
       </div>
     </Fragment>
