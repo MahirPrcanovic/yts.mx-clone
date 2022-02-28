@@ -91,10 +91,47 @@
   justify-content: space-between;
   margin-bottom: 2rem;
 }
+
 .link {
   text-decoration: none;
   color: #919191;
 }
 .link:hover {
   color: white;
+}
+@media (max-width: 1200px) {
+  .title {
+    font-size: 1.8rem;
+  }
+}
+@media (max-width: 1000px) {
+  .title,
+  .description,
+  .link {
+    display: none;
+  }
+  .text {
+    height: 10rem;
+  }
+  .popular {
+    height: 35rem;
+  }
+}
+@media (max-width: 770px) {
+  .popular {
+    display: grid;
+    width: 70%;
+    grid-template-columns: 1fr 1fr;
+    height: 90rem;
+    row-gap: 0;
+    padding-top: 0;
+  }
+  /* .main {
+    width: 90%;
+  } */
+}
+@media (max-width: 350px) {
+  .popular {
+    height: 65rem;
+  }
 }

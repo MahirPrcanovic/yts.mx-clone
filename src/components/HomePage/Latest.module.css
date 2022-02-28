@@ -32,3 +32,41 @@
 .title > h2 {
   color: white;
 }
+@media (max-width: 1500px) {
+  .title {
+    justify-content: space-around;
+  }
+}
+@media (max-width: 1200px) {
+  .title {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 1000px) {
+  .container {
+    height: 65rem;
+  }
+}
+@media (max-width: 770px) {
+  .movies {
+    display: grid;
+    width: 70%;
+    grid-template-columns: 1fr 1fr;
+    /* height: 90rem; */
+  }
+  .container {
+    height: 165rem;
+  }
+  .title {
+    margin: 0;
+  }
+  .movies {
+    margin-bottom: 2rem;
+    gap: 3.6rem;
+  }
+}
+@media (max-width: 350px) {
+  .container {
+    height: 125rem;
+  }
+}

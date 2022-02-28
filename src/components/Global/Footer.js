@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div className={classes.container}>
       <div className={classes.row}>
-        <h3>
+        <h3 className={classes.ha3}>
           YTS &copy; 2011-2022 - {""}
           <Link to="/blog" className={classes.link}>
             Blog
@@ -68,7 +68,7 @@ const Footer = () => {
         </a>
       </div>
       <div className={classes.row}>
-        <h3>
+        <h3 className={classes.ha3}>
           By using this site you agree to and accept our{" "}
           <Link to="/terms" className={classes.link}>
             User Agreement

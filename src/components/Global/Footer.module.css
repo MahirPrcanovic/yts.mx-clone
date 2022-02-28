@@ -20,3 +20,11 @@
 .link:hover {
   color: white;
 }
+@media (max-width: 500px) {
+  .link {
+    font-size: 0.7rem;
+  }
+  .ha3 {
+    font-size: 0.7rem;
+  }
+}
