@@ -139,11 +139,17 @@
   .year {
     width: 50%;
   }
+  .title {
+    width: 100%;
+  }
 }
 @media (max-width: 500px) {
   .block {
     width: 15rem;
     height: 27rem;
+  }
+  .title {
+    width: 100%;
   }
 }
 @media (max-width: 350px) {
