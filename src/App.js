@@ -4,14 +4,15 @@ import { Switch } from "react-router-dom";
 // import Home from "./pages/Home";
 // import Header from "./components/Global/Header";
 import Home from "./pages/Home";
+import BrowseMovies from "./pages/BrowseMovies";
 function App() {
   return (
     <Switch>
       <Route path="/" exact>
         <Home />
       </Route>
-      <Route path="/mahir">
-        <h1>Mahir</h1>
+      <Route path="/browse-movies">
+        <BrowseMovies />
       </Route>
     </Switch>
   );

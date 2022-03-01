@@ -3,10 +3,13 @@ import classes from "./Header.module.css";
 import { Link } from "react-router-dom";
 import React from "react";
 import { useHistory } from "react-router-dom";
-const Header = () => {
+const Header = (props) => {
   const history = useHistory();
   return (
-    <div className={classes.header}>
+    <div
+      className={classes.header}
+      style={{ position: `${props.stick === true ? "fixed" : "inherit"}` }}
+    >
       <div className={classes.logo}>
         <Link className={classes.image} to="./"></Link>
       </div>
