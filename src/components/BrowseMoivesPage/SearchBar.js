@@ -1,4 +1,5 @@
 import classes from "./SearchBar.module.css";
+import { useRef } from "react";
 const languages = [
   "All",
   "English",
@@ -151,10 +152,29 @@ const years = [
   "1900-1949",
 ];
 const SearchBar = () => {
+  const selectedQuality = useRef();
+  const selectedTerm = useRef();
+  const selectedGenre = useRef();
+  const selectedRating = useRef();
+  const selectedYear = useRef();
+  const selectedLanguage = useRef();
+  const selectedOrderBy = useRef();
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log(
+      selectedQuality.current.value,
+      selectedTerm.current.value,
+      selectedGenre.current.value,
+      selectedRating.current.value,
+      selectedYear.current.value,
+      selectedLanguage.current.value,
+      selectedOrderBy.current.value
+    );
+  };
   return (
     <section className={classes.search}>
       <div className={classes.box}>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={submitHandler}>
           <label
             htmlFor="search-term"
             className={`${classes.label} ${classes.searchTerm}`}
@@ -168,6 +188,7 @@ const SearchBar = () => {
                 id="search-term"
                 name="search-term"
                 className={classes.input}
+                ref={selectedTerm}
               />
             </div>
             <button htmlFor="submit" className={classes.button}>
@@ -179,7 +200,12 @@ const SearchBar = () => {
               <label htmlFor="quality" className={classes.label}>
                 Quality
               </label>
-              <select name="quality" id="quality" className={classes.select}>
+              <select
+                name="quality"
+                id="quality"
+                className={classes.select}
+                ref={selectedQuality}
+              >
                 <option value="All">All</option>
                 <option value="720p">720p</option>
                 <option value="1080p">1080p</option>
@@ -191,7 +217,12 @@ const SearchBar = () => {
               <label htmlFor="Genre" className={classes.label}>
                 Genre
               </label>
-              <select name="genre" id="genre" className={classes.select}>
+              <select
+                name="genre"
+                id="genre"
+                className={classes.select}
+                ref={selectedGenre}
+              >
                 {genres.map((genre, index) => {
                   return (
                     <option value={`${genre}`} key={index}>
@@ -205,7 +236,12 @@ const SearchBar = () => {
               <label htmlFor="Rating" className={classes.label}>
                 Rating
               </label>
-              <select name="Rating" id="Rating" className={classes.select}>
+              <select
+                name="Rating"
+                id="Rating"
+                className={classes.select}
+                ref={selectedRating}
+              >
                 {ratings.map((rating, index) => {
                   return (
                     <option value={`${rating}`} key={index}>
@@ -219,7 +255,12 @@ const SearchBar = () => {
               <label htmlFor="Year" className={classes.label}>
                 Year
               </label>
-              <select name="Year" id="Year" className={classes.select}>
+              <select
+                name="Year"
+                id="Year"
+                className={classes.select}
+                ref={selectedYear}
+              >
                 {years.map((year, index) => {
                   return (
                     <option value={`${year}`} key={index}>
@@ -233,7 +274,12 @@ const SearchBar = () => {
               <label htmlFor="Language" className={classes.label}>
                 Language
               </label>
-              <select name="Language" id="Language" className={classes.select}>
+              <select
+                name="Language"
+                id="Language"
+                className={classes.select}
+                ref={selectedLanguage}
+              >
                 {languages.map((language, index) => {
                   return (
                     <option value={`${language}`} key={index}>
@@ -247,7 +293,12 @@ const SearchBar = () => {
               <label htmlFor="Order" className={classes.label}>
                 Order
               </label>
-              <select name="Order" id="Order" className={classes.select}>
+              <select
+                name="Order"
+                id="Order"
+                className={classes.select}
+                ref={selectedOrderBy}
+              >
                 {orders.map((order, index) => {
                   return (
                     <option value={`${order}`} key={index}>

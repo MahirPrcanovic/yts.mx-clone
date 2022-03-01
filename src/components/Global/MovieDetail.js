@@ -22,7 +22,9 @@ const MovieDetail = (props) => {
         <div
           onMouseOver={addClassHandler}
           onMouseOut={removeClassHandler}
-          className={`${classes.block}`}
+          className={`${classes.block} ${
+            props.small === true ? classes.small : ""
+          }`}
           style={{
             backgroundImage: `url("${props.image}")`,
             backgroundPosition: "center",
