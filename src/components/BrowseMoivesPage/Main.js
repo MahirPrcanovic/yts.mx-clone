@@ -1,29 +1,34 @@
 import classes from "./Main.module.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import useFetch from "../../hooks/useFetch";
+import { useEffect, useState } from "react";
 import MovieDetail from "../Global/MovieDetail";
-const Main = () => {
-  const arr = [1, 2, 3, 4, 5, 6, 7, 8];
-  // const [link, setLink] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
-  const helper = () => {
-    setPageNumber(pageNumber + 1);
-  };
-  const data = useFetch({
-    url: "https://yts.mx/api/v2/list_movies.json?page=",
-    page: 1,
-  });
-  //BAD PRACTICE, TOO DEEP TO FIX IT (display grid would mess up overlay over the picture of the movie
-  //, because it would take whole space available while div with picture would be only how much i set it to)
-  // (overlay was delt with percentages instead of following with div under it)
-  const movies = [];
+import { useLocation } from "react-router-dom";
 
+const Main = () => {
+  const [pageNumber, setPageNumber] = useState(1);
+  const numbers = [0, 1, 2, 3, 4, 5, 6, 7];
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(
+        `https://yts.mx/api/v2/list_movies.json?page=${pageNumber}`
+      );
+      const data = await response.json();
+      setData(data);
+    }
+    fetchData();
+    // eslint-disable-next-line
+  }, [pageNumber]);
+  if (data) {
+    console.log(data);
+  }
+  const movies = [];
   if (data) {
     for (let i = 0; i < 20; i++) {
       movies.push(data.data.movies[i]);
     }
   }
+
   return (
     <section className={classes.main}>
       <div className={classes.pagination}>
@@ -34,18 +39,73 @@ const Main = () => {
             </h2>
           </div>
           <div className={classes.pages}>
-            {arr.map((number, index) => {
+            {/* <button
+              onClick={() => {
+                setPageNumber((prevPageNumber) => prevPageNumber + 1);
+              }}
+            >
+              {pageNumber}
+            </button> */}
+            <Link
+              to="/browse-movies?page=1"
+              className={classes.link}
+              onClick={() => setPageNumber(1)}
+            >
+              First
+            </Link>
+            <Link
+              to={`/browse-movies?page=${pageNumber}`}
+              className={classes.link}
+              onClick={() =>
+                setPageNumber((prevNumber) => {
+                  if (prevNumber >= 2) {
+                    return prevNumber - 1;
+                  } else return prevNumber;
+                })
+              }
+            >
+              Previous
+            </Link>
+            {numbers.map((number, index) => {
               return (
                 <Link
-                  to={`/browse-movies?page=${pageNumber + index}`}
+                  to={`/browse-movies?page=${pageNumber + number}`}
                   className={classes.link}
-                  onClick={helper}
                   key={index}
+                  onClick={() =>
+                    setPageNumber((prevNumber) => {
+                      if ((prevNumber = 1977)) {
+                        return prevNumber;
+                      } else {
+                        return prevNumber + 1;
+                      }
+                    })
+                  }
                 >
-                  {pageNumber + index}
+                  {pageNumber + number}
                 </Link>
               );
             })}
+            <Link
+              to={`/browse-movies?page=${pageNumber + 1}`}
+              className={classes.link}
+              onClick={() =>
+                setPageNumber((prevNumber) => {
+                  if (prevNumber <= 1969) {
+                    return prevNumber + 1;
+                  } else return prevNumber;
+                })
+              }
+            >
+              Next
+            </Link>
+            <Link
+              to="/browse-movies?page=1977"
+              className={classes.link}
+              onClick={() => setPageNumber(1970)}
+            >
+              Last
+            </Link>
           </div>
         </div>
       </div>

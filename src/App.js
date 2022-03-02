@@ -1,8 +1,6 @@
 import "./App.css";
 import { Route } from "react-router-dom";
 import { Switch } from "react-router-dom";
-// import Home from "./pages/Home";
-// import Header from "./components/Global/Header";
 import Home from "./pages/Home";
 import BrowseMovies from "./pages/BrowseMovies";
 function App() {

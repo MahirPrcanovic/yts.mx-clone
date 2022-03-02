@@ -58,12 +58,12 @@ const MovieDetail = (props) => {
               showOverlay ? "" : classes.hidden
             }`}
           >
-            {props.genre[0]}
+            {props.genre ? props.genre[0] : " "}
           </h1>
           <h1
             className={`${classes.item} ${showOverlay ? "" : classes.hidden}`}
           >
-            {props.genre[1]}
+            {props.genre ? props.genre[1] : " "}
           </h1>
           <button
             className={`${classes.button} ${showOverlay ? "" : classes.hidden}`}
