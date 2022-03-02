@@ -5,7 +5,7 @@ import MovieDetail from "../Global/MovieDetail";
 const Latest = () => {
   const data = useFetch({
     url: "https://yts.mx/api/v2/list_movies.json?page=",
-    page: 1977,
+    page: 1,
   });
   let movies = [];
   let movies2 = [];

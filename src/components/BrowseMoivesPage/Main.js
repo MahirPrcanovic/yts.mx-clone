@@ -8,7 +8,6 @@ const Main = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [activePage, setActivePage] = useState(1);
   const [activeIndex, setActiveIndex] = useState(1);
-  const [lastNumber, setLastNumber] = useState(false);
   const history = useHistory();
   const funkcija = useCallback(() => {
     history.push("/browse-movies?page=1");
@@ -40,7 +39,6 @@ const Main = () => {
     }
     // eslint-disable-next-line
   }, []);
-  console.log(pageNumber);
   const numbers = [0, 1, 2, 3, 4, 5, 6, 7];
   const [data, setData] = useState(null);
   useEffect(() => {
@@ -54,9 +52,6 @@ const Main = () => {
     fetchData();
     // eslint-disable-next-line
   }, [activePage]);
-  if (data) {
-    console.log(data);
-  }
   const movies = [];
   if (data) {
     for (let i = 0; i < 20; i++) {
@@ -128,9 +123,7 @@ const Main = () => {
               to={`/browse-movies?page=${
                 activePage !== 1977 ? activePage + 1 : activePage
               }`}
-              className={`${classes.link} ${
-                lastNumber ? classes.disable : " "
-              }`}
+              className={`${classes.link}`}
               onClick={() => {
                 if (activeIndex === 7 && activePage !== 1977) {
                   setActiveIndex(0);
@@ -237,9 +230,7 @@ const Main = () => {
               to={`/browse-movies?page=${
                 activePage !== 1977 ? activePage + 1 : activePage
               }`}
-              className={`${classes.link} ${
-                lastNumber ? classes.disable : " "
-              }`}
+              className={`${classes.link}`}
               onClick={() => {
                 if (activeIndex === 7 && activePage !== 1977) {
                   setActiveIndex(0);

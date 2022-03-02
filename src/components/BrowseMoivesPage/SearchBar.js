@@ -1,5 +1,5 @@
 import classes from "./SearchBar.module.css";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 const languages = [
   "All",
   "English",
@@ -107,9 +107,7 @@ const orders = [
 ];
 const genres = [
   "All",
-  "Adventure",
-  "Adventure",
-  "Adventure",
+  "Action",
   "Adventure",
   "Animation",
   "Biography",
@@ -151,6 +149,7 @@ const years = [
   "1950-1969",
   "1900-1949",
 ];
+const movies = [];
 const SearchBar = () => {
   const selectedQuality = useRef();
   const selectedTerm = useRef();
@@ -159,17 +158,34 @@ const SearchBar = () => {
   const selectedYear = useRef();
   const selectedLanguage = useRef();
   const selectedOrderBy = useRef();
+  const [number, setNumber] = useState(1);
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(
+        `https://yts.mx/api/v2/list_movies.json?query_term=spider-man`
+      );
+      const data = await response.json();
+      setData(data);
+    }
+    fetchData();
+    // eslint-disable-next-line
+  }, [number]);
+  //https://yts.mx/api/v2/list_movies.json?query_term=spider-man ZA SEARCHANJE
+  if (data) {
+    console.log(data);
+  }
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(
-      selectedQuality.current.value,
-      selectedTerm.current.value,
-      selectedGenre.current.value,
-      selectedRating.current.value,
-      selectedYear.current.value,
-      selectedLanguage.current.value,
-      selectedOrderBy.current.value
-    );
+    // let nasao = false;
+    const quality = selectedQuality.current.value;
+    const term = selectedTerm.current.value;
+    const genre = selectedGenre.current.value;
+    const rating = selectedRating.current.value;
+    const year = selectedYear.current.value;
+    const language = selectedLanguage.current.value;
+    const orderBy = selectedOrderBy.current.value;
+    console.log(quality, term, genre, rating, year, language, orderBy);
   };
   return (
     <section className={classes.search}>
