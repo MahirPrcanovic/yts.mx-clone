@@ -172,6 +172,7 @@ const SearchBar = () => {
     // eslint-disable-next-line
   }, [number]);
   //https://yts.mx/api/v2/list_movies.json?query_term=spider-man ZA SEARCHANJE
+  //Pomocu ovog koristiti i napraviti search
   if (data) {
     console.log(data);
   }
