@@ -1,24 +1,52 @@
 import classes from "./Main.module.css";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
 import MovieDetail from "../Global/MovieDetail";
-import { useLocation } from "react-router-dom";
 
 const Main = () => {
   const [pageNumber, setPageNumber] = useState(1);
+  const [activePage, setActivePage] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(1);
+  const history = useHistory();
+  const funkcija = useCallback(() => {
+    history.push("/browse-movies?page=1");
+  }, [history]);
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const name = queryParams.get("page");
+    if (+name < 1977 && +name > 0) {
+      setPageNumber(name ? +name : 1);
+      setActivePage(name ? +name - 1 : 1);
+    } else if (+name === 1977) {
+      setPageNumber(1970);
+      setActivePage(1977);
+      setActiveIndex(7);
+    } else {
+      setActiveIndex(0);
+      funkcija();
+    }
+    if (+name > 1970 && +name < 1977) {
+      setPageNumber(1970);
+      setActivePage(name ? +name : 1);
+      const index = +name - 1970;
+      setActiveIndex(index);
+    }
+    // eslint-disable-next-line
+  }, []);
+  console.log(pageNumber);
   const numbers = [0, 1, 2, 3, 4, 5, 6, 7];
   const [data, setData] = useState(null);
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        `https://yts.mx/api/v2/list_movies.json?page=${pageNumber}`
+        `https://yts.mx/api/v2/list_movies.json?page=${activePage}`
       );
       const data = await response.json();
       setData(data);
     }
     fetchData();
     // eslint-disable-next-line
-  }, [pageNumber]);
+  }, [activePage]);
   if (data) {
     console.log(data);
   }
@@ -39,30 +67,37 @@ const Main = () => {
             </h2>
           </div>
           <div className={classes.pages}>
-            {/* <button
-              onClick={() => {
-                setPageNumber((prevPageNumber) => prevPageNumber + 1);
-              }}
-            >
-              {pageNumber}
-            </button> */}
             <Link
               to="/browse-movies?page=1"
               className={classes.link}
-              onClick={() => setPageNumber(1)}
+              onClick={() => {
+                setPageNumber(1);
+                setActivePage(1);
+                setActiveIndex(0);
+              }}
             >
               First
             </Link>
             <Link
-              to={`/browse-movies?page=${pageNumber}`}
-              className={classes.link}
-              onClick={() =>
+              to={`/browse-movies?page=${pageNumber - 1}`}
+              className={`${classes.link} ${classes.previous}`}
+              onClick={() => {
                 setPageNumber((prevNumber) => {
+                  setActivePage(pageNumber - 1);
+                  setActiveIndex((prevIndex) => {
+                    if (prevIndex > 0) {
+                      return prevIndex - 1;
+                    } else {
+                      return prevIndex;
+                    }
+                  });
                   if (prevNumber >= 2) {
                     return prevNumber - 1;
-                  } else return prevNumber;
-                })
-              }
+                  } else {
+                    return prevNumber;
+                  }
+                });
+              }}
             >
               Previous
             </Link>
@@ -70,17 +105,14 @@ const Main = () => {
               return (
                 <Link
                   to={`/browse-movies?page=${pageNumber + number}`}
-                  className={classes.link}
+                  className={`${classes.link} ${
+                    activeIndex === number ? classes.active : " "
+                  }`}
                   key={index}
-                  onClick={() =>
-                    setPageNumber((prevNumber) => {
-                      if ((prevNumber = 1977)) {
-                        return prevNumber;
-                      } else {
-                        return prevNumber + 1;
-                      }
-                    })
-                  }
+                  onClick={() => {
+                    setActivePage(pageNumber + number);
+                    setActiveIndex(number);
+                  }}
                 >
                   {pageNumber + number}
                 </Link>
@@ -89,20 +121,26 @@ const Main = () => {
             <Link
               to={`/browse-movies?page=${pageNumber + 1}`}
               className={classes.link}
-              onClick={() =>
+              onClick={() => {
                 setPageNumber((prevNumber) => {
-                  if (prevNumber <= 1969) {
+                  if (prevNumber === 1970) {
+                    return;
+                  } else {
                     return prevNumber + 1;
-                  } else return prevNumber;
-                })
-              }
+                  }
+                });
+              }}
             >
               Next
             </Link>
             <Link
               to="/browse-movies?page=1977"
               className={classes.link}
-              onClick={() => setPageNumber(1970)}
+              onClick={() => {
+                setPageNumber(1970);
+                setActivePage(1977);
+                setActiveIndex(7);
+              }}
             >
               Last
             </Link>
