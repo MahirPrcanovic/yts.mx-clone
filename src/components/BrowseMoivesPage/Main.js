@@ -2,6 +2,7 @@ import classes from "./Main.module.css";
 import { Link, useHistory } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
 import MovieDetail from "../Global/MovieDetail";
+import Footer from "../Global/Footer";
 
 const Main = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -179,7 +180,7 @@ const Main = () => {
             })}
         </div>
       </div>
-      <div className={classes.pagination}>
+      <div className={`${classes.pagination} ${classes.padding}`}>
         <div className={classes.srce}>
           <div className={classes.pages}>
             <Link
@@ -269,6 +270,7 @@ const Main = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </section>
   );
 };

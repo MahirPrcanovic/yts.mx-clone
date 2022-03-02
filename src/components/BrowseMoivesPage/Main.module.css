@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
 .main {
-  height: 205rem;
+  height: 210rem;
   background-color: #1d1d1d;
 }
 .pagination {
@@ -9,12 +9,8 @@
   justify-content: center;
   align-items: center;
 }
-.mahir {
-  font-size: 2rem;
-  color: white;
-}
-.disable {
-  cursor: not-allowed;
+.padding {
+  padding-bottom: 2.4rem;
 }
 .link {
   width: 3.6rem;
