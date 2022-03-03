@@ -140,7 +140,7 @@ const SearchBar = (props) => {
   const selectedGenre = useRef();
   const selectedRating = useRef();
   const selectedYear = useRef();
-  const selectedLanguage = useRef();
+  // const selectedLanguage = useRef();
   const selectedOrderBy = useRef();
   let quality, term, genre, rating, year, language, orderBy;
   //https://yts.mx/api/v2/list_movies.json?query_term=spider-man ZA SEARCHANJE
@@ -152,7 +152,7 @@ const SearchBar = (props) => {
     genre = selectedGenre.current.value;
     rating = selectedRating.current.value;
     year = selectedYear.current.value;
-    language = selectedLanguage.current.value;
+    // language = selectedLanguage.current.value;
     orderBy = selectedOrderBy.current.value;
     props.setMovies(quality, term, genre, rating, year, language, orderBy);
   };

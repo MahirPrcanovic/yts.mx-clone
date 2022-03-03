@@ -55,14 +55,14 @@ const BrowseMovies = () => {
     }
     fetchData();
   }, [data]);
-  if (sentData) {
-    console.log(sentData);
-  }
+  // if (sentData) {
+  //   console.log(sentData);
+  // }
   return (
     <Fragment>
       <Header stick={true} />
       <SearchBar setMovies={setMovies} />
-      <Main />
+      <Main data={sentData} />
     </Fragment>
   );
 };

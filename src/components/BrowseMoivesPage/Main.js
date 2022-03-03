@@ -52,25 +52,30 @@ const Main = (props) => {
     // eslint-disable-next-line
   }, [activePage]);
   const movies = [];
-  if (data) {
-    for (let i = 0; i < 20; i++) {
-      movies.push(data.data.movies[i]);
+  if (props.data) {
+    console.log(props.data);
+  }
+  if (props.data !== null) {
+    //ERROR PAGE STAVITI (KAD SE NE NADE FILM NA SERCH STRANICA SE KRASHA)
+    console.log(props.data.data.movies.length === undefined);
+    if (props.data.data.movies !== undefined) {
+      for (let i = 0; i < props.data.data.movies.length; i++) {
+        movies.push(props.data.data.movies[i]);
+      }
     }
   }
-  // quality: null,
-  // term: null,
-  // genre: null,
-  // rating: null,
-  // year: null,
-  // language: null,
-  // orderBy: null,
   return (
     <section className={classes.main}>
       <div className={classes.pagination}>
         <div className={classes.srce}>
           <div className={classes.paginationTitle}>
             <h2>
-              <span className={classes.number}>39,468 </span>YIFY Movies found
+              <span className={classes.number}>
+                {props.data && props.data.data && props.data.data.movie_count
+                  ? props.data.data.movie_count
+                  : ""}{" "}
+              </span>
+              YIFY Movies found
             </h2>
           </div>
           <div className={classes.pages}>
