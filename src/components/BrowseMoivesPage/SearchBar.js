@@ -1,109 +1,107 @@
 import classes from "./SearchBar.module.css";
-import { useRef, useEffect, useState } from "react";
-const languages = [
-  "All",
-  "English",
-  "Foreign",
-  "French (1694)",
-  "Japanese (1590)",
-  "Italian (900)",
-  "Spanish (818)",
-  "German (682)",
-  "Chinese (593)",
-  "Korean (561)",
-  "Cantonese (486)",
-  "Hindi (360)",
-  "Russian (249",
-  "Swedish (246)",
-  "Portuguese (191)",
-  "Polish (174)",
-  "Thai (120)",
-  "Danish (118)",
-  "Norwegian (85)",
-  "Dutch (82)",
-  "Tamil (67)",
-  "Vietnamese (66)",
-  "Telugu (65)",
-  "Finnish (58)",
-  "Czech (57)",
-  "Turkish (42)",
-  "Indonesian (39)",
-  "Persian (30)",
-  "Hungarian (27)",
-  "Tangalog (27)",
-  "Greek (27)",
-  "Arabic (23)",
-  "Hebrew (20)",
-  "Estonian (18)",
-  "Romanian (18)",
-  "Bangla (18)",
-  "Urdu (15)",
-  "Malay (13)",
-  "Malayam (13)",
-  "Icelandic (12)",
-  "Serbian (11)",
-  "Ukranian (10)",
-  "xx (9)",
-  "Catalan (9)",
-  "Slovak (8)",
-  "Punjabi (7)",
-  "Afrikaans (6)",
-  "Wolof (5)",
-  "Georgian (5)",
-  "Kannada (4)",
-  "Marathi (4)",
-  "Tibetan (4)",
-  "Latvian (4)",
-  "Basque (4)",
-  "Amharic (3)",
-  "Latin (3)",
-  "Galician (3)",
-  "Pashto (2)",
-  "Akan (2)",
-  "Armenian (2)",
-  "Lithuanian (2)",
-  "Swahili (2)",
-  "Norwegian Bokmai (2)",
-  "Bosnian (2)",
-  "Mongolian (2)",
-  "Somali(2)",
-  "Slovenian (1)",
-  "Kazakh (1)",
-  "Maltese (1)",
-  "Welsh (1)",
-  "Kurdish (1)",
-  "Igbo (1)",
-  "Zulu (1)",
-  "Croatian (1)",
-  "Irish (1)",
-  "Belarusian (1)",
-  "Ganda (1)",
-  "Southern Sotho (1)",
-  "Inuktitut (1)",
-  "Maori (1)",
-  "Khmer (1)",
-  "Azerbaijani (1)",
-  "Macedonian (1)",
-  "Haitan Creole (1)",
-  "Serbo-Croatian (1)",
-  "Kyrgyz (1)",
-  "Ossetic (1)",
-  "Abkhazian (1)",
-  "Luxembourgish (1)",
-  "Yiddish (1)",
-  "Afar (1)",
-];
+import { useRef } from "react";
+// const languages = [
+//   "All",
+//   "English",
+//   "Foreign",
+//   "French (1694)",
+//   "Japanese (1590)",
+//   "Italian (900)",
+//   "Spanish (818)",
+//   "German (682)",
+//   "Chinese (593)",
+//   "Korean (561)",
+//   "Cantonese (486)",
+//   "Hindi (360)",
+//   "Russian (249",
+//   "Swedish (246)",
+//   "Portuguese (191)",
+//   "Polish (174)",
+//   "Thai (120)",
+//   "Danish (118)",
+//   "Norwegian (85)",
+//   "Dutch (82)",
+//   "Tamil (67)",
+//   "Vietnamese (66)",
+//   "Telugu (65)",
+//   "Finnish (58)",
+//   "Czech (57)",
+//   "Turkish (42)",
+//   "Indonesian (39)",
+//   "Persian (30)",
+//   "Hungarian (27)",
+//   "Tangalog (27)",
+//   "Greek (27)",
+//   "Arabic (23)",
+//   "Hebrew (20)",
+//   "Estonian (18)",
+//   "Romanian (18)",
+//   "Bangla (18)",
+//   "Urdu (15)",
+//   "Malay (13)",
+//   "Malayam (13)",
+//   "Icelandic (12)",
+//   "Serbian (11)",
+//   "Ukranian (10)",
+//   "xx (9)",
+//   "Catalan (9)",
+//   "Slovak (8)",
+//   "Punjabi (7)",
+//   "Afrikaans (6)",
+//   "Wolof (5)",
+//   "Georgian (5)",
+//   "Kannada (4)",
+//   "Marathi (4)",
+//   "Tibetan (4)",
+//   "Latvian (4)",
+//   "Basque (4)",
+//   "Amharic (3)",
+//   "Latin (3)",
+//   "Galician (3)",
+//   "Pashto (2)",
+//   "Akan (2)",
+//   "Armenian (2)",
+//   "Lithuanian (2)",
+//   "Swahili (2)",
+//   "Norwegian Bokmai (2)",
+//   "Bosnian (2)",
+//   "Mongolian (2)",
+//   "Somali(2)",
+//   "Slovenian (1)",
+//   "Kazakh (1)",
+//   "Maltese (1)",
+//   "Welsh (1)",
+//   "Kurdish (1)",
+//   "Igbo (1)",
+//   "Zulu (1)",
+//   "Croatian (1)",
+//   "Irish (1)",
+//   "Belarusian (1)",
+//   "Ganda (1)",
+//   "Southern Sotho (1)",
+//   "Inuktitut (1)",
+//   "Maori (1)",
+//   "Khmer (1)",
+//   "Azerbaijani (1)",
+//   "Macedonian (1)",
+//   "Haitan Creole (1)",
+//   "Serbo-Croatian (1)",
+//   "Kyrgyz (1)",
+//   "Ossetic (1)",
+//   "Abkhazian (1)",
+//   "Luxembourgish (1)",
+//   "Yiddish (1)",
+//   "Afar (1)",
+// ];
 const orders = [
-  "Latest",
-  "Oldest",
-  "Featured",
-  "Seeds",
-  "Peers",
+  "Title",
   "Year",
-  "IMBd Rating",
-  "YTS Likes",
-  "Alphabetical",
-  "Downloads",
+  "Rating",
+  "Peers",
+  "Seeds",
+  "Download Count",
+  "Like count",
+  "Date Added",
 ];
 const genres = [
   "All",
@@ -134,23 +132,9 @@ const genres = [
   "Western",
 ];
 const ratings = ["All", "9+", "8+", "7+", "6+", "5+", "4+", "3+", "2+", "1+"];
-const years = [
-  "All",
-  "2020",
-  "2021",
-  "2020",
-  "2019",
-  "2015-2018",
-  "2010-2014",
-  "2000-2009",
-  "1990-1999",
-  "1980-1989",
-  "1970-1979",
-  "1950-1969",
-  "1900-1949",
-];
-const movies = [];
-const SearchBar = () => {
+const years = ["Dsc", "Asc"];
+// const movies = [];
+const SearchBar = (props) => {
   const selectedQuality = useRef();
   const selectedTerm = useRef();
   const selectedGenre = useRef();
@@ -158,35 +142,19 @@ const SearchBar = () => {
   const selectedYear = useRef();
   const selectedLanguage = useRef();
   const selectedOrderBy = useRef();
-  const [number, setNumber] = useState(1);
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        `https://yts.mx/api/v2/list_movies.json?query_term=spider-man`
-      );
-      const data = await response.json();
-      setData(data);
-    }
-    fetchData();
-    // eslint-disable-next-line
-  }, [number]);
+  let quality, term, genre, rating, year, language, orderBy;
   //https://yts.mx/api/v2/list_movies.json?query_term=spider-man ZA SEARCHANJE
   //Pomocu ovog koristiti i napraviti search
-  if (data) {
-    console.log(data);
-  }
   const submitHandler = (e) => {
     e.preventDefault();
-    // let nasao = false;
-    const quality = selectedQuality.current.value;
-    const term = selectedTerm.current.value;
-    const genre = selectedGenre.current.value;
-    const rating = selectedRating.current.value;
-    const year = selectedYear.current.value;
-    const language = selectedLanguage.current.value;
-    const orderBy = selectedOrderBy.current.value;
-    console.log(quality, term, genre, rating, year, language, orderBy);
+    quality = selectedQuality.current.value;
+    term = selectedTerm.current.value;
+    genre = selectedGenre.current.value;
+    rating = selectedRating.current.value;
+    year = selectedYear.current.value;
+    language = selectedLanguage.current.value;
+    orderBy = selectedOrderBy.current.value;
+    props.setMovies(quality, term, genre, rating, year, language, orderBy);
   };
   return (
     <section className={classes.search}>
@@ -270,7 +238,7 @@ const SearchBar = () => {
             </div>
             <div className={classes.item}>
               <label htmlFor="Year" className={classes.label}>
-                Year
+                Sort By
               </label>
               <select
                 name="Year"
@@ -287,7 +255,7 @@ const SearchBar = () => {
                 })}
               </select>
             </div>
-            <div className={classes.item}>
+            {/* <div className={classes.item}>
               <label htmlFor="Language" className={classes.label}>
                 Language
               </label>
@@ -305,7 +273,7 @@ const SearchBar = () => {
                   );
                 })}
               </select>
-            </div>
+            </div> */}
             <div className={classes.item}>
               <label htmlFor="Order" className={classes.label}>
                 Order

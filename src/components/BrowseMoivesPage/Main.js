@@ -3,8 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
 import MovieDetail from "../Global/MovieDetail";
 import Footer from "../Global/Footer";
-
-const Main = () => {
+const Main = (props) => {
   const [pageNumber, setPageNumber] = useState(1);
   const [activePage, setActivePage] = useState(1);
   const [activeIndex, setActiveIndex] = useState(1);
@@ -58,7 +57,13 @@ const Main = () => {
       movies.push(data.data.movies[i]);
     }
   }
-
+  // quality: null,
+  // term: null,
+  // genre: null,
+  // rating: null,
+  // year: null,
+  // language: null,
+  // orderBy: null,
   return (
     <section className={classes.main}>
       <div className={classes.pagination}>
