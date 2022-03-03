@@ -1,5 +1,6 @@
 import classes from "./SearchBar.module.css";
 import { useRef } from "react";
+import { useHistory } from "react-router-dom";
 // const languages = [
 //   "All",
 //   "English",
@@ -142,6 +143,7 @@ const SearchBar = (props) => {
   const selectedYear = useRef();
   // const selectedLanguage = useRef();
   const selectedOrderBy = useRef();
+  const history = useHistory();
   let quality, term, genre, rating, year, language, orderBy;
   //https://yts.mx/api/v2/list_movies.json?query_term=spider-man ZA SEARCHANJE
   //Pomocu ovog koristiti i napraviti search
@@ -154,7 +156,11 @@ const SearchBar = (props) => {
     year = selectedYear.current.value;
     // language = selectedLanguage.current.value;
     orderBy = selectedOrderBy.current.value;
-    props.setMovies(quality, term, genre, rating, year, language, orderBy);
+    history.replace(
+      `/browse-movies/${
+        term.trim().length === 0 ? "0" : term.trim()
+      }/${quality}/${genre}/${rating.slice(0, 1)}/${year}/${orderBy}`
+    );
   };
   return (
     <section className={classes.search}>

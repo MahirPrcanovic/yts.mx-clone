@@ -15,9 +15,6 @@ const Main = () => {
       movieData.push(data.data.movies[i]);
     }
   }
-  if (data) {
-    console.log(data.data.movies[0]);
-  }
   return (
     <Fragment>
       <div className={classes.main}>
