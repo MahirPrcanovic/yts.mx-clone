@@ -36,8 +36,9 @@ const BrowseMovies = () => {
     async function fetchData() {
       const response = await fetch(
         `https://yts.mx/api/v2/list_movies.json${
-          params.term === undefined || name === null ? "?page=1" : ""
-        }${params.term !== undefined && name !== null ? "?page=" + name : ""}${
+          params.term === undefined && name === null ? "?page=1" : ""
+        }${params.term === undefined && name !== null ? "?page=" + name : ""}
+      ${params.term !== undefined && name === null ? "?page=1" : ""}${
           params.term !== undefined ? "&quality=" + params.quality : ""
         }${
           params.term !== undefined && params.genre !== "All"
@@ -57,6 +58,28 @@ const BrowseMovies = () => {
             : ""
         }${params.term !== undefined ? "&sort_by=" + params.order : ""}`
       );
+      console.log(`https://yts.mx/api/v2/list_movies.json${
+        params.term === undefined && name !== null ? "?page=" + name : ""
+      }${params.term === undefined && name === null ? "?page=1" : ""}
+      ${params.term !== undefined && name !== null ? "?page=" + name : ""}${
+        params.term !== undefined ? "&quality=" + params.quality : ""
+      }${
+        params.term !== undefined && params.genre !== "All"
+          ? "&genre=" + params.genre
+          : ""
+      }${
+        params.term !== undefined && params.rating.slice(0, 1) !== "A"
+          ? "&minimum_rating=" + params.rating.slice(0, 1)
+          : ""
+      }${
+        params.term !== undefined && params.term !== "0"
+          ? "&query_term=" + params.term
+          : ""
+      }${
+        params.term !== undefined && params.year !== "Dsc"
+          ? "&order_by=" + params.sort
+          : ""
+      }${params.term !== undefined ? "&sort_by=" + params.order : ""}`);
       const data = await response.json();
       setSentData(data);
     }
