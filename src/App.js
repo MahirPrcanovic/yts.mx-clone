@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import { Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import BrowseMovies from "./pages/BrowseMovies";
+import SearchNotFoundError from "./components/ErrorBoundary/SearchNotFoundError";
 function App() {
   return (
     <Switch>
@@ -10,7 +11,9 @@ function App() {
         <Home />
       </Route>
       <Route path="/browse-movies">
-        <BrowseMovies />
+        <SearchNotFoundError>
+          <BrowseMovies />
+        </SearchNotFoundError>
       </Route>
     </Switch>
   );

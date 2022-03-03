@@ -1,0 +1,36 @@
+.main {
+  height: 91vh;
+  background-color: #171717;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.error {
+  width: 50%;
+  height: 20rem;
+  background-color: #171717;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.link {
+  margin-top: 3rem;
+  width: 13rem;
+  height: 5rem;
+  background-color: #6ac045;
+  border: none;
+  color: white;
+  border-radius: 3px;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+.title {
+  color: white;
+  font-size: 2.6rem;
+}

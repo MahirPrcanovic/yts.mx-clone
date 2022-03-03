@@ -55,13 +55,16 @@ const Main = (props) => {
   if (props.data) {
     console.log(props.data);
   }
+  // if (data) {
+  //   for (let i = 0; i < 20; i++) {
+  //     movies.push(data.data.movies[i]);
+  //   }
+  // }
   if (props.data !== null) {
     //ERROR PAGE STAVITI (KAD SE NE NADE FILM NA SERCH STRANICA SE KRASHA)
     console.log(props.data.data.movies.length === undefined);
-    if (props.data.data.movies !== undefined) {
-      for (let i = 0; i < props.data.data.movies.length; i++) {
-        movies.push(props.data.data.movies[i]);
-      }
+    for (let i = 0; i < props.data.data.movies.length; i++) {
+      movies.push(props.data.data.movies[i]);
     }
   }
   return (
@@ -166,7 +169,7 @@ const Main = (props) => {
       </div>
       <div className={classes.center}>
         <div className={classes.details}>
-          {data &&
+          {props.data &&
             movies.length !== 0 &&
             movies.map((movie) => {
               return (
