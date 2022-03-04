@@ -3,10 +3,9 @@ import { Fragment } from "react";
 import SearchBar from "../components/BrowseMoivesPage/SearchBar";
 import Main from "../components/BrowseMoivesPage/Main";
 import { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const BrowseMovies = () => {
-  const history = useHistory();
   const [sentData, setSentData] = useState(null);
   const params = useParams();
   // :term/:quality/:genre/:rating/:sort/:order
@@ -18,17 +17,6 @@ const BrowseMovies = () => {
   console.log(params.rating);
   console.log(params.sort);
   console.log(params.order);
-  let fine = false;
-  if (
-    params.term === undefined &&
-    params.quality === undefined &&
-    params.genre === undefined &&
-    params.rating === undefined &&
-    params.sort === undefined &&
-    params.order === undefined
-  ) {
-    fine = true;
-  }
   queryParams = new URLSearchParams(window.location.search);
   name = queryParams.get("page");
   console.log(name);
@@ -37,7 +25,9 @@ const BrowseMovies = () => {
       const response = await fetch(
         `https://yts.mx/api/v2/list_movies.json${
           params.term === undefined && name === null ? "?page=1" : ""
-        }${params.term === undefined && name !== null ? "?page=" + name : ""}
+        }${params.term === undefined && name !== null ? "?page=" + name : ""}${
+          params.term !== undefined && name !== null ? "?page=" + name : ""
+        }
       ${params.term !== undefined && name === null ? "?page=1" : ""}${
           params.term !== undefined ? "&quality=" + params.quality : ""
         }${
@@ -59,9 +49,11 @@ const BrowseMovies = () => {
         }${params.term !== undefined ? "&sort_by=" + params.order : ""}`
       );
       console.log(`https://yts.mx/api/v2/list_movies.json${
-        params.term === undefined && name !== null ? "?page=" + name : ""
-      }${params.term === undefined && name === null ? "?page=1" : ""}
-      ${params.term !== undefined && name !== null ? "?page=" + name : ""}${
+        params.term === undefined && name === null ? "?page=1" : ""
+      }${params.term === undefined && name !== null ? "?page=" + name : ""}${
+        params.term !== undefined && name !== null ? "?page=" + name : ""
+      }
+    ${params.term !== undefined && name === null ? "?page=1" : ""}${
         params.term !== undefined ? "&quality=" + params.quality : ""
       }${
         params.term !== undefined && params.genre !== "All"
@@ -81,15 +73,17 @@ const BrowseMovies = () => {
           : ""
       }${params.term !== undefined ? "&sort_by=" + params.order : ""}`);
       const data = await response.json();
+      console.log(data);
       setSentData(data);
     }
     fetchData();
+    // console.log(sentData);
   }, [params, name]);
   return (
     <Fragment>
       <Header stick={true} />
       <SearchBar />
-      <Main data={sentData} />
+      <Main data={sentData} params={params} />
     </Fragment>
   );
 };
