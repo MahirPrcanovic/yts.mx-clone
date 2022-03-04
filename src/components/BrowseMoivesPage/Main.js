@@ -1,23 +1,28 @@
 import classes from "./Main.module.css";
 import { Link } from "react-router-dom";
 import MovieDetail from "../Global/MovieDetail";
-let broj;
 const Main = (props) => {
+  let broj;
   let word = "";
-  if (props.params !== undefined) {
+  if (props.data) {
+    console.log(props.data);
+  }
+  if (props.params.term !== undefined) {
     // console.log(props.params);
     ///browse-movies/:term/:quality/:genre/:rating/:sort/:order
     //${props.params.term}
     word = `${props.params.term}/${props.params.quality}/${props.params.genre}/${props.params.rating}/${props.params.sort}/${props.params.order}`;
-    console.log(word);
+    // console.log(word);
   }
+  //https://yts.mx/browse-movies/batman/all/all/0/latest/0/all?page=2
+  //http://localhost:3000/browse-movies/batman/All/All/A/Dsc/Title?page=2
   const buttons = [];
   let movies = [];
   if (props.data) {
     // console.log(props.data.data.movie_count);
     broj = Math.ceil(props.data.data.movie_count / 20);
     // console.log(broj);
-    console.log(props.data.data.movies.length);
+    // console.log(props.data.data.movies.length);
     if (broj === 0) {
     } else {
       for (let i = 0; i < broj; i++) {
@@ -50,13 +55,13 @@ const Main = (props) => {
               Link
             </Link>
             {buttons.map((button, index) => {
-              console.log(
-                `/browse-movies${
-                  props.params !== undefined
-                    ? "/" + word + `?page=${button}`
-                    : `?page=${button}`
-                }${props.params === undefined ? `?page=${button}` : ""}`
-              );
+              // console.log(
+              //   `/browse-movies${
+              //     props.params !== undefined
+              //       ? "/" + word + `?page=${button}`
+              //       : `?page=${button}`
+              //   }${props.params === undefined ? `?page=${button}` : ""}`
+              // );
               return (
                 <Link
                   className={classes.link}
@@ -77,10 +82,10 @@ const Main = (props) => {
       <div className={classes.center}>
         <div className={classes.details}>
           {movies.length !== 0 &&
-            movies.map((movie) => {
+            movies.map((movie, index) => {
               return (
                 <MovieDetail
-                  key={movie.id}
+                  key={index}
                   image={movie.medium_cover_image}
                   genre={movie.genres}
                   title={movie.title}

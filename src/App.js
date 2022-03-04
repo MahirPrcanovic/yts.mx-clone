@@ -11,15 +11,15 @@ function App() {
       <Route path="/" exact>
         <Home />
       </Route>
-      <Route path="/browse-movies" exact>
-        <SearchNotFoundError>
-          <BrowseMovies />
-        </SearchNotFoundError>
-      </Route>
       <Route
         path="/browse-movies/:term/:quality/:genre/:rating/:sort/:order"
         exact
       >
+        <SearchNotFoundError>
+          <BrowseMovies />
+        </SearchNotFoundError>
+      </Route>
+      <Route path="/browse-movies" exact>
         <SearchNotFoundError>
           <BrowseMovies />
         </SearchNotFoundError>
