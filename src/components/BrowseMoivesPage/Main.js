@@ -8,21 +8,13 @@ const Main = (props) => {
     console.log(props.data);
   }
   if (props.params.term !== undefined) {
-    // console.log(props.params);
-    ///browse-movies/:term/:quality/:genre/:rating/:sort/:order
-    //${props.params.term}
     word = `${props.params.term}/${props.params.quality}/${props.params.genre}/${props.params.rating}/${props.params.sort}/${props.params.order}`;
-    // console.log(word);
   }
-  //https://yts.mx/browse-movies/batman/all/all/0/latest/0/all?page=2
-  //http://localhost:3000/browse-movies/batman/All/All/A/Dsc/Title?page=2
+
   const buttons = [];
   let movies = [];
   if (props.data) {
-    // console.log(props.data.data.movie_count);
     broj = Math.ceil(props.data.data.movie_count / 20);
-    // console.log(broj);
-    // console.log(props.data.data.movies.length);
     if (broj === 0) {
     } else {
       for (let i = 0; i < broj; i++) {
@@ -55,13 +47,6 @@ const Main = (props) => {
               Link
             </Link>
             {buttons.map((button, index) => {
-              // console.log(
-              //   `/browse-movies${
-              //     props.params !== undefined
-              //       ? "/" + word + `?page=${button}`
-              //       : `?page=${button}`
-              //   }${props.params === undefined ? `?page=${button}` : ""}`
-              // );
               return (
                 <Link
                   className={classes.link}
