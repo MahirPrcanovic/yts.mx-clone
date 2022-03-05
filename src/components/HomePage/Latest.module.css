@@ -34,7 +34,7 @@
 }
 @media (max-width: 1500px) {
   .title {
-    justify-content: space-around;
+    justify-content: space-between;
   }
 }
 @media (max-width: 1200px) {
@@ -52,7 +52,6 @@
     display: grid;
     width: 70%;
     grid-template-columns: 1fr 1fr;
-    /* height: 90rem; */
   }
   .container {
     height: 165rem;
