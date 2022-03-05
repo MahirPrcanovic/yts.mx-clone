@@ -58,7 +58,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* gap: 2.4rem; */
 }
 .details {
   column-gap: 1.2rem;
@@ -71,4 +70,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.hidden {
+  display: none;
 }

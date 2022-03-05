@@ -65,7 +65,7 @@ const BrowseMovies = () => {
     <Fragment>
       <Header stick={true} />
       <SearchBar />
-      <Main data={sentData} params={params} />
+      <Main data={sentData} params={params} name={name} />
     </Fragment>
   );
 };

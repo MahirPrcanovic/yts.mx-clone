@@ -1,7 +1,20 @@
 import classes from "./Main.module.css";
 import { Link } from "react-router-dom";
 import MovieDetail from "../Global/MovieDetail";
+import { useState } from "react";
 const Main = (props) => {
+  let activePage;
+  let activeIndex;
+  const [niz, setNiz] = useState([
+    +props.name + 0,
+    +props.name + 1,
+    +props.name + 2,
+    +props.name + 3,
+    +props.name + 4,
+    +props.name + 5,
+    +props.name + 6,
+    +props.name + 7,
+  ]);
   let broj;
   let word = "";
   if (props.data) {
@@ -10,9 +23,13 @@ const Main = (props) => {
   if (props.params.term !== undefined) {
     word = `${props.params.term}/${props.params.quality}/${props.params.genre}/${props.params.rating}/${props.params.sort}/${props.params.order}`;
   }
-
   const buttons = [];
   let movies = [];
+  activePage = +props.name;
+  // let niz = [1, 2, 3, 4, 5, 6, 7, 8];
+  if (activePage === 0) {
+    activePage = 1;
+  }
   if (props.data) {
     broj = Math.ceil(props.data.data.movie_count / 20);
     if (broj === 0) {
@@ -26,8 +43,9 @@ const Main = (props) => {
         movies.push(props.data.data.movies[i]);
       }
     }
+    console.log(activePage, broj);
   }
-
+  activeIndex = niz.indexOf(activePage);
   return (
     <section className={classes.main}>
       <div className={classes.pagination}>
@@ -43,24 +61,133 @@ const Main = (props) => {
             </h2>
           </div>
           <div className={classes.pages}>
-            <Link className={classes.link} to={`/browse-movies`}>
-              Link
+            <Link
+              className={`${classes.link} ${
+                broj === 1 && activePage === 1 ? classes.hidden : ""
+              }`}
+              to={`/browse-movies${
+                props.params !== undefined ? "/" + word + `?page=1` : ``
+              }${props.params === undefined ? `?page=1` : ""}`}
+            >
+              First
             </Link>
-            {buttons.map((button, index) => {
-              return (
-                <Link
-                  className={classes.link}
-                  to={`/browse-movies${
-                    props.params !== undefined
-                      ? "/" + word + `?page=${button}`
-                      : `?page=${button}`
-                  }${props.params === undefined ? `?page=${button}` : ""}`}
-                  key={index}
-                >
-                  {button}
-                </Link>
-              );
-            })}
+            <Link
+              className={`${classes.link} ${
+                broj === 1 && activePage === 1 ? classes.hidden : ""
+              } ${activePage === 1 ? classes.hidden : ""}`}
+              to={`/browse-movies${
+                props.params !== undefined
+                  ? "/" +
+                    word +
+                    `?page=${activePage > 1 ? activePage - 1 : `${broj}`}`
+                  : ``
+              }${
+                props.params === undefined
+                  ? `?page=${activePage > 1 ? activePage - 1 : `${broj}`}`
+                  : ""
+              }`}
+              onClick={() => {
+                // console.log(niz[niz.length - 1]);
+                if (activePage === niz[0]) {
+                  setNiz((prevNiz) => {
+                    let noviNiz = prevNiz;
+                    noviNiz[0] = prevNiz[0] - 8;
+                    noviNiz[1] = prevNiz[1] - 8;
+                    noviNiz[2] = prevNiz[2] - 8;
+                    noviNiz[3] = prevNiz[3] - 8;
+                    noviNiz[4] = prevNiz[4] - 8;
+                    noviNiz[5] = prevNiz[5] - 8;
+                    noviNiz[6] = prevNiz[6] - 8;
+                    noviNiz[7] = prevNiz[7] - 8;
+                    return noviNiz;
+                  });
+                }
+              }}
+            >
+              Previous
+            </Link>
+            {broj > 1 &&
+              broj < 8 &&
+              buttons.map((button, index) => {
+                return (
+                  <Link
+                    className={`${classes.link} ${
+                      activeIndex === index ? classes.active : ""
+                    }`}
+                    to={`/browse-movies${
+                      props.params !== undefined
+                        ? "/" + word + `?page=${button}`
+                        : `?page=${button}`
+                    }${props.params === undefined ? `?page=${button}` : ""}`}
+                    key={index}
+                  >
+                    {button}
+                  </Link>
+                );
+              })}
+            {broj > 1 &&
+              broj > 8 &&
+              niz.map((button, index) => {
+                return (
+                  <Link
+                    className={`${classes.link} ${
+                      button > broj ? classes.hidden : ""
+                    } ${activeIndex === index ? classes.active : ""}`}
+                    to={`/browse-movies${
+                      props.params !== undefined
+                        ? "/" + word + `?page=${button}`
+                        : `?page=${button}`
+                    }${props.params === undefined ? `?page=${button}` : ""}`}
+                    key={index}
+                  >
+                    {button}
+                  </Link>
+                );
+              })}
+            <Link
+              className={`${classes.link} ${
+                broj === 1 && activePage === 1 ? classes.hidden : ""
+              }${activePage === broj ? classes.hidden : ""}`}
+              to={`/browse-movies${
+                props.params !== undefined
+                  ? "/" +
+                    word +
+                    `?page=${activePage < broj ? activePage + 1 : "1"}`
+                  : ``
+              }${
+                props.params === undefined
+                  ? `?page=${activePage < broj ? activePage + 1 : "1"}`
+                  : ""
+              }`}
+              onClick={() => {
+                if (activePage === niz[niz.length - 1]) {
+                  setNiz((prevNiz) => {
+                    let noviNiz = prevNiz;
+                    noviNiz[0] = prevNiz[0] + 8;
+                    noviNiz[1] = prevNiz[1] + 8;
+                    noviNiz[2] = prevNiz[2] + 8;
+                    noviNiz[3] = prevNiz[3] + 8;
+                    noviNiz[4] = prevNiz[4] + 8;
+                    noviNiz[5] = prevNiz[5] + 8;
+                    noviNiz[6] = prevNiz[6] + 8;
+                    noviNiz[7] = prevNiz[7] + 8;
+                    return noviNiz;
+                  });
+                }
+              }}
+            >
+              Next
+            </Link>
+            <Link
+              className={`${classes.link} ${
+                broj === 1 && activePage === 1 ? classes.hidden : ""
+              }`}
+              to={`/browse-movies${
+                props.params !== undefined ? "/" + word + `?page=${broj}` : ``
+              }${props.params === undefined ? `?page=${broj}` : ""}`}
+            >
+              Latest
+            </Link>
           </div>
         </div>
       </div>
