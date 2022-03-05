@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
 .main {
-  height: 210rem;
   background-color: #1d1d1d;
 }
 .pagination {
@@ -13,7 +12,7 @@
   padding-bottom: 2.4rem;
 }
 .link {
-  width: 3.6rem;
+  width: 4.5rem;
   height: 3.6rem;
   background-color: #1d1d1d;
   display: flex;
@@ -26,6 +25,9 @@
   font-weight: bold;
   border-radius: 4px;
   border: 2px solid #333333;
+}
+.previous {
+  font-size: 1rem;
 }
 .active {
   background-color: #6ac045;
@@ -72,5 +74,8 @@
   align-items: center;
 }
 .hidden {
+  display: none;
+}
+.hidden2 {
   display: none;
 }

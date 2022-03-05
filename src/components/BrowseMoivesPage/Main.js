@@ -74,7 +74,7 @@ const Main = (props) => {
             <Link
               className={`${classes.link} ${
                 broj === 1 && activePage === 1 ? classes.hidden : ""
-              } ${activePage === 1 ? classes.hidden : ""}`}
+              } ${activePage === 1 ? classes.hidden : ""} ${classes.previous}`}
               to={`/browse-movies${
                 props.params !== undefined
                   ? "/" +
@@ -147,7 +147,7 @@ const Main = (props) => {
             <Link
               className={`${classes.link} ${
                 broj === 1 && activePage === 1 ? classes.hidden : ""
-              }${activePage === broj ? classes.hidden : ""}`}
+              }${broj > 1 && activePage === broj ? classes.hidden : ""}`}
               to={`/browse-movies${
                 props.params !== undefined
                   ? "/" +
@@ -207,6 +207,143 @@ const Main = (props) => {
                 />
               );
             })}
+        </div>
+      </div>
+      <div className={classes.pagination}>
+        <div className={classes.srce}>
+          <div className={classes.pages}>
+            <Link
+              className={`${classes.link} ${
+                broj === 1 && activePage === 1 ? classes.hidden : ""
+              }`}
+              to={`/browse-movies${
+                props.params !== undefined ? "/" + word + `?page=1` : ``
+              }${props.params === undefined ? `?page=1` : ""}`}
+            >
+              First
+            </Link>
+            <Link
+              className={`${classes.link} ${
+                broj === 1 && activePage === 1 ? classes.hidden : ""
+              } ${activePage === 1 ? classes.hidden : ""}`}
+              to={`/browse-movies${
+                props.params !== undefined
+                  ? "/" +
+                    word +
+                    `?page=${activePage > 1 ? activePage - 1 : `${broj}`}`
+                  : ``
+              }${
+                props.params === undefined
+                  ? `?page=${
+                      activePage > 1
+                        ? activePage - 1
+                        : `${broj} ${classes.previous}`
+                    }`
+                  : ""
+              }`}
+              onClick={() => {
+                // console.log(niz[niz.length - 1]);
+                if (activePage === niz[0]) {
+                  setNiz((prevNiz) => {
+                    let noviNiz = prevNiz;
+                    noviNiz[0] = prevNiz[0] - 8;
+                    noviNiz[1] = prevNiz[1] - 8;
+                    noviNiz[2] = prevNiz[2] - 8;
+                    noviNiz[3] = prevNiz[3] - 8;
+                    noviNiz[4] = prevNiz[4] - 8;
+                    noviNiz[5] = prevNiz[5] - 8;
+                    noviNiz[6] = prevNiz[6] - 8;
+                    noviNiz[7] = prevNiz[7] - 8;
+                    return noviNiz;
+                  });
+                }
+              }}
+            >
+              Previous
+            </Link>
+            {broj > 1 &&
+              broj < 8 &&
+              buttons.map((button, index) => {
+                return (
+                  <Link
+                    className={`${classes.link} ${
+                      activeIndex === index ? classes.active : ""
+                    }`}
+                    to={`/browse-movies${
+                      props.params !== undefined
+                        ? "/" + word + `?page=${button}`
+                        : `?page=${button}`
+                    }${props.params === undefined ? `?page=${button}` : ""}`}
+                    key={index}
+                  >
+                    {button}
+                  </Link>
+                );
+              })}
+            {broj > 1 &&
+              broj > 8 &&
+              niz.map((button, index) => {
+                return (
+                  <Link
+                    className={`${classes.link} ${
+                      button > broj ? classes.hidden : ""
+                    } ${activeIndex === index ? classes.active : ""}`}
+                    to={`/browse-movies${
+                      props.params !== undefined
+                        ? "/" + word + `?page=${button}`
+                        : `?page=${button}`
+                    }${props.params === undefined ? `?page=${button}` : ""}`}
+                    key={index}
+                  >
+                    {button}
+                  </Link>
+                );
+              })}
+            <Link
+              className={`${classes.link} ${
+                broj === 1 && activePage === 1 ? classes.hidden : ""
+              }${broj > 1 && activePage === broj ? classes.hidden : ""}`}
+              to={`/browse-movies${
+                props.params !== undefined
+                  ? "/" +
+                    word +
+                    `?page=${activePage < broj ? activePage + 1 : "1"}`
+                  : ``
+              }${
+                props.params === undefined
+                  ? `?page=${activePage < broj ? activePage + 1 : "1"}`
+                  : ""
+              }`}
+              onClick={() => {
+                if (activePage === niz[niz.length - 1]) {
+                  setNiz((prevNiz) => {
+                    let noviNiz = prevNiz;
+                    noviNiz[0] = prevNiz[0] + 8;
+                    noviNiz[1] = prevNiz[1] + 8;
+                    noviNiz[2] = prevNiz[2] + 8;
+                    noviNiz[3] = prevNiz[3] + 8;
+                    noviNiz[4] = prevNiz[4] + 8;
+                    noviNiz[5] = prevNiz[5] + 8;
+                    noviNiz[6] = prevNiz[6] + 8;
+                    noviNiz[7] = prevNiz[7] + 8;
+                    return noviNiz;
+                  });
+                }
+              }}
+            >
+              Next
+            </Link>
+            <Link
+              className={`${classes.link} ${
+                broj === 1 && activePage === 1 ? classes.hidden : ""
+              }`}
+              to={`/browse-movies${
+                props.params !== undefined ? "/" + word + `?page=${broj}` : ``
+              }${props.params === undefined ? `?page=${broj}` : ""}`}
+            >
+              Latest
+            </Link>
+          </div>
         </div>
       </div>
     </section>

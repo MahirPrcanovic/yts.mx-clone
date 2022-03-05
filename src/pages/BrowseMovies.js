@@ -4,7 +4,7 @@ import SearchBar from "../components/BrowseMoivesPage/SearchBar";
 import Main from "../components/BrowseMoivesPage/Main";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
+import Footer from "../components/Global/Footer";
 const BrowseMovies = () => {
   let name;
   let queryParams;
@@ -47,7 +47,6 @@ const BrowseMovies = () => {
         : ""
       : ""
   }`;
-
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
@@ -57,15 +56,18 @@ const BrowseMovies = () => {
       setSentData(data);
     };
     fetchData();
-  }, [params, name]);
+  }, [params, name, word]);
 
   console.log(sentData);
-
+  if (name === null) {
+    name = 1;
+  }
   return (
     <Fragment>
       <Header stick={true} />
       <SearchBar />
       <Main data={sentData} params={params} name={name} />
+      <Footer />
     </Fragment>
   );
 };
