@@ -92,11 +92,26 @@
     column-gap: 0;
   }
 }
+@media (max-width: 770px) {
+  .details {
+    width: 90%;
+  }
+}
+@media (max-width: 700) {
+  .details {
+    width: 100%;
+  }
+}
 @media (max-width: 670px) {
   .details {
     grid-template-columns: 1fr 1fr;
     justify-items: center;
     align-content: center;
     /* row-gap: 3.6rem; */
+  }
+}
+@media (max-width: 400px) {
+  .details {
+    width: 100%;
   }
 }

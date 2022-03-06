@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
 .search {
-  height: 35rem;
+  height: 30rem;
   background-color: grey;
   display: flex;
   justify-content: center;
@@ -105,3 +105,48 @@
 .hidden {
   display: none;
 } */
+@media (max-width: 670px) {
+  .search {
+    width: 100%;
+  }
+}
+@media (max-width: 620px) {
+  .quality {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+  }
+  .search {
+    height: 40rem;
+  }
+  .button {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 560px) {
+  .search {
+    width: 100%;
+  }
+  .quality {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 430px) {
+  .button {
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 370px) {
+  .search {
+    height: 45rem;
+    /* width: 100%; */
+  }
+  .box {
+    width: 90%;
+  }
+  .quality {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}

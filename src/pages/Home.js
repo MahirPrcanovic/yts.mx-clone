@@ -7,7 +7,7 @@ import Footer from "../components/Global/Footer";
 const Home = (props) => {
   return (
     <Fragment>
-      <Header />
+      <Header stick={true} />
       {/* <SearchBar /> */}
       <Main />
       <Latest />

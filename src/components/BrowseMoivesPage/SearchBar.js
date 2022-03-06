@@ -44,8 +44,7 @@ const years = ["Dsc", "Asc"];
 // const movies = [];
 const SearchBar = (props) => {
   //CODE FROM THIS COMPONENT IS COPIED OVER TO HEADER.JS WHERE IT IS BEING USED
-  //THIS COMPONENT IS JUST SERVING PURPOSE FOR REFERENCE ON WHAT SEARCH BAR VARIABLES AND JSX CODE IS!!!!
-
+  //For desktop/laptop view this component is used in /browse-movies
   const selectedQuality = useRef();
   const selectedTerm = useRef();
   const selectedGenre = useRef();
@@ -54,7 +53,7 @@ const SearchBar = (props) => {
   // const selectedLanguage = useRef();
   const selectedOrderBy = useRef();
   const history = useHistory();
-  let quality, term, genre, rating, year, language, orderBy;
+  let quality, term, genre, rating, year, orderBy;
   //https://yts.mx/api/v2/list_movies.json?query_term=spider-man ZA SEARCHANJE
   //Pomocu ovog koristiti i napraviti search
   const submitHandler = (e) => {
