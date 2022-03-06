@@ -29,7 +29,7 @@
   font-size: 1.6rem;
 }
 .quality {
-  width: 98.4rem;
+  width: 90%;
   display: flex;
   justify-content: space-between;
 }
@@ -96,4 +96,12 @@
 .select:focus {
   border: none;
   outline: none;
+}
+@media (max-width: 980px) {
+  .search {
+    display: none;
+  }
+}
+.hidden {
+  display: none;
 }

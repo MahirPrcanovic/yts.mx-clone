@@ -115,14 +115,14 @@
   width: 50%;
   color: #919191;
 }
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .block,
   .try {
     width: 20rem;
     height: 32rem;
   }
 }
-@media (max-width: 1000px) {
+@media (max-width: 1050px) {
   .block,
   .try {
     width: 15rem;

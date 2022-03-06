@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import MovieDetail from "../Global/MovieDetail";
 import { useState } from "react";
 const Main = (props) => {
+  // setWidth(window.screen.width);
   let activePage;
   let activeIndex;
   const [niz, setNiz] = useState([
@@ -61,16 +62,18 @@ const Main = (props) => {
             </h2>
           </div>
           <div className={classes.pages}>
-            <Link
-              className={`${classes.link} ${
-                broj === 1 && activePage === 1 ? classes.hidden : ""
-              }`}
-              to={`/browse-movies${
-                props.params !== undefined ? "/" + word + `?page=1` : ``
-              }${props.params === undefined ? `?page=1` : ""}`}
-            >
-              First
-            </Link>
+            {window.screen.width > 980 && (
+              <Link
+                className={`${classes.link} ${
+                  broj === 1 && activePage === 1 ? classes.hidden : ""
+                }`}
+                to={`/browse-movies${
+                  props.params !== undefined ? "/" + word + `?page=1` : ``
+                }${props.params === undefined ? `?page=1` : ""}`}
+              >
+                First
+              </Link>
+            )}
             <Link
               className={`${classes.link} ${
                 broj === 1 && activePage === 1 ? classes.hidden : ""
@@ -106,8 +109,14 @@ const Main = (props) => {
             >
               Previous
             </Link>
+            {window.screen.width < 980 && (
+              <div
+                className={`${classes.link} ${classes.previous}`}
+              >{`${activePage} of ${broj}`}</div>
+            )}
             {broj > 1 &&
               broj < 8 &&
+              window.screen.width > 980 &&
               buttons.map((button, index) => {
                 return (
                   <Link
@@ -127,6 +136,7 @@ const Main = (props) => {
               })}
             {broj > 1 &&
               broj > 8 &&
+              window.screen.width > 980 &&
               niz.map((button, index) => {
                 return (
                   <Link
@@ -178,16 +188,18 @@ const Main = (props) => {
             >
               Next
             </Link>
-            <Link
-              className={`${classes.link} ${
-                broj === 1 && activePage === 1 ? classes.hidden : ""
-              }`}
-              to={`/browse-movies${
-                props.params !== undefined ? "/" + word + `?page=${broj}` : ``
-              }${props.params === undefined ? `?page=${broj}` : ""}`}
-            >
-              Latest
-            </Link>
+            {window.screen.width > 980 && (
+              <Link
+                className={`${classes.link} ${
+                  broj === 1 && activePage === 1 ? classes.hidden : ""
+                }`}
+                to={`/browse-movies${
+                  props.params !== undefined ? "/" + word + `?page=${broj}` : ``
+                }${props.params === undefined ? `?page=${broj}` : ""}`}
+              >
+                Latest
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -211,21 +223,33 @@ const Main = (props) => {
       </div>
       <div className={classes.pagination}>
         <div className={classes.srce}>
+          <div className={classes.paginationTitle}>
+            <h2>
+              <span className={classes.number}>
+                {props.data && props.data.data && props.data.data.movie_count
+                  ? props.data.data.movie_count
+                  : ""}{" "}
+              </span>
+              YIFY Movies found
+            </h2>
+          </div>
           <div className={classes.pages}>
+            {window.screen.width > 980 && (
+              <Link
+                className={`${classes.link} ${
+                  broj === 1 && activePage === 1 ? classes.hidden : ""
+                }`}
+                to={`/browse-movies${
+                  props.params !== undefined ? "/" + word + `?page=1` : ``
+                }${props.params === undefined ? `?page=1` : ""}`}
+              >
+                First
+              </Link>
+            )}
             <Link
               className={`${classes.link} ${
                 broj === 1 && activePage === 1 ? classes.hidden : ""
-              }`}
-              to={`/browse-movies${
-                props.params !== undefined ? "/" + word + `?page=1` : ``
-              }${props.params === undefined ? `?page=1` : ""}`}
-            >
-              First
-            </Link>
-            <Link
-              className={`${classes.link} ${
-                broj === 1 && activePage === 1 ? classes.hidden : ""
-              } ${activePage === 1 ? classes.hidden : ""}`}
+              } ${activePage === 1 ? classes.hidden : ""} ${classes.previous}`}
               to={`/browse-movies${
                 props.params !== undefined
                   ? "/" +
@@ -234,11 +258,7 @@ const Main = (props) => {
                   : ``
               }${
                 props.params === undefined
-                  ? `?page=${
-                      activePage > 1
-                        ? activePage - 1
-                        : `${broj} ${classes.previous}`
-                    }`
+                  ? `?page=${activePage > 1 ? activePage - 1 : `${broj}`}`
                   : ""
               }`}
               onClick={() => {
@@ -261,8 +281,14 @@ const Main = (props) => {
             >
               Previous
             </Link>
+            {window.screen.width < 980 && (
+              <Link
+                className={`${classes.link} ${classes.previous}`}
+              >{`${activePage} of ${broj}`}</Link>
+            )}
             {broj > 1 &&
               broj < 8 &&
+              window.screen.width > 980 &&
               buttons.map((button, index) => {
                 return (
                   <Link
@@ -282,6 +308,7 @@ const Main = (props) => {
               })}
             {broj > 1 &&
               broj > 8 &&
+              window.screen.width > 980 &&
               niz.map((button, index) => {
                 return (
                   <Link
@@ -333,16 +360,18 @@ const Main = (props) => {
             >
               Next
             </Link>
-            <Link
-              className={`${classes.link} ${
-                broj === 1 && activePage === 1 ? classes.hidden : ""
-              }`}
-              to={`/browse-movies${
-                props.params !== undefined ? "/" + word + `?page=${broj}` : ``
-              }${props.params === undefined ? `?page=${broj}` : ""}`}
-            >
-              Latest
-            </Link>
+            {window.screen.width > 980 && (
+              <Link
+                className={`${classes.link} ${
+                  broj === 1 && activePage === 1 ? classes.hidden : ""
+                }`}
+                to={`/browse-movies${
+                  props.params !== undefined ? "/" + word + `?page=${broj}` : ``
+                }${props.params === undefined ? `?page=${broj}` : ""}`}
+              >
+                Latest
+              </Link>
+            )}
           </div>
         </div>
       </div>

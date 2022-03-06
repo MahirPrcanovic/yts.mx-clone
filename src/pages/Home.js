@@ -4,10 +4,12 @@ import Latest from "../components/HomePage/Latest";
 import Main from "../components/HomePage/Main";
 import Upcoming from "../components/HomePage/Upcoming";
 import Footer from "../components/Global/Footer";
-const Home = () => {
+import SearchBar from "../components/BrowseMoivesPage/SearchBar";
+const Home = (props) => {
   return (
     <Fragment>
       <Header />
+      <SearchBar />
       <Main />
       <Latest />
       <Upcoming />
