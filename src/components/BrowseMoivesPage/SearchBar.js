@@ -43,6 +43,9 @@ const ratings = ["All", "9+", "8+", "7+", "6+", "5+", "4+", "3+", "2+", "1+"];
 const years = ["Dsc", "Asc"];
 // const movies = [];
 const SearchBar = (props) => {
+  //CODE FROM THIS COMPONENT IS COPIED OVER TO HEADER.JS WHERE IT IS BEING USED
+  //THIS COMPONENT IS JUST SERVING PURPOSE FOR REFERENCE ON WHAT SEARCH BAR VARIABLES AND JSX CODE IS!!!!
+
   const selectedQuality = useRef();
   const selectedTerm = useRef();
   const selectedGenre = useRef();

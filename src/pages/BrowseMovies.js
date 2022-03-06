@@ -1,10 +1,10 @@
 import Header from "../components/Global/Header";
 import { Fragment } from "react";
-import SearchBar from "../components/BrowseMoivesPage/SearchBar";
 import Main from "../components/BrowseMoivesPage/Main";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Footer from "../components/Global/Footer";
+import SearchBar from "../components/BrowseMoivesPage/SearchBar";
 const BrowseMovies = () => {
   let name;
   let queryParams;
@@ -65,7 +65,7 @@ const BrowseMovies = () => {
   return (
     <Fragment>
       <Header stick={true} />
-      <SearchBar />
+      {window.screen.width > 990 && <SearchBar />}
       <Main data={sentData} params={params} name={name} />
       <Footer />
     </Fragment>
