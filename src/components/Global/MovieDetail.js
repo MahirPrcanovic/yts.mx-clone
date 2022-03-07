@@ -16,7 +16,9 @@ const MovieDetail = (props) => {
       <div
         className={`${classes.movie}`}
         onClick={() => {
-          history.push("/movie/id");
+          history.push(
+            `/movies/${props.title.split(" ").join("-")}-${props.year}`
+          );
         }}
       >
         <div

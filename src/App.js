@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import BrowseMovies from "./pages/BrowseMovies";
 import SearchNotFoundError from "./components/ErrorBoundary/SearchNotFoundError";
 import TrendingMovies from "./pages/TrendingMovies";
+import Movies from "./pages/Movies";
 function App() {
   //       /browse-movies/:a/:b/:c/:e/:f/:g
   return (
@@ -27,6 +28,9 @@ function App() {
       </Route>
       <Route path="/trending-movies">
         <TrendingMovies />
+      </Route>
+      <Route path="/movies/:title">
+        <Movies />
       </Route>
     </Switch>
   );
