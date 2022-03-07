@@ -177,7 +177,10 @@ const Header = (props) => {
               />
             </svg>
 
-            <Link to="/" className={`${classes.list} ${classes.hidden1}`}>
+            <Link
+              to="/browse-movies/0/2160p/All/A/Dsc/Title"
+              className={`${classes.list} ${classes.hidden1}`}
+            >
               4K
             </Link>
             <Link
