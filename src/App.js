@@ -4,10 +4,9 @@ import { Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import BrowseMovies from "./pages/BrowseMovies";
 import SearchNotFoundError from "./components/ErrorBoundary/SearchNotFoundError";
-import { useState } from "react";
+import TrendingMovies from "./pages/TrendingMovies";
 function App() {
   //       /browse-movies/:a/:b/:c/:e/:f/:g
-  
   return (
     <Switch>
       <Route path="/" exact>
@@ -25,6 +24,9 @@ function App() {
         <SearchNotFoundError>
           <BrowseMovies />
         </SearchNotFoundError>
+      </Route>
+      <Route path="/trending-movies">
+        <TrendingMovies />
       </Route>
     </Switch>
   );

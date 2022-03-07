@@ -1,0 +1,83 @@
+.main {
+  height: 185rem;
+  background-color: #1d1d1d;
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  padding-top: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #6ac045;
+}
+
+.centre {
+  padding-top: 5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  align-content: center;
+  row-gap: 2rem;
+}
+@media (max-width: 1050px) {
+  .title {
+    padding-top: 7%;
+  }
+  .main {
+    height: 150rem;
+  }
+}
+@media (max-width: 770px) {
+  .title {
+    padding-top: 10%;
+  }
+  .main {
+    height: 280rem;
+  }
+  .centre {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 670px) {
+  .main {
+    height: 400rem;
+  }
+  .centre {
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-content: center;
+  }
+}
+@media (max-width: 540px) {
+  .title {
+    padding-top: 14%;
+  }
+  .main {
+    height: 400rem;
+  }
+}
+@media (max-width: 380px) {
+  .title {
+    padding-top: 16%;
+  }
+}
+@media (max-width: 500px) {
+  .main {
+    height: 350rem;
+  }
+}
+@media (max-width: 350px) {
+  .main {
+    height: 300rem;
+  }
+  .title {
+    padding-top: 17%;
+  }
+}
+@media (max-width: 300px) {
+  .title {
+    padding-top: 20%;
+  }
+}
