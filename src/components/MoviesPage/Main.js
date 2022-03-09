@@ -6,24 +6,28 @@ const Main = () => {
   const params = useParams();
   const [data, setData] = useState(null);
   const [Movie, setMovie] = useState(null);
-  // const name = params.title.slice(-4);
   let movie;
   const title = params.title
     .slice(0, params.title.length - 5)
     .split("-")
     .join(" ");
   const year = params.title.slice(-4);
-  // console.log(params.title.slice(-4), title);
+  console.log(title);
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        `https://yts.mx/api/v2/list_movies.json?query_term=${title}&with_rt_ratings=true`
+        `https://yts.mx/api/v2/list_movies.json?query_term=${title.toLowerCase()}&with_rt_ratings=true`
       );
       const data = await response.json();
       setData(data.data.movies);
+      const response2 = await fetch(
+        `https://yts.mx/api/v2/movie_details.json?movie_id=${data.data.movies[0].id}`
+      );
+      const data2 = await response2.json();
+      setMovie(data2);
     }
     fetchData();
-  }, []);
+  }, [title]);
   if (data) {
     console.log(data);
     for (let i = 0; i < data.length; i++) {
@@ -35,16 +39,17 @@ const Main = () => {
   if (movie) {
     console.log(movie);
   }
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        `https://yts.mx/api/v2/movie_details.json?movie_id=${movie.id}`
-      );
-      const data = await response.json();
-      setMovie(data);
-    }
-    fetchData();
-  }, []);
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const response = await fetch(
+  //       `https://yts.mx/api/v2/movie_details.json?movie_id=${movie.id}`
+  //     );
+  //     const data = await response.json();
+  //     setMovie(data);
+  //   }
+  //   fetchData();
+  // }, []);
   if (Movie) {
     console.log(Movie);
   }
@@ -184,7 +189,7 @@ const Main = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <h3>{Movie ? Movie.data.movie.like_count : ""}</h3>
+                  <h3>Number</h3>
                 </div>
                 <div className={classes.item}>
                   <svg
