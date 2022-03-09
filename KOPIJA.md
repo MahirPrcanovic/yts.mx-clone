@@ -1,302 +1,128 @@
-<!-- import classes from "./Main.module.css";
-import { Link, useHistory } from "react-router-dom";
-import { useCallback, useEffect, useState } from "react";
-import MovieDetail from "../Global/MovieDetail";
-import Footer from "../Global/Footer";
-const Main = (props) => {
-  const [pageNumber, setPageNumber] = useState(1);
-  const [activePage, setActivePage] = useState(1);
-  const [activeIndex, setActiveIndex] = useState(1);
-  const history = useHistory();
-  const funkcija = useCallback(() => {
-    history.push("/browse-movies?page=1");
-  }, [history]);
-  useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    const name = queryParams.get("page");
-    if (+name < 1978 && +name > 0) {
-      setPageNumber(name ? +name : 1);
-      setActivePage(name ? +name : 1);
-      setActiveIndex(0);
-    }
-    if (+name > 1977 || +name < 1) {
-      setPageNumber(1);
-      setActivePage(1);
-      setActiveIndex(0);
-      funkcija();
-    }
-    if (+name === 1977) {
-      setPageNumber(1970);
-      setActivePage(1977);
-      setActiveIndex(7);
-    }
-    if (+name > 1970 && +name < 1977) {
-      const index = +name - 1970;
-      setActiveIndex(index);
-      setPageNumber(1970);
-      setActivePage(+name);
-    }
-    // eslint-disable-next-line
-  }, []);
-  const numbers = [0, 1, 2, 3, 4, 5, 6, 7];
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        `https://yts.mx/api/v2/list_movies.json?page=${activePage}`
-      );
-      const data = await response.json();
-      setData(data);
-    }
-    fetchData();
-    // eslint-disable-next-line
-  }, [activePage]);
-  const movies = [];
-  if (props.data) {
-    console.log(props.data);
-  }
-  if (data) {
-    for (let i = 0; i < 20; i++) {
-      movies.push(data.data.movies[i]);
-    }
-  }
-  // if (props.data !== null) {
-  //   //ERROR PAGE STAVITI (KAD SE NE NADE FILM NA SERCH STRANICA SE KRASHA)
-  //   console.log(props.data.data.movies.length === undefined);
-  //   for (let i = 0; i < props.data.data.movies.length; i++) {
-  //     movies.push(props.data.data.movies[i]);
-  //   }
-  // }
-  console.log(movies);
-  return (
-    <section className={classes.main}>
-      <div className={classes.pagination}>
-        <div className={classes.srce}>
-          <div className={classes.paginationTitle}>
-            <h2>
-              <span className={classes.number}>
-                {props.data && props.data.data && props.data.data.movie_count
-                  ? props.data.data.movie_count
-                  : ""}{" "}
-              </span>
-              YIFY Movies found
-            </h2>
-          </div>
-          <div className={classes.pages}>
-            <Link
-              to="/browse-movies?page=1"
-              className={classes.link}
-              onClick={() => {
-                setPageNumber(1);
-                setActivePage(1);
-                setActiveIndex(0);
-              }}
-            >
-              First
-            </Link>
-            <Link
-              to={`/browse-movies?page=${
-                activePage - 1 <= 0 ? 1 : activePage - 1
-              }`}
-              className={`${classes.link} ${classes.previous}`}
-              onClick={() => {
-                if (activeIndex === 0 && pageNumber > 1) {
-                  setPageNumber((page) => page - 8);
-                  setActivePage((pageNumber) => pageNumber - 1);
-                  setActiveIndex(7);
-                } else {
-                  // setPageNumber((page) => page - 1);
-                  setActiveIndex((index) => {
-                    if (index === 0) return 0;
-                    else return index - 1;
-                  });
-                  setActivePage((page) => page - 1);
-                }
-              }}
-            >
-              Previous
-            </Link>
-            {numbers.map((number, index) => {
-              return (
-                <Link
-                  to={`/browse-movies?page=${pageNumber + number}`}
-                  className={`${classes.link} ${
-                    activeIndex === number ? classes.active : " "
-                  }`}
-                  key={index}
-                  onClick={() => {
-                    setActivePage(pageNumber + number);
-                    setActiveIndex(number);
-                  }}
-                >
-                  {pageNumber + number}
-                </Link>
-              );
-            })}
-            <Link
-              to={`/browse-movies?page=${
-                activePage !== 1977 ? activePage + 1 : activePage
-              }`}
-              className={`${classes.link}`}
-              onClick={() => {
-                if (activeIndex === 7 && activePage !== 1977) {
-                  setActiveIndex(0);
-                  setActivePage((page) => page + 1);
-                  setPageNumber((page) => page + 8);
-                } else if (activeIndex < 7 && activePage !== 1977) {
-                  setActiveIndex((index) => index + 1);
-                  setActivePage((page) => page + 1);
-                }
-                if (activeIndex === 7 && activePage === 1977) {
-                  return;
-                }
-              }}
-            >
-              Next
-            </Link>
-            <Link
-              to="/browse-movies?page=1977"
-              className={classes.link}
-              onClick={() => {
-                setPageNumber(1970);
-                setActivePage(1977);
-                setActiveIndex(7);
-              }}
-            >
-              Last
-            </Link>
-          </div>
-        </div>
-      </div>
-      <div className={classes.center}>
-        <div className={classes.details}>
-          {props.data &&
-            movies.length !== 0 &&
-            movies.map((movie) => {
-              return (
-                <MovieDetail
-                  key={movie.id}
-                  image={movie.medium_cover_image}
-                  genre={movie.genres}
-                  title={movie.title}
-                  year={movie.year}
-                  rating={movie.rating}
-                  small={false}
-                />
-              );
-            })}
-        </div>
-      </div>
-      <div className={`${classes.pagination} ${classes.padding}`}>
-        <div className={classes.srce}>
-          <div className={classes.pages}>
-            <Link
-              to="/browse-movies?page=1"
-              className={classes.link}
-              onClick={() => {
-                setPageNumber(1);
-                setActivePage(1);
-                setActiveIndex(0);
-              }}
-            >
-              First
-            </Link>
-            <Link
-              to={`/browse-movies?page=${
-                activePage - 1 <= 0 ? 1 : activePage - 1
-              }`}
-              className={`${classes.link} ${classes.previous}`}
-              onClick={() => {
-                if (activeIndex === 0 && pageNumber > 1) {
-                  setPageNumber((page) => page - 8);
-                  setActivePage((pageNumber) => pageNumber - 1);
-                  setActiveIndex(7);
-                } else {
-                  // setPageNumber((page) => page - 1);
-                  setActiveIndex((index) => {
-                    if (index === 0) return 0;
-                    else return index - 1;
-                  });
-                  setActivePage((page) => page - 1);
-                }
-              }}
-            >
-              Previous
-            </Link>
-            {numbers.map((number, index) => {
-              return (
-                <Link
-                  to={`/browse-movies?page=${pageNumber + number}`}
-                  className={`${classes.link} ${
-                    activeIndex === number ? classes.active : " "
-                  }`}
-                  key={index}
-                  onClick={() => {
-                    setActivePage(pageNumber + number);
-                    setActiveIndex(number);
-                  }}
-                >
-                  {pageNumber + number}
-                </Link>
-              );
-            })}
-            <Link
-              to={`/browse-movies?page=${
-                activePage !== 1977 ? activePage + 1 : activePage
-              }`}
-              className={`${classes.link}`}
-              onClick={() => {
-                if (activeIndex === 7 && activePage !== 1977) {
-                  setActiveIndex(0);
-                  setActivePage((page) => page + 1);
-                  setPageNumber((page) => page + 8);
-                } else if (activeIndex < 7 && activePage !== 1977) {
-                  setActiveIndex((index) => index + 1);
-                  setActivePage((page) => page + 1);
-                }
-                if (activeIndex === 7 && activePage === 1977) {
-                  return;
-                }
-              }}
-            >
-              Next
-            </Link>
-            <Link
-              to="/browse-movies?page=1977"
-              className={classes.link}
-              onClick={() => {
-                setPageNumber(1970);
-                setActivePage(1977);
-                setActiveIndex(7);
-              }}
-            >
-              Last
-            </Link>
-          </div>
-        </div>
-      </div>
-      <Footer />
-    </section>
-  );
-};
-export default Main; -->
+@import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
 
-<div className={classes.center}>
-        <div className={classes.details}>
-          {props.data &&
-            movies.length !== 0 &&
-            movies.map((movie) => {
-              return (
-                <MovieDetail
-                  key={movie.id}
-                  image={movie.medium_cover_image}
-                  genre={movie.genres}
-                  title={movie.title}
-                  year={movie.year}
-                  rating={movie.rating}
-                  small={false}
-                />
-              );
-            })}
-        </div>
-      </div>
+.main {
+height: 300rem;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: gray;
+}
+.container {
+width: 85%;
+background-color: red;
+height: 100%;
+display: flex;
+flex-direction: column;
+}
+.background {
+width: 100%;
+height: 130rem;
+background-color: aqua;
+}
+.overview {
+height: 60rem;
+background-color: blue;
+display: grid;
+grid-template-columns: 0.51fr 1fr 0.5fr;
+}
+.button {
+width: 100%;
+padding: 1.2rem;
+font-family: "Arimo", sans-serif;
+font-size: 1.7rem;
+font-weight: bold;
+display: flex;
+justify-content: center;
+align-items: center;
+color: #fff8f8;
+background-color: green;
+border: none;
+cursor: pointer;
+background-color: #6ac045;
+border-radius: 3px;
+}
+.picture {
+/_ background-color: blueviolet; _/
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+justify-content: flex-end;
+font-size: 1.4rem;
+gap: 1rem;
+padding-bottom: 1rem;
+}
+.block {
+width: 100%;
+height: 38rem;
+/_ background-color: #6ac045; _/
+border: 4px solid #fff8f8;
+}
+.icon {
+width: 2rem;
+height: 2rem;
+stroke: #428e21;
+}
+.text {
+/_ background-color: burlywood; _/
+}
+.similar {
+/_ background-color: chocolate; _/
+}
+.text {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+.available {
+display: flex;
+flex-direction: column;
+}
+.item {
+display: flex;
+}
+.buttons {
+display: flex;
+gap: 1rem;
+padding-bottom: 1rem;
+}
+.icon {
+width: 2rem;
+height: 2rem;
+}
+.items {
+width: 75%;
+height: 40rem;
+display: flex;
+flex-direction: column;
+gap: 2rem;
+}
+.download {
+width: 15rem;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: transparent;
+border: none;
+cursor: pointer;
+}
+.item {
+gap: 1rem;
+}
+.title {
+font-size: 4rem;
+color: #fff8f8;
+}
+.review {
+display: flex;
+flex-direction: column;
+gap: 1rem;
+}
+.availableText {
+font-size: 1.7rem;
+color: #fff8f8;
+}
+.year {
+color: #fff8f8;
+font-size: 1.3rem;
+}
