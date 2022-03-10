@@ -5,11 +5,13 @@ import image from "../../images/Background-home.jpg";
 import image2 from "../../images/logo-imdb.svg";
 import rottenTomatoes from "../../images/rt-upright.png";
 import { Link } from "react-router-dom";
+import OverlayMovies from "../Global/OverlayMovies";
 const Main = () => {
   const params = useParams();
   const [data, setData] = useState(null);
   const [Movie, setMovie] = useState(null);
   const [suggestions, setSuggestions] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   let movie;
   const title = params.title
     .slice(0, params.title.length - 5)
@@ -33,7 +35,7 @@ const Main = () => {
       setData(data.data.movies);
       if (mahir) {
         const response2 = await fetch(
-          `https://yts.mx/api/v2/movie_details.json?movie_id=${mahir.id}`
+          `https://yts.mx/api/v2/movie_details.json?movie_id=${mahir.id}&with_images=true&with_cast=true`
         );
         const data2 = await response2.json();
         setMovie(data2);
@@ -57,14 +59,9 @@ const Main = () => {
       }
     }
   }
-  // if (movie) {
-  //   console.log(movie);
-  // }
-  // if (Movie) {
-  //   console.log(Movie);
-  // }
-  if (suggestions) {
+  if (suggestions && Movie) {
     console.log(suggestions);
+    console.log(Movie);
   }
   return (
     <section className={classes.main}>
@@ -335,6 +332,74 @@ const Main = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className={classes.pictures}>
+        <div
+          className={classes.trailer}
+          style={{
+            backgroundImage: `url(${
+              Movie ? Movie.data.movie.medium_screenshot_image2 : ""
+            })`,
+            backgroundPosition: "centre",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+          }}
+          onClick={() => {
+            setShowModal(true);
+          }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="192"
+            height="192"
+            fill="#ffffff"
+            viewBox="0 0 256 256"
+            className={classes.play}
+          >
+            <rect width="256" height="256" fill="none"></rect>
+            <circle
+              cx="128"
+              cy="128"
+              r="96"
+              fill="none"
+              stroke="#ffffff"
+              strokeMiterlimit="10"
+              strokeWidth="10"
+            ></circle>
+            <polygon
+              points="160 128 112 96 112 160 160 128"
+              fill="#ffffff"
+              stroke="#ffffff"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="10"
+            ></polygon>
+          </svg>
+          Trailer
+        </div>
+        <div
+          className={classes.trailer}
+          style={{
+            backgroundImage: `url(${
+              Movie ? Movie.data.movie.medium_screenshot_image3 : ""
+            })`,
+            backgroundPosition: "centre",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
+        <div
+          className={classes.trailer}
+          style={{
+            backgroundImage: `url(${
+              Movie ? Movie.data.movie.medium_screenshot_image1 : ""
+            })`,
+            backgroundPosition: "centre",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
+        {showModal && <OverlayMovies close={() => setShowModal(false)} />}
       </div>
     </section>
   );

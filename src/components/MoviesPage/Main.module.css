@@ -175,3 +175,30 @@
 .similarTitle {
   font-size: 1.6rem;
 }
+.pictures {
+  height: 30rem;
+  background-color: red;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+.trailer {
+  width: 30%;
+  height: 80%;
+  background-color: blue;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.play {
+  width: 50%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
