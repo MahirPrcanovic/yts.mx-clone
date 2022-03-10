@@ -4,17 +4,19 @@ import { useEffect, useState } from "react";
 import image from "../../images/Background-home.jpg";
 import image2 from "../../images/logo-imdb.svg";
 import rottenTomatoes from "../../images/rt-upright.png";
+import { Link } from "react-router-dom";
 const Main = () => {
   const params = useParams();
   const [data, setData] = useState(null);
   const [Movie, setMovie] = useState(null);
+  const [suggestions, setSuggestions] = useState(null);
   let movie;
   const title = params.title
     .slice(0, params.title.length - 5)
     .split("-")
     .join(" ");
   const year = params.title.slice(-4);
-  console.log(title);
+  // console.log(title);
   useEffect(() => {
     let mahir;
     async function fetchData() {
@@ -36,23 +38,33 @@ const Main = () => {
         const data2 = await response2.json();
         setMovie(data2);
       }
+      if (mahir) {
+        const response3 = await fetch(
+          `https://yts.mx/api/v2/movie_suggestions.json?movie_id=${mahir.id}`
+        );
+        const data3 = await response3.json();
+        setSuggestions(data3);
+      }
     }
 
     fetchData();
   }, [title, year]);
   if (data) {
-    console.log(data);
+    // console.log(data);
     for (let i = 0; i < data.length; i++) {
       if (data[i].year === +year) {
         movie = data[i];
       }
     }
   }
-  if (movie) {
-    console.log(movie);
-  }
-  if (Movie) {
-    console.log(Movie);
+  // if (movie) {
+  //   console.log(movie);
+  // }
+  // if (Movie) {
+  //   console.log(Movie);
+  // }
+  if (suggestions) {
+    console.log(suggestions);
   }
   return (
     <section className={classes.main}>
@@ -201,7 +213,7 @@ const Main = () => {
                       backgroundImage: `url(${rottenTomatoes})`,
                     }}
                     href={`https://www.rottentomatoes.com/m/${
-                      Movie ? Movie.data.movie.title : ""
+                      Movie ? Movie.data.movie.title.split(" ").join("_") : ""
                     } `}
                     target="_blank"
                     rel="noreferrer"
@@ -235,6 +247,91 @@ const Main = () => {
                   </svg>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className={classes.similar}>
+            <h3 className={classes.similarTitle}>Similar Movies</h3>
+            <div className={classes.similarContainer}>
+              <Link
+                className={classes.similarBlock}
+                to={`/movies/${
+                  suggestions && suggestions.data.movies[0]
+                    ? `${suggestions.data.movies[0].title
+                        .split(" ")
+                        .join("-")}-${suggestions.data.movies[0].year}`
+                    : ""
+                }`}
+                style={{
+                  backgroundImage: `url(${
+                    suggestions && suggestions.data.movies[0]
+                      ? suggestions.data.movies[0].medium_cover_image
+                      : ""
+                  })`,
+                  backgroundPosition: "centre",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                }}
+              ></Link>
+              <Link
+                className={classes.similarBlock}
+                to={`/movies/${
+                  suggestions && suggestions.data.movies[1]
+                    ? `${suggestions.data.movies[1].title
+                        .split(" ")
+                        .join("-")}-${suggestions.data.movies[1].year}`
+                    : ""
+                }`}
+                style={{
+                  backgroundImage: `url(${
+                    suggestions && suggestions.data.movies[1]
+                      ? suggestions.data.movies[1].medium_cover_image
+                      : ""
+                  })`,
+                  backgroundPosition: "centre",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                }}
+              ></Link>
+              <Link
+                className={classes.similarBlock}
+                to={`/movies/${
+                  suggestions && suggestions.data.movies[2]
+                    ? `${suggestions.data.movies[2].title
+                        .split(" ")
+                        .join("-")}-${suggestions.data.movies[2].year}`
+                    : ""
+                }`}
+                style={{
+                  backgroundImage: `url(${
+                    suggestions && suggestions.data.movies[2]
+                      ? suggestions.data.movies[2].medium_cover_image
+                      : ""
+                  })`,
+                  backgroundPosition: "centre",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                }}
+              ></Link>
+              <Link
+                className={classes.similarBlock}
+                to={`/movies/${
+                  suggestions && suggestions.data.movies[3]
+                    ? `${suggestions.data.movies[3].title
+                        .split(" ")
+                        .join("-")}-${suggestions.data.movies[3].year}`
+                    : ""
+                }`}
+                style={{
+                  backgroundImage: `url(${
+                    suggestions && suggestions.data.movies[3]
+                      ? suggestions.data.movies[3].medium_cover_image
+                      : ""
+                  })`,
+                  backgroundPosition: "centre",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                }}
+              ></Link>
             </div>
           </div>
         </div>
