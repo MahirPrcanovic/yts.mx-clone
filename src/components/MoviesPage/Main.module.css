@@ -1,6 +1,6 @@
 .main {
   height: 300rem;
-  background-color: gray;
+  background-color: rgb(34, 32, 32);
   color: white;
 }
 .overviewContainer {
@@ -64,6 +64,9 @@
 }
 .item {
   display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.4rem;
 }
 .buttons {
   display: flex;
@@ -73,7 +76,7 @@
 .review {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 .year {
   color: #fff8f8;
@@ -131,4 +134,16 @@
 .heart {
   stroke: green;
   fill: green;
+}
+.imdb {
+  width: 4rem;
+  height: 2rem;
+  cursor: pointer;
+  color: transparent;
+}
+.rotten {
+  width: 1.5rem;
+  height: 2rem;
+  cursor: pointer;
+  color: transparent;
 }
