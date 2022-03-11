@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
 .main {
   height: 300rem;
   background-color: rgb(34, 32, 32);
@@ -202,4 +203,84 @@
 }
 .trailer:hover {
   opacity: 0.6;
+}
+.cast {
+  font-family: "Arimo", sans-serif;
+  height: 45rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1d1d1d;
+}
+.container {
+  width: 85%;
+  height: 100%;
+  display: flex;
+}
+.introduction {
+  width: 55%;
+  height: 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 2rem;
+  padding-top: 2rem;
+}
+.introTitle {
+  font-size: 2rem;
+}
+.introText {
+  font-family: "Arimo", sans-serif;
+  font-weight: 400;
+  margin-top: 4rem;
+  font-size: 1.5rem;
+  color: #919191;
+}
+.castInfo {
+  width: 50%;
+  height: 100%;
+  /* background-color: red; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.castContainer {
+  width: 70%;
+  height: 100%;
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 2rem;
+}
+.castMember {
+  height: 13.5%;
+  width: 100%;
+  border-bottom: 2px solid #302f2f;
+  display: flex;
+  align-items: center;
+  color: #919191;
+  text-decoration: none;
+}
+.castPicture {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-image: url("../../images/default_avatar.webp");
+}
+.character {
+  color: white;
+  padding-left: 1rem;
+}
+.castName {
+  padding-left: 1.5rem;
+  font-size: 1.3rem;
+}
+.castName:hover {
+  color: white;
+  cursor: pointer;
+}
+.castTitle {
+  font-size: 2rem;
 }

@@ -6,6 +6,7 @@ import image2 from "../../images/logo-imdb.svg";
 import rottenTomatoes from "../../images/rt-upright.png";
 import { Link } from "react-router-dom";
 import OverlayMovies from "../Global/OverlayMovies";
+import DefaultAvatar from "../../images/default_avatar.webp";
 const Main = () => {
   const params = useParams();
   const [data, setData] = useState(null);
@@ -68,7 +69,7 @@ const Main = () => {
   return (
     <section className={classes.main}>
       <div
-        className={classes.overviewContainer}
+        className={classes.overviewContainer} //WHOLE OVERVIEW CONTAINER
         style={{
           backgroundImage: `url(${movie ? movie.background_image : ""})`,
           backgroundPosition: "centre",
@@ -430,6 +431,197 @@ const Main = () => {
             close={() => setShowModal(false)}
           />
         )}
+      </div>
+      <div className={classes.cast}>
+        <div className={classes.container}>
+          <div className={classes.introduction}>
+            <h1 className={classes.introTitle}>Synopsis</h1>
+            <p className={classes.introText}>
+              {Movie && Movie.data.movie.description_full
+                ? Movie.data.movie.description_full
+                : ""}
+            </p>
+            <p className={classes.introText}>
+              Coded By: <strong>Mahir</strong>
+              <br />
+              March 11, 2022 at 3:24 PM
+            </p>
+          </div>
+          <div className={classes.castInfo}>
+            <div className={classes.castContainer}>
+              <h1 className={classes.castTitle}>Cast</h1>
+              <a
+                className={classes.castMember}
+                href={`https://www.imdb.com/name/nm${
+                  Movie && Movie.data.movie.cast && Movie.data.movie.cast[0]
+                    ? Movie.data.movie.cast[0].imdb_code
+                    : ""
+                }/?ref_=tt_ov_st`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div
+                  className={classes.castPicture}
+                  style={{
+                    backgroundImage:
+                      Movie &&
+                      Movie.data.movie.cast &&
+                      Movie.data.movie.cast[0].url_small_image
+                        ? `url(${Movie.data.movie.cast[0].url_small_image})`
+                        : DefaultAvatar,
+                    backgroundPosition: "centre",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                ></div>
+                <h3 className={classes.castName}>
+                  {Movie &&
+                  Movie.data.movie.cast &&
+                  Movie.data.movie.cast[0].name
+                    ? `${Movie.data.movie.cast[0].name}`
+                    : ""}
+                </h3>
+                <h3 className={classes.character}>
+                  {" "}
+                  {`as ${
+                    Movie &&
+                    Movie.data.movie.cast &&
+                    Movie.data.movie.cast[0].character_name
+                      ? Movie.data.movie.cast[0].character_name
+                      : ""
+                  }`}
+                </h3>
+              </a>
+              <a
+                className={classes.castMember}
+                href={`https://www.imdb.com/name/nm${
+                  Movie && Movie.data.movie.cast && Movie.data.movie.cast[1]
+                    ? Movie.data.movie.cast[1].imdb_code
+                    : ""
+                }/?ref_=tt_ov_st`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div
+                  className={classes.castPicture}
+                  style={{
+                    backgroundImage:
+                      Movie &&
+                      Movie.data.movie.cast &&
+                      Movie.data.movie.cast[1].url_small_image
+                        ? `url(${Movie.data.movie.cast[1].url_small_image})`
+                        : DefaultAvatar,
+                    backgroundPosition: "centre",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                ></div>
+                <h3 className={classes.castName}>
+                  {Movie &&
+                  Movie.data.movie.cast &&
+                  Movie.data.movie.cast[1].name
+                    ? `${Movie.data.movie.cast[1].name}`
+                    : ""}
+                </h3>
+                <h3 className={classes.character}>
+                  {" "}
+                  {`as ${
+                    Movie &&
+                    Movie.data.movie.cast &&
+                    Movie.data.movie.cast[1].character_name
+                      ? Movie.data.movie.cast[1].character_name
+                      : ""
+                  }`}
+                </h3>
+              </a>
+              <a
+                className={classes.castMember}
+                href={`https://www.imdb.com/name/nm${
+                  Movie && Movie.data.movie.cast && Movie.data.movie.cast[2]
+                    ? Movie.data.movie.cast[2].imdb_code
+                    : ""
+                }/?ref_=tt_ov_st`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div
+                  className={classes.castPicture}
+                  style={{
+                    backgroundImage:
+                      Movie &&
+                      Movie.data.movie.cast &&
+                      Movie.data.movie.cast[2].url_small_image
+                        ? `url(${Movie.data.movie.cast[2].url_small_image})`
+                        : "",
+
+                    backgroundPosition: "centre",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                ></div>
+                <h3 className={classes.castName}>
+                  {Movie &&
+                  Movie.data.movie.cast &&
+                  Movie.data.movie.cast[2].name
+                    ? `${Movie.data.movie.cast[2].name}`
+                    : ""}
+                </h3>
+                <h3 className={classes.character}>
+                  {" "}
+                  {`as ${
+                    Movie &&
+                    Movie.data.movie.cast &&
+                    Movie.data.movie.cast[2].character_name
+                      ? Movie.data.movie.cast[2].character_name
+                      : ""
+                  }`}
+                </h3>
+              </a>
+              <a
+                className={classes.castMember}
+                href={`https://www.imdb.com/name/nm${
+                  Movie && Movie.data.movie.cast && Movie.data.movie.cast[3]
+                    ? Movie.data.movie.cast[3].imdb_code
+                    : ""
+                }/?ref_=tt_ov_st`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div
+                  className={classes.castPicture}
+                  style={{
+                    backgroundImage:
+                      Movie &&
+                      Movie.data.movie.cast &&
+                      Movie.data.movie.cast[3].url_small_image
+                        ? `url(${Movie.data.movie.cast[3].url_small_image})`
+                        : DefaultAvatar,
+                    backgroundPosition: "centre",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                ></div>
+                <h3 className={classes.castName}>
+                  {Movie &&
+                  Movie.data.movie.cast &&
+                  Movie.data.movie.cast[3].name
+                    ? `${Movie.data.movie.cast[3].name}`
+                    : ""}
+                </h3>
+                <h3 className={classes.character}>
+                  {" "}
+                  {`as ${
+                    Movie &&
+                    Movie.data.movie.cast &&
+                    Movie.data.movie.cast[3].character_name
+                      ? Movie.data.movie.cast[3].character_name
+                      : ""
+                  }`}
+                </h3>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
