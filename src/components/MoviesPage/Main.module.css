@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
 .main {
-  height: 300rem;
+  /* height: 300rem; */
   background-color: rgb(34, 32, 32);
   color: white;
 }
@@ -356,10 +356,19 @@
 .techDiv > a:hover {
   color: white;
 }
-
 .techIcon {
   width: 2rem;
   height: 2rem;
   stroke: #82877d;
-  /* fill: #82877d; */
+}
+.reviews {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.reviewsContainer {
+  width: 85%;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }

@@ -5,8 +5,9 @@ import image from "../../images/Background-home.jpg";
 import image2 from "../../images/logo-imdb.svg";
 import rottenTomatoes from "../../images/rt-upright.png";
 import { Link } from "react-router-dom";
-import OverlayMovies from "../Global/OverlayMovies";
+import OverlayMovies from "./OverlayMovies";
 import DefaultAvatar from "../../images/default_avatar.webp";
+import DownloadOverlay from "./DownloadOverlay";
 const Main = () => {
   const params = useParams();
   const [data, setData] = useState(null);
@@ -16,6 +17,7 @@ const Main = () => {
   const [picture, setPicture] = useState(" ");
   const [video, setVideo] = useState(" ");
   const [techActive, setTechActive] = useState(0);
+  const [showDownload, setShowDownload] = useState(false);
   let movie;
   const title = params.title
     .slice(0, params.title.length - 5)
@@ -93,7 +95,10 @@ const Main = () => {
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
-            <button className={classes.button}>
+            <button
+              className={classes.button}
+              onClick={() => setShowDownload(true)}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className={classes.icon}
@@ -935,6 +940,15 @@ const Main = () => {
           </div>
         </div>
       </div>
+      <div className={classes.reviews}>
+        <div className={classes.reviewsContainer}>
+          <h1>
+            Reviews and comment section are not available due to problems with
+            API.
+          </h1>
+        </div>
+      </div>
+      {showDownload && <DownloadOverlay close={() => setShowDownload(false)} />}
     </section>
   );
 };
