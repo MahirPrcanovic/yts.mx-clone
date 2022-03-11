@@ -152,7 +152,6 @@
   color: white;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   flex-direction: column;
   gap: 1rem;
 }
@@ -177,7 +176,7 @@
 }
 .pictures {
   height: 30rem;
-  background-color: red;
+  background-color: #1d1d1d;
   display: flex;
   gap: 1rem;
   justify-content: center;
@@ -186,7 +185,6 @@
 .trailer {
   width: 30%;
   height: 80%;
-  background-color: blue;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -201,4 +199,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.trailer:hover {
+  opacity: 0.6;
 }

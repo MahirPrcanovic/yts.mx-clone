@@ -12,6 +12,8 @@ const Main = () => {
   const [Movie, setMovie] = useState(null);
   const [suggestions, setSuggestions] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [picture, setPicture] = useState(" ");
+  const [video, setVideo] = useState(" ");
   let movie;
   const title = params.title
     .slice(0, params.title.length - 5)
@@ -338,7 +340,7 @@ const Main = () => {
           className={classes.trailer}
           style={{
             backgroundImage: `url(${
-              Movie ? Movie.data.movie.medium_screenshot_image2 : ""
+              Movie ? Movie.data.movie.medium_screenshot_image1 : ""
             })`,
             backgroundPosition: "centre",
             backgroundSize: "cover",
@@ -346,6 +348,14 @@ const Main = () => {
           }}
           onClick={() => {
             setShowModal(true);
+            setPicture("");
+            setVideo(
+              `${
+                Movie
+                  ? `https://www.youtube.com/embed/${Movie.data.movie.yt_trailer_code}`
+                  : ""
+              }`
+            );
           }}
         >
           <svg
@@ -381,25 +391,45 @@ const Main = () => {
           className={classes.trailer}
           style={{
             backgroundImage: `url(${
-              Movie ? Movie.data.movie.medium_screenshot_image3 : ""
+              Movie ? Movie.data.movie.medium_screenshot_image2 : ""
             })`,
             backgroundPosition: "centre",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
+          }}
+          onClick={() => {
+            setShowModal(true);
+            setPicture(
+              `${Movie ? Movie.data.movie.large_screenshot_image2 : ""}`
+            );
+            setVideo("");
           }}
         ></div>
         <div
           className={classes.trailer}
           style={{
             backgroundImage: `url(${
-              Movie ? Movie.data.movie.medium_screenshot_image1 : ""
+              Movie ? Movie.data.movie.medium_screenshot_image3 : ""
             })`,
             backgroundPosition: "centre",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
           }}
+          onClick={() => {
+            setShowModal(true);
+            setPicture(
+              `${Movie ? Movie.data.movie.large_screenshot_image3 : ""}`
+            );
+            setVideo("");
+          }}
         ></div>
-        {showModal && <OverlayMovies close={() => setShowModal(false)} />}
+        {showModal && (
+          <OverlayMovies
+            video={video}
+            picture={picture}
+            close={() => setShowModal(false)}
+          />
+        )}
       </div>
     </section>
   );
