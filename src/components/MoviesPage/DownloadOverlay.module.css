@@ -8,10 +8,51 @@
 }
 .modal {
   position: fixed;
-  width: 80%;
-  height: 30rem;
+  width: 50%;
+  height: 40rem;
   background-color: white;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+}
+.button {
+  width: 3rem;
+  height: 3rem;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1005;
+  cursor: pointer;
+  stroke: white;
+}
+.button:hover {
+  stroke: forestgreen;
+}
+.container {
+  width: 80%;
+  height: 20%;
+  background-color: red;
+}
+.container2 {
+  width: 80%;
+  height: 80%;
+  background-color: blue;
+  display: flex;
+}
+.inside {
+  width: 50%;
+  height: 100%;
+  background-color: aqua;
+  border-right: 1px solid black;
+}
+.inside:last-child {
+  border: none;
+}
+.icon {
+  width: 12rem;
+  height: 12rem;
 }

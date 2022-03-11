@@ -948,7 +948,9 @@ const Main = () => {
           </h1>
         </div>
       </div>
-      {showDownload && <DownloadOverlay close={() => setShowDownload(false)} />}
+      {showDownload && (
+        <DownloadOverlay close={() => setShowDownload(false)} data={Movie} />
+      )}
     </section>
   );
 };
