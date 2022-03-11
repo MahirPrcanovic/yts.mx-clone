@@ -15,6 +15,7 @@ const Main = () => {
   const [showModal, setShowModal] = useState(false);
   const [picture, setPicture] = useState(" ");
   const [video, setVideo] = useState(" ");
+  const [techActive, setTechActive] = useState(0);
   let movie;
   const title = params.title
     .slice(0, params.title.length - 5)
@@ -619,6 +620,317 @@ const Main = () => {
                   }`}
                 </h3>
               </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={classes.techSpec}>
+        <div className={classes.techContainer}>
+          <div className={classes.techIntro}>
+            <h1>Tech Specs</h1>
+            <div>
+              <div
+                className={classes.insideDiv}
+                style={{
+                  backgroundColor: `${techActive === 0 ? "black" : ""}`,
+                  color: `${techActive === 0 ? "white" : ""}`,
+                }}
+                onClick={() => {
+                  setTechActive(0);
+                }}
+              >
+                {Movie &&
+                Movie.data.movie.torrents &&
+                Movie.data.movie.torrents[0] ? (
+                  <h3>720p.WEB</h3>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div
+                className={classes.insideDiv}
+                style={{
+                  backgroundColor: `${techActive === 1 ? "black" : ""}`,
+                  color: `${techActive === 1 ? "white" : ""}`,
+                }}
+                onClick={() => {
+                  setTechActive(1);
+                }}
+              >
+                {Movie &&
+                Movie.data.movie.torrents &&
+                Movie.data.movie.torrents[1] ? (
+                  <h3>1080p.WEB</h3>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div
+                className={classes.insideDiv}
+                style={{
+                  backgroundColor: `${techActive === 2 ? "black" : ""}`,
+                  color: `${techActive === 2 ? "white" : ""}`,
+                }}
+                onClick={() => {
+                  setTechActive(2);
+                }}
+              >
+                {Movie &&
+                Movie.data.movie.torrents &&
+                Movie.data.movie.torrents[2] ? (
+                  <h3>2160p.WEB</h3>
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
+          </div>
+          <div className={classes.techInfo}>
+            <div className={classes.techDiv}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={classes.techIcon}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                />
+              </svg>
+              {Movie && Movie.data.movie.torrents[techActive] ? (
+                <h2>{Movie.data.movie.torrents[techActive].size}</h2>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className={classes.techDiv}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="192"
+                height="192"
+                fill="#82877d"
+                className={classes.techIcon}
+                viewBox="0 0 256 256"
+              >
+                <rect width="256" height="256" fill="none"></rect>
+                <polyline
+                  points="168 48 208 48 208 88"
+                  fill="none"
+                  stroke="#82877d"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="16"
+                ></polyline>
+                <line
+                  x1="152"
+                  y1="104"
+                  x2="208"
+                  y2="48"
+                  fill="none"
+                  stroke="#82877d"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="16"
+                ></line>
+                <polyline
+                  points="88 208 48 208 48 168"
+                  fill="none"
+                  stroke="#82877d"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="16"
+                ></polyline>
+                <line
+                  x1="104"
+                  y1="152"
+                  x2="48"
+                  y2="208"
+                  fill="none"
+                  stroke="#82877d"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="16"
+                ></line>
+                <polyline
+                  points="208 168 208 208 168 208"
+                  fill="none"
+                  stroke="#82877d"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="16"
+                ></polyline>
+                <line
+                  x1="152"
+                  y1="152"
+                  x2="208"
+                  y2="208"
+                  fill="none"
+                  stroke="#82877d"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="16"
+                ></line>
+                <polyline
+                  points="48 88 48 48 88 48"
+                  fill="none"
+                  stroke="#82877d"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="16"
+                ></polyline>
+                <line
+                  x1="104"
+                  y1="104"
+                  x2="48"
+                  y2="48"
+                  fill="none"
+                  stroke="#82877d"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="16"
+                ></line>
+              </svg>
+              {techActive === 0 ? <h2>1280*534</h2> : ""}
+              {techActive === 1 ? <h2>1920*800</h2> : ""}
+              {techActive === 2 ? <h2>3840*1600</h2> : ""}
+            </div>
+            <div className={classes.techDiv}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={classes.techIcon}
+                viewBox="0 0 20 20"
+                fill="#82877d"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              {Movie && Movie.data.movie.language ? (
+                <h2>{Movie.data.movie.language}</h2>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className={classes.techDiv}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={classes.techIcon}
+                viewBox="0 0 20 20"
+                fill="#82877d"
+              >
+                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                <path
+                  fillRule="evenodd"
+                  d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              {Movie && Movie.data.movie && Movie.data.movie.mpa_rating ? (
+                <h2>{Movie.data.movie.mpa_rating}</h2>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className={classes.techDiv}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="192"
+                height="192"
+                fill="#82877d"
+                viewBox="0 0 256 256"
+                className={classes.techIcon}
+              >
+                <rect width="256" height="256" fill="none"></rect>
+                <rect
+                  x="32"
+                  y="48"
+                  width="192"
+                  height="160"
+                  rx="8"
+                  fill="none"
+                  stroke="#82877d"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="16"
+                ></rect>
+                <path
+                  d="M116,147.6a28,28,0,1,1,0-39.2"
+                  fill="none"
+                  stroke="#82877d"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="16"
+                ></path>
+                <path
+                  d="M188,147.6a28,28,0,1,1,0-39.2"
+                  fill="none"
+                  stroke="#82877d"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="16"
+                ></path>
+              </svg>
+              <a
+                href={`https://yifysubtitles.org/movie-imdb/${
+                  Movie ? Movie.imdb_code : ""
+                }`}
+              >
+                Subtitles
+              </a>
+            </div>
+            <div className={classes.techDiv}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={classes.techIcon}
+                viewBox="0 0 20 20"
+                fill="#82877d"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              {Movie ? <h2>{Movie.data.movie.download_count}</h2> : ""}
+            </div>
+            <div className={classes.techDiv}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={classes.techIcon}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              {Movie && Movie.data.movie.runtime ? (
+                <h2>{Movie.data.movie.runtime} min</h2>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className={classes.techDiv}>
+              <h2>
+                P/S{" "}
+                {Movie &&
+                Movie.data.movie.torrents[techActive].seeds &&
+                Movie.data.movie.torrents[techActive].peers
+                  ? Movie.data.movie.torrents[techActive].peers +
+                    " / " +
+                    Movie.data.movie.torrents[techActive].seeds
+                  : ""}
+              </h2>
             </div>
           </div>
         </div>
