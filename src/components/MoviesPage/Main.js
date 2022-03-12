@@ -472,6 +472,7 @@ const Main = () => {
                     backgroundImage:
                       Movie &&
                       Movie.data.movie.cast &&
+                      Movie.data.movie.cast[0] &&
                       Movie.data.movie.cast[0].url_small_image
                         ? `url(${Movie.data.movie.cast[0].url_small_image})`
                         : DefaultAvatar,
@@ -483,6 +484,7 @@ const Main = () => {
                 <h3 className={classes.castName}>
                   {Movie &&
                   Movie.data.movie.cast &&
+                  Movie.data.movie.cast[0] &&
                   Movie.data.movie.cast[0].name
                     ? `${Movie.data.movie.cast[0].name}`
                     : ""}
@@ -492,6 +494,7 @@ const Main = () => {
                   {`as ${
                     Movie &&
                     Movie.data.movie.cast &&
+                    Movie.data.movie.cast[0] &&
                     Movie.data.movie.cast[0].character_name
                       ? Movie.data.movie.cast[0].character_name
                       : ""
@@ -514,6 +517,7 @@ const Main = () => {
                     backgroundImage:
                       Movie &&
                       Movie.data.movie.cast &&
+                      Movie.data.movie.cast[1] &&
                       Movie.data.movie.cast[1].url_small_image
                         ? `url(${Movie.data.movie.cast[1].url_small_image})`
                         : DefaultAvatar,
@@ -525,6 +529,7 @@ const Main = () => {
                 <h3 className={classes.castName}>
                   {Movie &&
                   Movie.data.movie.cast &&
+                  Movie.data.movie.cast[1] &&
                   Movie.data.movie.cast[1].name
                     ? `${Movie.data.movie.cast[1].name}`
                     : ""}
@@ -534,6 +539,7 @@ const Main = () => {
                   {`as ${
                     Movie &&
                     Movie.data.movie.cast &&
+                    Movie.data.movie.cast[1] &&
                     Movie.data.movie.cast[1].character_name
                       ? Movie.data.movie.cast[1].character_name
                       : ""
@@ -556,6 +562,7 @@ const Main = () => {
                     backgroundImage:
                       Movie &&
                       Movie.data.movie.cast &&
+                      Movie.data.movie.cast[2] &&
                       Movie.data.movie.cast[2].url_small_image
                         ? `url(${Movie.data.movie.cast[2].url_small_image})`
                         : "",
@@ -568,6 +575,7 @@ const Main = () => {
                 <h3 className={classes.castName}>
                   {Movie &&
                   Movie.data.movie.cast &&
+                  Movie.data.movie.cast[2] &&
                   Movie.data.movie.cast[2].name
                     ? `${Movie.data.movie.cast[2].name}`
                     : ""}
@@ -577,6 +585,7 @@ const Main = () => {
                   {`as ${
                     Movie &&
                     Movie.data.movie.cast &&
+                    Movie.data.movie.cast[2] &&
                     Movie.data.movie.cast[2].character_name
                       ? Movie.data.movie.cast[2].character_name
                       : ""
@@ -599,6 +608,7 @@ const Main = () => {
                     backgroundImage:
                       Movie &&
                       Movie.data.movie.cast &&
+                      Movie.data.movie.cast[3] &&
                       Movie.data.movie.cast[3].url_small_image
                         ? `url(${Movie.data.movie.cast[3].url_small_image})`
                         : DefaultAvatar,
@@ -610,6 +620,7 @@ const Main = () => {
                 <h3 className={classes.castName}>
                   {Movie &&
                   Movie.data.movie.cast &&
+                  Movie.data.movie.cast[3] &&
                   Movie.data.movie.cast[3].name
                     ? `${Movie.data.movie.cast[3].name}`
                     : ""}
@@ -619,6 +630,7 @@ const Main = () => {
                   {`as ${
                     Movie &&
                     Movie.data.movie.cast &&
+                    Movie.data.movie.cast[3] &&
                     Movie.data.movie.cast[3].character_name
                       ? Movie.data.movie.cast[3].character_name
                       : ""
