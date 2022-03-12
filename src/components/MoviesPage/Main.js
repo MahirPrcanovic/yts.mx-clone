@@ -1,5 +1,5 @@
 import classes from "./Main.module.css";
-import { useParams } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import image from "../../images/Background-home.jpg";
 import image2 from "../../images/logo-imdb.svg";
@@ -18,6 +18,7 @@ const Main = () => {
   const [video, setVideo] = useState(" ");
   const [techActive, setTechActive] = useState(0);
   const [showDownload, setShowDownload] = useState(false);
+  const history = useHistory();
   let movie;
   const title = params.title
     .slice(0, params.title.length - 5)
