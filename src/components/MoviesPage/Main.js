@@ -96,7 +96,7 @@ const Main = () => {
               }}
             ></div>
             <button
-              className={classes.button}
+              className={`${classes.button} ${classes.downloadButton}`}
               onClick={() => setShowDownload(true)}
             >
               <svg
@@ -655,7 +655,7 @@ const Main = () => {
         <div className={classes.techContainer}>
           <div className={classes.techIntro}>
             <h1>Tech Specs</h1>
-            <div>
+            <div className={classes.techFlex}>
               <div
                 className={classes.insideDiv}
                 style={{
@@ -905,7 +905,7 @@ const Main = () => {
               </svg>
               <a
                 href={`https://yifysubtitles.org/movie-imdb/${
-                  Movie ? Movie.imdb_code : ""
+                  Movie ? Movie.data.movie.imdb_code : ""
                 }`}
               >
                 Subtitles
