@@ -1,5 +1,5 @@
 import classes from "./Main.module.css";
-import { Redirect, useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import image from "../../images/Background-home.jpg";
 import image2 from "../../images/logo-imdb.svg";
@@ -18,7 +18,6 @@ const Main = () => {
   const [video, setVideo] = useState(" ");
   const [techActive, setTechActive] = useState(0);
   const [showDownload, setShowDownload] = useState(false);
-  const history = useHistory();
   let movie;
   const title = params.title
     .slice(0, params.title.length - 5)
@@ -456,188 +455,198 @@ const Main = () => {
           </div>
           <div className={classes.castInfo}>
             <div className={classes.castContainer}>
-              <h1 className={classes.castTitle}>Cast</h1>
-              <a
-                className={classes.castMember}
-                href={`https://www.imdb.com/name/nm${
-                  Movie && Movie.data.movie.cast && Movie.data.movie.cast[0]
-                    ? Movie.data.movie.cast[0].imdb_code
-                    : ""
-                }/?ref_=tt_ov_st`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <div
-                  className={classes.castPicture}
-                  style={{
-                    backgroundImage:
+              {Movie && Movie.data.movie.cast && (
+                <h1 className={classes.castTitle}>Cast</h1>
+              )}
+              {Movie && Movie.data.movie.cast && Movie.data.movie.cast[0] && (
+                <a
+                  className={classes.castMember}
+                  href={`https://www.imdb.com/name/nm${
+                    Movie && Movie.data.movie.cast && Movie.data.movie.cast[0]
+                      ? Movie.data.movie.cast[0].imdb_code
+                      : ""
+                  }/?ref_=tt_ov_st`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <div
+                    className={classes.castPicture}
+                    style={{
+                      backgroundImage:
+                        Movie &&
+                        Movie.data.movie.cast &&
+                        Movie.data.movie.cast[0] &&
+                        Movie.data.movie.cast[0].url_small_image
+                          ? `url(${Movie.data.movie.cast[0].url_small_image})`
+                          : DefaultAvatar,
+                      backgroundPosition: "centre",
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  ></div>
+                  <h3 className={classes.castName}>
+                    {Movie &&
+                    Movie.data.movie.cast &&
+                    Movie.data.movie.cast[0] &&
+                    Movie.data.movie.cast[0].name
+                      ? `${Movie.data.movie.cast[0].name}`
+                      : ""}
+                  </h3>
+                  <h3 className={classes.character}>
+                    {" "}
+                    {`as ${
                       Movie &&
                       Movie.data.movie.cast &&
                       Movie.data.movie.cast[0] &&
-                      Movie.data.movie.cast[0].url_small_image
-                        ? `url(${Movie.data.movie.cast[0].url_small_image})`
-                        : DefaultAvatar,
-                    backgroundPosition: "centre",
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                ></div>
-                <h3 className={classes.castName}>
-                  {Movie &&
-                  Movie.data.movie.cast &&
-                  Movie.data.movie.cast[0] &&
-                  Movie.data.movie.cast[0].name
-                    ? `${Movie.data.movie.cast[0].name}`
-                    : ""}
-                </h3>
-                <h3 className={classes.character}>
-                  {" "}
-                  {`as ${
-                    Movie &&
-                    Movie.data.movie.cast &&
-                    Movie.data.movie.cast[0] &&
-                    Movie.data.movie.cast[0].character_name
-                      ? Movie.data.movie.cast[0].character_name
+                      Movie.data.movie.cast[0].character_name
+                        ? Movie.data.movie.cast[0].character_name
+                        : ""
+                    }`}
+                  </h3>
+                </a>
+              )}
+              {Movie && Movie.data.movie.cast && Movie.data.movie.cast[1] && (
+                <a
+                  className={classes.castMember}
+                  href={`https://www.imdb.com/name/nm${
+                    Movie && Movie.data.movie.cast && Movie.data.movie.cast[1]
+                      ? Movie.data.movie.cast[1].imdb_code
                       : ""
-                  }`}
-                </h3>
-              </a>
-              <a
-                className={classes.castMember}
-                href={`https://www.imdb.com/name/nm${
-                  Movie && Movie.data.movie.cast && Movie.data.movie.cast[1]
-                    ? Movie.data.movie.cast[1].imdb_code
-                    : ""
-                }/?ref_=tt_ov_st`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <div
-                  className={classes.castPicture}
-                  style={{
-                    backgroundImage:
+                  }/?ref_=tt_ov_st`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <div
+                    className={classes.castPicture}
+                    style={{
+                      backgroundImage:
+                        Movie &&
+                        Movie.data.movie.cast &&
+                        Movie.data.movie.cast[1] &&
+                        Movie.data.movie.cast[1].url_small_image
+                          ? `url(${Movie.data.movie.cast[1].url_small_image})`
+                          : DefaultAvatar,
+                      backgroundPosition: "centre",
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  ></div>
+                  <h3 className={classes.castName}>
+                    {Movie &&
+                    Movie.data.movie.cast &&
+                    Movie.data.movie.cast[1] &&
+                    Movie.data.movie.cast[1].name
+                      ? `${Movie.data.movie.cast[1].name}`
+                      : ""}
+                  </h3>
+                  <h3 className={classes.character}>
+                    {" "}
+                    {`as ${
                       Movie &&
                       Movie.data.movie.cast &&
                       Movie.data.movie.cast[1] &&
-                      Movie.data.movie.cast[1].url_small_image
-                        ? `url(${Movie.data.movie.cast[1].url_small_image})`
-                        : DefaultAvatar,
-                    backgroundPosition: "centre",
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                ></div>
-                <h3 className={classes.castName}>
-                  {Movie &&
-                  Movie.data.movie.cast &&
-                  Movie.data.movie.cast[1] &&
-                  Movie.data.movie.cast[1].name
-                    ? `${Movie.data.movie.cast[1].name}`
-                    : ""}
-                </h3>
-                <h3 className={classes.character}>
-                  {" "}
-                  {`as ${
-                    Movie &&
-                    Movie.data.movie.cast &&
-                    Movie.data.movie.cast[1] &&
-                    Movie.data.movie.cast[1].character_name
-                      ? Movie.data.movie.cast[1].character_name
+                      Movie.data.movie.cast[1].character_name
+                        ? Movie.data.movie.cast[1].character_name
+                        : ""
+                    }`}
+                  </h3>
+                </a>
+              )}
+              {Movie && Movie.data.movie.cast && Movie.data.movie.cast[2] && (
+                <a
+                  className={classes.castMember}
+                  href={`https://www.imdb.com/name/nm${
+                    Movie && Movie.data.movie.cast && Movie.data.movie.cast[2]
+                      ? Movie.data.movie.cast[2].imdb_code
                       : ""
-                  }`}
-                </h3>
-              </a>
-              <a
-                className={classes.castMember}
-                href={`https://www.imdb.com/name/nm${
-                  Movie && Movie.data.movie.cast && Movie.data.movie.cast[2]
-                    ? Movie.data.movie.cast[2].imdb_code
-                    : ""
-                }/?ref_=tt_ov_st`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <div
-                  className={classes.castPicture}
-                  style={{
-                    backgroundImage:
+                  }/?ref_=tt_ov_st`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <div
+                    className={classes.castPicture}
+                    style={{
+                      backgroundImage:
+                        Movie &&
+                        Movie.data.movie.cast &&
+                        Movie.data.movie.cast[2] &&
+                        Movie.data.movie.cast[2].url_small_image
+                          ? `url(${Movie.data.movie.cast[2].url_small_image})`
+                          : "",
+
+                      backgroundPosition: "centre",
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  ></div>
+                  <h3 className={classes.castName}>
+                    {Movie &&
+                    Movie.data.movie.cast &&
+                    Movie.data.movie.cast[2] &&
+                    Movie.data.movie.cast[2].name
+                      ? `${Movie.data.movie.cast[2].name}`
+                      : ""}
+                  </h3>
+                  <h3 className={classes.character}>
+                    {" "}
+                    {`as ${
                       Movie &&
                       Movie.data.movie.cast &&
                       Movie.data.movie.cast[2] &&
-                      Movie.data.movie.cast[2].url_small_image
-                        ? `url(${Movie.data.movie.cast[2].url_small_image})`
-                        : "",
-
-                    backgroundPosition: "centre",
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                ></div>
-                <h3 className={classes.castName}>
-                  {Movie &&
-                  Movie.data.movie.cast &&
-                  Movie.data.movie.cast[2] &&
-                  Movie.data.movie.cast[2].name
-                    ? `${Movie.data.movie.cast[2].name}`
-                    : ""}
-                </h3>
-                <h3 className={classes.character}>
-                  {" "}
-                  {`as ${
-                    Movie &&
-                    Movie.data.movie.cast &&
-                    Movie.data.movie.cast[2] &&
-                    Movie.data.movie.cast[2].character_name
-                      ? Movie.data.movie.cast[2].character_name
+                      Movie.data.movie.cast[2].character_name
+                        ? Movie.data.movie.cast[2].character_name
+                        : ""
+                    }`}
+                  </h3>
+                </a>
+              )}
+              {Movie && Movie.data.movie.cast && Movie.data.movie.cast[3] && (
+                <a
+                  className={classes.castMember}
+                  href={`https://www.imdb.com/name/nm${
+                    Movie && Movie.data.movie.cast && Movie.data.movie.cast[3]
+                      ? Movie.data.movie.cast[3].imdb_code
                       : ""
-                  }`}
-                </h3>
-              </a>
-              <a
-                className={classes.castMember}
-                href={`https://www.imdb.com/name/nm${
-                  Movie && Movie.data.movie.cast && Movie.data.movie.cast[3]
-                    ? Movie.data.movie.cast[3].imdb_code
-                    : ""
-                }/?ref_=tt_ov_st`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <div
-                  className={classes.castPicture}
-                  style={{
-                    backgroundImage:
+                  }/?ref_=tt_ov_st`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <div
+                    className={classes.castPicture}
+                    style={{
+                      backgroundImage:
+                        Movie &&
+                        Movie.data.movie.cast &&
+                        Movie.data.movie.cast[3] &&
+                        Movie.data.movie.cast[3].url_small_image
+                          ? `url(${Movie.data.movie.cast[3].url_small_image})`
+                          : DefaultAvatar,
+                      backgroundPosition: "centre",
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  ></div>
+                  <h3 className={classes.castName}>
+                    {Movie &&
+                    Movie.data.movie.cast &&
+                    Movie.data.movie.cast[3] &&
+                    Movie.data.movie.cast[3].name
+                      ? `${Movie.data.movie.cast[3].name}`
+                      : ""}
+                  </h3>
+                  <h3 className={classes.character}>
+                    {" "}
+                    {`as ${
                       Movie &&
                       Movie.data.movie.cast &&
                       Movie.data.movie.cast[3] &&
-                      Movie.data.movie.cast[3].url_small_image
-                        ? `url(${Movie.data.movie.cast[3].url_small_image})`
-                        : DefaultAvatar,
-                    backgroundPosition: "centre",
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                ></div>
-                <h3 className={classes.castName}>
-                  {Movie &&
-                  Movie.data.movie.cast &&
-                  Movie.data.movie.cast[3] &&
-                  Movie.data.movie.cast[3].name
-                    ? `${Movie.data.movie.cast[3].name}`
-                    : ""}
-                </h3>
-                <h3 className={classes.character}>
-                  {" "}
-                  {`as ${
-                    Movie &&
-                    Movie.data.movie.cast &&
-                    Movie.data.movie.cast[3] &&
-                    Movie.data.movie.cast[3].character_name
-                      ? Movie.data.movie.cast[3].character_name
-                      : ""
-                  }`}
-                </h3>
-              </a>
+                      Movie.data.movie.cast[3].character_name
+                        ? Movie.data.movie.cast[3].character_name
+                        : ""
+                    }`}
+                  </h3>
+                </a>
+              )}
             </div>
           </div>
         </div>
