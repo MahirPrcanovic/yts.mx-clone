@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
+
 .main {
   display: flex;
   flex-direction: column;
@@ -30,6 +32,7 @@
   border-radius: 2px;
 }
 .input {
+  font-family: "Arimo", sans-serif;
   width: 100%;
   height: 100%;
   border: none;
@@ -50,6 +53,9 @@
   cursor: pointer;
   width: 90%;
   height: 5rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  font-family: "Arimo", sans-serif;
 }
 .button:hover {
   background-color: rgb(8, 100, 8);
