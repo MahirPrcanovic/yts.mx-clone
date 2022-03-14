@@ -5,6 +5,7 @@ import React, { Fragment } from "react";
 import { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import searchClasses from "../BrowseMoivesPage/SearchBar.module.css";
+import RegisterOverlay from "./Register-LoginOverlay";
 const orders = [
   "Title",
   "Year",
@@ -46,6 +47,7 @@ const genres = [
 const ratings = ["All", "9+", "8+", "7+", "6+", "5+", "4+", "3+", "2+", "1+"];
 const years = ["Dsc", "Asc"];
 const Header = (props) => {
+  const [viewLogin, setViewLogin] = useState(false);
   const selectedQuality = useRef();
   const selectedTerm = useRef();
   const selectedGenre = useRef();
@@ -195,9 +197,14 @@ const Header = (props) => {
             >
               Browse Movies
             </Link>
-            <a href="#" className={`${classes.login} ${classes.hidden1}`}>
+            <a
+              href="#"
+              className={`${classes.login} ${classes.hidden1}`}
+              onClick={() => setViewLogin(true)}
+            >
               Login
             </a>
+            {viewLogin && <RegisterOverlay close={() => setViewLogin(false)} />}
             <a href="#" className={`${classes.login} ${classes.hidden1}`}>
               Register
             </a>

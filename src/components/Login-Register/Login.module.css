@@ -1,0 +1,56 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 52rem;
+  height: 28rem;
+  background-color: white;
+}
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+.errorMessage {
+  padding-bottom: 1rem;
+  color: red;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+.username {
+  width: 90%;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+.input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding-left: 1rem;
+}
+.input:focus {
+  outline: none;
+}
+.icon {
+  padding-left: 0.5rem;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+.button {
+  color: white;
+  background-color: green;
+  border: none;
+  cursor: pointer;
+  width: 90%;
+  height: 5rem;
+}
+.button:hover {
+  background-color: rgb(8, 100, 8);
+}
