@@ -4,7 +4,9 @@ import ReactDom from "react-dom";
 import Login from "../Login-Register/Login";
 import Register from "../Login-Register/Register";
 const RegisterOverlay = (props) => {
-  const [showLogin, setShowLogin] = useState(true);
+  const [showLogin, setShowLogin] = useState(
+    props.trigger === "register" ? false : true
+  );
   return ReactDom.createPortal(
     <Fragment>
       <div className={classes.overlay} onClick={props.close}></div>

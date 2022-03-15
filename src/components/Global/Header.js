@@ -48,6 +48,7 @@ const ratings = ["All", "9+", "8+", "7+", "6+", "5+", "4+", "3+", "2+", "1+"];
 const years = ["Dsc", "Asc"];
 const Header = (props) => {
   const [viewLogin, setViewLogin] = useState(false);
+  const [trigger, setTrigger] = useState(" ");
   const selectedQuality = useRef();
   const selectedTerm = useRef();
   const selectedGenre = useRef();
@@ -200,14 +201,29 @@ const Header = (props) => {
             <a
               href="#"
               className={`${classes.login} ${classes.hidden1}`}
-              onClick={() => setViewLogin(true)}
+              onClick={() => {
+                setViewLogin(true);
+                setTrigger("login");
+              }}
             >
               Login
             </a>
-            {viewLogin && <RegisterOverlay close={() => setViewLogin(false)} />}
-            <a href="#" className={`${classes.login} ${classes.hidden1}`}>
+            <a
+              href="#"
+              className={`${classes.login} ${classes.hidden1}`}
+              onClick={() => {
+                setViewLogin(true);
+                setTrigger("register");
+              }}
+            >
               Register
             </a>
+            {viewLogin && (
+              <RegisterOverlay
+                close={() => setViewLogin(false)}
+                trigger={trigger}
+              />
+            )}
           </ul>
         </div>
       </div>
