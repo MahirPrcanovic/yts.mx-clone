@@ -759,17 +759,17 @@ const Main = () => {
                   y2="48"
                   fill="none"
                   stroke="#82877d"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="16"
                 ></line>
                 <polyline
                   points="88 208 48 208 48 168"
                   fill="none"
                   stroke="#82877d"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="16"
                 ></polyline>
                 <line
                   x1="104"
@@ -778,17 +778,17 @@ const Main = () => {
                   y2="208"
                   fill="none"
                   stroke="#82877d"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="16"
                 ></line>
                 <polyline
                   points="208 168 208 208 168 208"
                   fill="none"
                   stroke="#82877d"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="16"
                 ></polyline>
                 <line
                   x1="152"
@@ -797,17 +797,17 @@ const Main = () => {
                   y2="208"
                   fill="none"
                   stroke="#82877d"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="16"
                 ></line>
                 <polyline
                   points="48 88 48 48 88 48"
                   fill="none"
                   stroke="#82877d"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="16"
                 ></polyline>
                 <line
                   x1="104"
@@ -816,9 +816,9 @@ const Main = () => {
                   y2="48"
                   fill="none"
                   stroke="#82877d"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="16"
                 ></line>
               </svg>
               {techActive === 0 ? <h2>1280*534</h2> : ""}
@@ -890,17 +890,17 @@ const Main = () => {
                   d="M116,147.6a28,28,0,1,1,0-39.2"
                   fill="none"
                   stroke="#82877d"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="16"
                 ></path>
                 <path
                   d="M188,147.6a28,28,0,1,1,0-39.2"
                   fill="none"
                   stroke="#82877d"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="16"
                 ></path>
               </svg>
               <a
