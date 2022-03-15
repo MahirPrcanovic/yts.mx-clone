@@ -218,7 +218,7 @@ const Header = (props) => {
             >
               Register
             </a>
-            {viewLogin && (
+            {viewLogin && window.screen.width > 980 && (
               <RegisterOverlay
                 close={() => setViewLogin(false)}
                 trigger={trigger}

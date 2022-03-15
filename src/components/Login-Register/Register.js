@@ -64,17 +64,17 @@ const Register = () => {
               points="224 56 128 144 32 56"
               fill="none"
               stroke="#000000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="16"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="16"
             ></polyline>
             <path
               d="M32,56H224a0,0,0,0,1,0,0V192a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V56A0,0,0,0,1,32,56Z"
               fill="none"
               stroke="#000000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="16"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="16"
             ></path>
             <line
               x1="110.5"
@@ -83,9 +83,9 @@ const Register = () => {
               y2="197.7"
               fill="none"
               stroke="#000000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="16"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="16"
             ></line>
             <line
               x1="221.5"
@@ -94,16 +94,16 @@ const Register = () => {
               y2="128"
               fill="none"
               stroke="#000000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="16"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="16"
             ></line>
           </svg>
           <input
             autoComplete="off"
-            type="text"
-            name="username"
-            id="name"
+            type="e-mail"
+            name="e-mail"
+            id="e-mail"
             className={classes.input}
             placeholder="E-Mail (no confirmation needed)"
           />
@@ -126,25 +126,25 @@ const Register = () => {
               rx="8"
               fill="none"
               stroke="#000000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="16"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="16"
             ></rect>
             <path
               d="M92,88V52a36,36,0,0,1,72,0V88"
               fill="none"
               stroke="#000000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="16"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="16"
             ></path>
             <circle cx="128" cy="152" r="12"></circle>
           </svg>
           <input
             autoComplete="off"
             type="password"
-            name="username"
-            id="name"
+            name="password"
+            id="password"
             className={classes.input}
             placeholder="Password"
           />
@@ -167,25 +167,25 @@ const Register = () => {
               rx="8"
               fill="none"
               stroke="#000000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="16"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="16"
             ></rect>
             <path
               d="M92,88V52a36,36,0,0,1,72,0V88"
               fill="none"
               stroke="#000000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="16"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="16"
             ></path>
             <circle cx="128" cy="152" r="12"></circle>
           </svg>
           <input
             autoComplete="off"
             type="password"
-            name="username"
-            id="name"
+            name="password-confirm"
+            id="password-confirm"
             className={classes.input}
             placeholder="Confirm password"
           />
