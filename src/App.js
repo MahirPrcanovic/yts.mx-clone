@@ -6,6 +6,7 @@ import BrowseMovies from "./pages/BrowseMovies";
 import SearchNotFoundError from "./components/ErrorBoundary/SearchNotFoundError";
 import TrendingMovies from "./pages/TrendingMovies";
 import Movies from "./pages/Movies";
+import { LoginContextProvider } from "./Context/AuthContext";
 function App() {
   //       /browse-movies/:a/:b/:c/:e/:f/:g
   return (

@@ -1,7 +1,9 @@
 import useFetch from "../../hooks/useFetch";
 import classes from "./Latest.module.css";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import MovieDetail from "../Global/MovieDetail";
+import { LoginContext } from "../../Context/AuthContext";
 const Latest = () => {
   const data = useFetch({
     url: "https://yts.mx/api/v2/list_movies.json?page=",
