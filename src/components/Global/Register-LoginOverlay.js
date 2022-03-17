@@ -23,8 +23,8 @@ const RegisterOverlay = (props) => {
         >
           Register
         </button>
-        {showLogin && <Login />}
-        {!showLogin && <Register />}
+        {showLogin && <Login loginClose={props.close}/>}
+        {!showLogin && <Register loginClose={props.close}/>}
       </div>
     </Fragment>,
     document.getElementById("portal")

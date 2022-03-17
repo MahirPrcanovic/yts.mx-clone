@@ -4,7 +4,7 @@ import { auth } from "../../firebase";
 import React from "react";
 import app from "../../firebase";
 import { useRef, useState } from "react";
-const Register = () => {
+const Register = (props) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const email = useRef();
@@ -28,6 +28,9 @@ const Register = () => {
     } else {
       setError("Passwords do not match!");
       setLoading(false);
+    }
+    {
+      props.loginClose();
     }
   };
   return (

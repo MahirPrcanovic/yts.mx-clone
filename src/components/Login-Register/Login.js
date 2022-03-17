@@ -3,7 +3,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useRef, useState } from "react";
 import { auth } from "../../firebase";
 
-const Login = () => {
+const Login = (props) => {
   const email = useRef();
   const password = useRef();
   const [error, setError] = useState(" ");
@@ -18,6 +18,9 @@ const Login = () => {
     } catch (error) {
       console.log(error);
       setError("Email or password are incorrect!");
+    }
+    {
+      props.loginClose();
     }
   };
   return (

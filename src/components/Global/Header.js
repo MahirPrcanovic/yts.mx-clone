@@ -52,6 +52,10 @@ const ratings = ["All", "9+", "8+", "7+", "6+", "5+", "4+", "3+", "2+", "1+"];
 const years = ["Dsc", "Asc"];
 const Header = (props) => {
   const currentUser = useContext(LoginContext);
+  let index;
+  if (currentUser && currentUser.email) {
+    index = currentUser.email.indexOf("@");
+  }
   console.log(currentUser ? currentUser.email : "");
   const [viewLogin, setViewLogin] = useState(false);
   const [trigger, setTrigger] = useState(" ");
@@ -64,7 +68,7 @@ const Header = (props) => {
   // const selectedLanguage = useRef();
   const selectedOrderBy = useRef();
   const history = useHistory();
-  let quality, term, genre, rating, year, language, orderBy;
+  let quality, term, genre, rating, year, orderBy;
   //https://yts.mx/api/v2/list_movies.json?query_term=spider-man ZA SEARCHANJE
   //Pomocu ovog koristiti i napraviti search
   const submitHandler = (e) => {
@@ -205,46 +209,52 @@ const Header = (props) => {
               Browse Movies
             </Link>
             {!currentUser ? (
-              <a
-                href="#"
-                className={`${classes.login} ${classes.hidden1}`}
+              <button
+                className={`${classes.button} ${classes.hidden1}`}
                 onClick={() => {
                   setViewLogin(true);
                   setTrigger("login");
                 }}
               >
                 Login
-              </a>
+              </button>
             ) : (
-              "Loginan"
+              ""
+            )}
+            {currentUser && currentUser.email ? (
+              <button className={classes.button}>
+                {currentUser.email.slice(0, index)}
+              </button>
+            ) : (
+              ""
             )}
             {currentUser ? (
-              <a
-                href="#"
-                className={`${classes.login}`}
+              <button
+                className={`${classes.button}`}
                 onClick={() => {
                   signOut(auth);
                 }}
               >
-                Sign out
-              </a>
+                Logout
+              </button>
             ) : (
               ""
             )}
             {!currentUser && (
-              <a
+              <button
                 href="#"
-                className={`${classes.login} ${classes.hidden1}`}
+                className={`${classes.button} ${classes.hidden1}`}
                 onClick={() => {
                   setViewLogin(true);
                   setTrigger("register");
                 }}
               >
                 Register
-              </a>
+              </button>
             )}
             {viewLogin && window.screen.width > 980 && (
               <RegisterOverlay
+                loginClose={()=>{setViewLogin(false)}}
                 close={() => setViewLogin(false)}
                 trigger={trigger}
               />

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
+
 .header {
   /* background-color: red; */
   width: 100%;
@@ -58,7 +60,21 @@
   align-items: center;
   border-radius: 16px;
 }
-
+.button {
+  background-color: transparent;
+  border: none;
+  color: #919191;
+  cursor: pointer;
+  font-family: "Arimo", sans-serif;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button:hover {
+  color: white;
+  /* color: #919191; */
+}
 .links {
   display: flex;
   justify-content: flex-start;
