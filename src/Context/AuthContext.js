@@ -1,17 +1,15 @@
-import React, { createContext, useState } from "react";
-
+import React, { createContext, useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase";
 export const LoginContext = createContext();
-
 export const LoginContextProvider = (props) => {
-  const [movies, setMovies] = useState([
-    {
-      name: "Harry Potter",
-      price: "10$",
-      id: "aaaaa",
-    },
-  ]);
+  const [currentUser, setCurrentUser] = useState(null);
+
+  onAuthStateChanged(auth, (currentU) => {
+    setCurrentUser(currentU);
+  });
   return (
-    <LoginContext.Provider value={[movies, setMovies]}>
+    <LoginContext.Provider value={currentUser}>
       {props.children}
     </LoginContext.Provider>
   );

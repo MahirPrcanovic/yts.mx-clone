@@ -1,18 +1,39 @@
 import classes from "./Register.module.css";
-
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
 import React from "react";
-
+import app from "../../firebase";
+import { useRef, useState } from "react";
 const Register = () => {
-  const submitHandler = (e) => {
-    e.preventDefault();
-    console.log("Uspjesno submitano!");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const email = useRef();
+  const password = useRef();
+  const passwordConfirm = useRef();
+  const submitHandler = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    if (password.current.value === passwordConfirm.current.value) {
+      try {
+        const user = await createUserWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value
+        );
+      } catch (error) {
+        console.log(error.message);
+        setError("User with that email already exists!");
+      }
+      setLoading(false);
+    } else {
+      setError("Passwords do not match!");
+      setLoading(false);
+    }
   };
   return (
     <div className={classes.main}>
-      <h3 className={classes.errorMessage}>
-        Error : The e-mail field is required
-      </h3>
-      <form onClick={submitHandler} className={classes.form}>
+      {error !== " " && <h3 className={classes.errorMessage}>{error}</h3>}
+      <form onSubmit={submitHandler} className={classes.form}>
         <div className={classes.username}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -47,65 +68,8 @@ const Register = () => {
             name="username"
             id="name"
             className={classes.input}
-            placeholder="Username or Email"
-          />
-        </div>
-        <div className={classes.username}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="192"
-            height="192"
-            fill="#000000"
-            viewBox="0 0 256 256"
-            className={classes.icon}
-          >
-            <rect width="256" height="256" fill="none"></rect>
-            <polyline
-              points="224 56 128 144 32 56"
-              fill="none"
-              stroke="#000000"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="16"
-            ></polyline>
-            <path
-              d="M32,56H224a0,0,0,0,1,0,0V192a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V56A0,0,0,0,1,32,56Z"
-              fill="none"
-              stroke="#000000"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="16"
-            ></path>
-            <line
-              x1="110.5"
-              y1="128"
-              x2="34.5"
-              y2="197.7"
-              fill="none"
-              stroke="#000000"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="16"
-            ></line>
-            <line
-              x1="221.5"
-              y1="197.7"
-              x2="145.5"
-              y2="128"
-              fill="none"
-              stroke="#000000"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="16"
-            ></line>
-          </svg>
-          <input
-            autoComplete="off"
-            type="e-mail"
-            name="e-mail"
-            id="e-mail"
-            className={classes.input}
-            placeholder="E-Mail (no confirmation needed)"
+            placeholder="Email"
+            ref={email}
           />
         </div>
         <div className={classes.username}>
@@ -147,6 +111,7 @@ const Register = () => {
             id="password"
             className={classes.input}
             placeholder="Password"
+            ref={password}
           />
         </div>
         <div className={classes.username}>
@@ -188,12 +153,11 @@ const Register = () => {
             id="password-confirm"
             className={classes.input}
             placeholder="Confirm password"
+            ref={passwordConfirm}
           />
         </div>
-        <h3 className={classes.errorMessage}>
-          Error: The e-mail field is required
-        </h3>
-        <button type="submit" className={classes.button}>
+        <h3 className={classes.errorMessage}>{error}</h3>
+        <button type="submit" className={classes.button} disabled={loading}>
           Register
         </button>
       </form>

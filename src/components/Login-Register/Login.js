@@ -1,18 +1,28 @@
 import classes from "./Login.module.css";
-
-import React from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import React, { useRef, useState } from "react";
+import { auth } from "../../firebase";
 
 const Login = () => {
-  const submitHandler = (e) => {
+  const email = useRef();
+  const password = useRef();
+  const [error, setError] = useState(" ");
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("Uspjesno submitovano!");
+    try {
+      const user = await signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      );
+    } catch (error) {
+      console.log(error);
+      setError("Email or password are incorrect!");
+    }
   };
-  //STAVITI REQUIRED NA USERNAME I PASSWORD!
   return (
     <div className={classes.main}>
-      <h3 className={classes.errorMessage}>
-        Error: Incorrect username or password
-      </h3>
+      {error !== " " && <h3 className={classes.errorMessage}>{error}</h3>}
       <form onSubmit={submitHandler} className={classes.form}>
         <div className={classes.username}>
           <svg
@@ -48,7 +58,9 @@ const Login = () => {
             name="username"
             id="name"
             className={classes.input}
-            placeholder="Username or Email"
+            placeholder="Email"
+            required
+            ref={email}
           />
         </div>
         <div className={classes.username}>
@@ -89,6 +101,8 @@ const Login = () => {
             id="password"
             className={classes.input}
             placeholder="Password"
+            required
+            ref={password}
           />
         </div>
         <button type="submit" className={classes.button}>
