@@ -6,6 +6,10 @@ import { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import searchClasses from "../BrowseMoivesPage/SearchBar.module.css";
 import RegisterOverlay from "./Register-LoginOverlay";
+import { useContext } from "react";
+import { LoginContext } from "../../Context/AuthContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 const orders = [
   "Title",
   "Year",
@@ -47,6 +51,8 @@ const genres = [
 const ratings = ["All", "9+", "8+", "7+", "6+", "5+", "4+", "3+", "2+", "1+"];
 const years = ["Dsc", "Asc"];
 const Header = (props) => {
+  const currentUser = useContext(LoginContext);
+  console.log(currentUser ? currentUser.email : "");
   const [viewLogin, setViewLogin] = useState(false);
   const [trigger, setTrigger] = useState(" ");
   const selectedQuality = useRef();
@@ -198,26 +204,45 @@ const Header = (props) => {
             >
               Browse Movies
             </Link>
-            <a
-              href="#"
-              className={`${classes.login} ${classes.hidden1}`}
-              onClick={() => {
-                setViewLogin(true);
-                setTrigger("login");
-              }}
-            >
-              Login
-            </a>
-            <a
-              href="#"
-              className={`${classes.login} ${classes.hidden1}`}
-              onClick={() => {
-                setViewLogin(true);
-                setTrigger("register");
-              }}
-            >
-              Register
-            </a>
+            {!currentUser ? (
+              <a
+                href="#"
+                className={`${classes.login} ${classes.hidden1}`}
+                onClick={() => {
+                  setViewLogin(true);
+                  setTrigger("login");
+                }}
+              >
+                Login
+              </a>
+            ) : (
+              "Loginan"
+            )}
+            {currentUser ? (
+              <a
+                href="#"
+                className={`${classes.login}`}
+                onClick={() => {
+                  signOut(auth);
+                }}
+              >
+                Sign out
+              </a>
+            ) : (
+              ""
+            )}
+            {!currentUser && (
+              <a
+                href="#"
+                className={`${classes.login} ${classes.hidden1}`}
+                onClick={() => {
+                  setViewLogin(true);
+                  setTrigger("register");
+                }}
+              >
+                Register
+              </a>
+            )}
             {viewLogin && window.screen.width > 980 && (
               <RegisterOverlay
                 close={() => setViewLogin(false)}
