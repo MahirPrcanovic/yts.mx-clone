@@ -8,7 +8,10 @@ import { Link } from "react-router-dom";
 import OverlayMovies from "./OverlayMovies";
 import DefaultAvatar from "../../images/default_avatar.webp";
 import DownloadOverlay from "./DownloadOverlay";
+import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 const Main = () => {
+  const history2 = useHistory();
   const params = useParams();
   const [data, setData] = useState(null);
   const [Movie, setMovie] = useState(null);
@@ -25,17 +28,27 @@ const Main = () => {
     .join(" ");
   const year = params.title.slice(-4);
   // console.log(title);
+  const searchTitle = params.title
+    .slice(0, params.title.length - 5)
+    .split("-")
+    .join(" ");
+  console.log(searchTitle);
   useEffect(() => {
-    let mahir;
+    let mahir = null;
     async function fetchData() {
       const response = await fetch(
         `https://yts.mx/api/v2/list_movies.json?query_term=${title.toLowerCase()}&with_rt_ratings=true`
       );
       const data = await response.json();
       console.log(data);
-      for (let i = 0; i < data.data.movies.length; i++) {
-        if (data.data.movies[i].year === +year) {
-          mahir = data.data.movies[i];
+      if (data.data.movies && data.data) {
+        for (let i = 0; i < data.data.movies.length; i++) {
+          if (
+            data.data.movies[i].year === +year &&
+            data.data.movies[i].title === searchTitle
+          ) {
+            mahir = data.data.movies[i];
+          }
         }
       }
       setData(data.data.movies);
@@ -52,6 +65,9 @@ const Main = () => {
         );
         const data3 = await response3.json();
         setSuggestions(data3);
+      }
+      if (!mahir) {
+        history2.push("/");
       }
     }
 
