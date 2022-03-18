@@ -5,7 +5,7 @@ import MovieDetail from "../Global/MovieDetail";
 const Latest = () => {
   const data = useFetch({
     url: "https://yts.mx/api/v2/list_movies.json?page=",
-    page: 1,
+    page: 2,
   });
   let movies = [];
   let movies2 = [];
@@ -32,6 +32,7 @@ const Latest = () => {
           movies.map((movie) => {
             return (
               <MovieDetail
+                slug={movie.slug}
                 showResolution={show}
                 torrents={movie.torrents}
                 key={movie.id}
@@ -50,6 +51,7 @@ const Latest = () => {
           movies2.map((movie) => {
             return (
               <MovieDetail
+                slug={movie.slug}
                 showResolution={show}
                 torrents={movie.torrents}
                 key={movie.id}

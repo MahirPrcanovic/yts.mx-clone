@@ -6,7 +6,7 @@ import BrowseMovies from "./pages/BrowseMovies";
 import SearchNotFoundError from "./components/ErrorBoundary/SearchNotFoundError";
 import TrendingMovies from "./pages/TrendingMovies";
 import Movies from "./pages/Movies";
-import { LoginContextProvider } from "./Context/AuthContext";
+import User from "./pages/User";
 function App() {
   //       /browse-movies/:a/:b/:c/:e/:f/:g
   return (
@@ -32,6 +32,9 @@ function App() {
       </Route>
       <Route path="/movies/:title">
         <Movies />
+      </Route>
+      <Route path="/user/:username">
+        <User />
       </Route>
     </Switch>
   );

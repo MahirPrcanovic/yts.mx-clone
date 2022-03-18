@@ -17,6 +17,7 @@ const Main = () => {
     for (let i = 0; i < 4; i++) {
       movieData.push(data.data.movies[i]);
     }
+    console.log(movieData);
   }
   return (
     <Fragment>
@@ -56,6 +57,7 @@ const Main = () => {
             movieData.map((movie) => {
               return (
                 <MovieDetail
+                  slug={movie.slug}
                   key={movie.id}
                   image={movie.medium_cover_image}
                   genre={movie.genres}

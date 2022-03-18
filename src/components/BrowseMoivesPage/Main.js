@@ -209,6 +209,7 @@ const Main = (props) => {
             movies.map((movie, index) => {
               return (
                 <MovieDetail
+                  slug={movie.slug}
                   key={index}
                   image={movie.medium_cover_image}
                   genre={movie.genres}

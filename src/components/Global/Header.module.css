@@ -70,10 +70,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
 }
 .button:hover {
   color: white;
-  /* color: #919191; */
 }
 .links {
   display: flex;

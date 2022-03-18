@@ -10,7 +10,12 @@ import DefaultAvatar from "../../images/default_avatar.webp";
 import DownloadOverlay from "./DownloadOverlay";
 import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-const Main = () => {
+import { useLocation } from "react-router-dom";
+
+const Main = (props) => {
+  const location = useLocation();
+  const searchQuery = location.state.searchQuery;
+  // console.log(searchQuery);
   const history2 = useHistory();
   const params = useParams();
   const [data, setData] = useState(null);
@@ -22,31 +27,27 @@ const Main = () => {
   const [techActive, setTechActive] = useState(0);
   const [showDownload, setShowDownload] = useState(false);
   let movie;
-  const title = params.title
-    .slice(0, params.title.length - 5)
-    .split("-")
-    .join(" ");
+  const title = params.title.slice(0, params.title.length - 5);
   const year = params.title.slice(-4);
   // console.log(title);
   const searchTitle = params.title
     .slice(0, params.title.length - 5)
-    .split("-")
+    .split(["-", ":"])
     .join(" ");
-  console.log(searchTitle);
+  // console.log(params.title);
+  // console.log(title.split("-").join(" "));
   useEffect(() => {
     let mahir = null;
     async function fetchData() {
       const response = await fetch(
-        `https://yts.mx/api/v2/list_movies.json?query_term=${title.toLowerCase()}&with_rt_ratings=true`
+        `https://yts.mx/api/v2/list_movies.json?query_term=${searchQuery}&limit=50`
       );
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if (data.data.movies && data.data) {
         for (let i = 0; i < data.data.movies.length; i++) {
-          if (
-            data.data.movies[i].year === +year &&
-            data.data.movies[i].title === searchTitle
-          ) {
+          // console.log(data.data.movies[i].slug);
+          if (data.data.movies[i].slug === params.title) {
             mahir = data.data.movies[i];
           }
         }
@@ -76,15 +77,15 @@ const Main = () => {
   if (data) {
     // console.log(data);
     for (let i = 0; i < data.length; i++) {
-      if (data[i].year === +year) {
+      if (data[i].slug === params.title) {
         movie = data[i];
       }
     }
   }
-  if (suggestions && Movie) {
-    console.log(suggestions);
-    console.log(Movie);
-  }
+  // if (suggestions && Movie) {
+  //   console.log(suggestions);
+  //   console.log(Movie);
+  // }
   return (
     <section className={classes.main}>
       <div

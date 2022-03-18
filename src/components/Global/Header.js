@@ -222,9 +222,12 @@ const Header = (props) => {
               ""
             )}
             {currentUser && currentUser.email ? (
-              <button className={classes.button}>
+              <Link
+                className={classes.button}
+                to={`/user/${currentUser.email.slice(0, index)}`}
+              >
                 {currentUser.email.slice(0, index)}
-              </button>
+              </Link>
             ) : (
               ""
             )}
@@ -254,7 +257,9 @@ const Header = (props) => {
             )}
             {viewLogin && window.screen.width > 980 && (
               <RegisterOverlay
-                loginClose={()=>{setViewLogin(false)}}
+                loginClose={() => {
+                  setViewLogin(false);
+                }}
                 close={() => setViewLogin(false)}
                 trigger={trigger}
               />

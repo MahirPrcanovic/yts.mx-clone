@@ -27,6 +27,7 @@ const Upcoming = () => {
           movies.map((movie) => {
             return (
               <MovieDetail
+              slug={movie.slug}
                 key={movie.id}
                 image={movie.medium_cover_image}
                 genre={movie.genres}
