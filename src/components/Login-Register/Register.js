@@ -2,7 +2,6 @@ import classes from "./Register.module.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import React from "react";
-import app from "../../firebase";
 import { useRef, useState } from "react";
 const Register = (props) => {
   const [error, setError] = useState("");
@@ -20,17 +19,17 @@ const Register = (props) => {
           email.current.value,
           password.current.value
         );
+        {
+          props.loginClose();
+        }
       } catch (error) {
         console.log(error.message);
-        setError("User with that email already exists!");
+        setError(error.message);
       }
       setLoading(false);
     } else {
       setError("Passwords do not match!");
       setLoading(false);
-    }
-    {
-      props.loginClose();
     }
   };
   return (

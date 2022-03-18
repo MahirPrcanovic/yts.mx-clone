@@ -15,12 +15,12 @@ const Login = (props) => {
         email.current.value,
         password.current.value
       );
+      {
+        props.loginClose();
+      }
     } catch (error) {
       console.log(error);
       setError("Email or password are incorrect!");
-    }
-    {
-      props.loginClose();
     }
   };
   return (
