@@ -8,13 +8,14 @@ import { Link } from "react-router-dom";
 import OverlayMovies from "./OverlayMovies";
 import DefaultAvatar from "../../images/default_avatar.webp";
 import DownloadOverlay from "./DownloadOverlay";
-import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-
 const Main = (props) => {
   const location = useLocation();
-  const searchQuery = location.state.searchQuery;
+  let searchQuery;
+  if (location.state.searchQuery) {
+    searchQuery = location.state.searchQuery;
+  }
   // console.log(searchQuery);
   const history2 = useHistory();
   const params = useParams();
@@ -29,13 +30,6 @@ const Main = (props) => {
   let movie;
   const title = params.title.slice(0, params.title.length - 5);
   const year = params.title.slice(-4);
-  // console.log(title);
-  const searchTitle = params.title
-    .slice(0, params.title.length - 5)
-    .split(["-", ":"])
-    .join(" ");
-  // console.log(params.title);
-  // console.log(title.split("-").join(" "));
   useEffect(() => {
     let mahir = null;
     async function fetchData() {
@@ -73,7 +67,7 @@ const Main = (props) => {
     }
 
     fetchData();
-  }, [title, year]);
+  }, [title, year, history2, params.title, searchQuery]);
   if (data) {
     // console.log(data);
     for (let i = 0; i < data.length; i++) {

@@ -1,24 +1,32 @@
 import classes from "./Register.module.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase";
 import React from "react";
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
+import { LoginContext } from "../../Context/AuthContext";
+import { setDoc, collection, doc } from "firebase/firestore";
 const Register = (props) => {
+  const currentUser = useContext(LoginContext);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
   const email = useRef();
   const password = useRef();
   const passwordConfirm = useRef();
+  let user;
+  let userCollection = collection(db, "users");
   const submitHandler = async (event) => {
     event.preventDefault();
-    setLoading(true);
     if (password.current.value === passwordConfirm.current.value) {
       try {
-        const user = await createUserWithEmailAndPassword(
+        user = await createUserWithEmailAndPassword(
           auth,
           email.current.value,
           password.current.value
-        );
+        ).then((userData) => {
+          setDoc(doc(db, "users", `${userData.user.uid}`), {
+            id: userData.user.uid,
+            email: userData.user.email,
+          });
+        });
         {
           props.loginClose();
         }
@@ -26,10 +34,8 @@ const Register = (props) => {
         console.log(error.message);
         setError(error.message);
       }
-      setLoading(false);
     } else {
       setError("Passwords do not match!");
-      setLoading(false);
     }
   };
   return (
@@ -159,7 +165,7 @@ const Register = (props) => {
           />
         </div>
         <h3 className={classes.errorMessage}>{error}</h3>
-        <button type="submit" className={classes.button} disabled={loading}>
+        <button type="submit" className={classes.button}>
           Register
         </button>
       </form>
