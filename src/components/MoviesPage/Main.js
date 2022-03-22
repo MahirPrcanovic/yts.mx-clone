@@ -18,6 +18,7 @@ import { getDocs } from "firebase/firestore";
 import { collection } from "firebase/firestore";
 const Main = (props) => {
   const currentUser = useContext(LoginContext);
+  //SUGGESTE MOVIES STAVITI SLUG DA SE SALJE URL !!!!!
   const location = useLocation();
   let searchQuery;
   if (location.state.searchQuery) {
@@ -45,18 +46,7 @@ const Main = (props) => {
       bookmarks: arrayUnion({ movieId: id }),
     });
   };
-  // useEffect(() => {
-  //   const checkBookmark = async (id) => {
-  //     const col = collection(db, `users`);
-  //     const data = await getDocs(col);
-  //     console.log(
-  //       data.docs.map((doc) => {
-  //         setBookmark({ ...doc.data() });
-  //       })
-  //     );
-  //   };
-  //   checkBookmark(Movie ? Movie.id : "");
-  // },[]);
+
   useEffect(() => {
     let mahir = null;
     async function fetchData() {
@@ -99,6 +89,10 @@ const Main = (props) => {
         movie = data[i];
       }
     }
+  }
+  if (currentUser) {
+    const doc2 = doc(db, "users", `${currentUser ? currentUser.uid : ""}`);
+    console.log(getDoc(doc2).then((res) => console.log(res.data())));
   }
   return (
     <section className={classes.main}>
