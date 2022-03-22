@@ -7,6 +7,7 @@ import SearchNotFoundError from "./components/ErrorBoundary/SearchNotFoundError"
 import TrendingMovies from "./pages/TrendingMovies";
 import Movies from "./pages/Movies";
 import User from "./pages/User";
+import Bookmarks from "./pages/Bookmarks";
 function App() {
   //       /browse-movies/:a/:b/:c/:e/:f/:g
   return (
@@ -35,6 +36,9 @@ function App() {
       </Route>
       <Route path="/user/:username">
         <User />
+      </Route>
+      <Route path="/bookmarks">
+        <Bookmarks />
       </Route>
     </Switch>
   );

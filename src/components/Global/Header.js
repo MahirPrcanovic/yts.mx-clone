@@ -266,7 +266,10 @@ const Header = (props) => {
             )}
           </ul>
           {currentUser ? (
-            <Link to="/" className={`${classes.list} ${classes.bookmark}`}>
+            <Link
+              to="/bookmarks"
+              className={`${classes.list} ${classes.bookmark}`}
+            >
               Bookmarks
             </Link>
           ) : (
