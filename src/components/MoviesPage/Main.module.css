@@ -17,6 +17,9 @@
   display: grid;
   grid-template-columns: 0.4fr 0.8fr 0.5fr;
 }
+.bookmark {
+  cursor: pointer;
+}
 .button {
   width: 100%;
   padding: 1rem;

@@ -22,9 +22,13 @@ const Register = (props) => {
           email.current.value,
           password.current.value
         ).then((userData) => {
+          const date = new Date().toLocaleDateString("bos");
+          console.log(date);
           setDoc(doc(db, "users", `${userData.user.uid}`), {
             id: userData.user.uid,
             email: userData.user.email,
+            dateJoined: date,
+            lastSeen: date,
           });
         });
         {

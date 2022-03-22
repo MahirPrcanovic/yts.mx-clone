@@ -1,9 +1,14 @@
 import classes from "./Login.module.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { auth } from "../../firebase";
-
+import { setDoc, updateDoc } from "firebase/firestore";
+import { doc } from "firebase/firestore";
+import { db } from "../../firebase";
+import { LoginContext } from "../../Context/AuthContext";
 const Login = (props) => {
+  const currentUser = useContext(LoginContext);
+  const [loggedIn, setLoggedIn] = useState(currentUser ? true : false);
   const email = useRef();
   const password = useRef();
   const [error, setError] = useState(" ");
@@ -14,11 +19,19 @@ const Login = (props) => {
         auth,
         email.current.value,
         password.current.value
-      );
+      ).then((userData) => {
+        setLoggedIn(true);
+        const date = new Date().toLocaleDateString("bos");
+        console.log(date);
+        updateDoc(doc(db, "users", `${userData.user.uid}`), {
+          lastSeen: date,
+        });
+      });
       {
         props.loginClose();
       }
     } catch (error) {
+      setLoggedIn(false);
       console.log(error);
       setError("Email or password are incorrect!");
     }

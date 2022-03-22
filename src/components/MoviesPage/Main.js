@@ -1,6 +1,6 @@
 import classes from "./Main.module.css";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import image from "../../images/Background-home.jpg";
 import image2 from "../../images/logo-imdb.svg";
 import rottenTomatoes from "../../images/rt-upright.png";
@@ -10,7 +10,14 @@ import DefaultAvatar from "../../images/default_avatar.webp";
 import DownloadOverlay from "./DownloadOverlay";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { LoginContext } from "../../Context/AuthContext";
+import { arrayUnion, getDoc, updateDoc } from "firebase/firestore";
+import { doc } from "firebase/firestore";
+import { db } from "../../firebase";
+import { getDocs } from "firebase/firestore";
+import { collection } from "firebase/firestore";
 const Main = (props) => {
+  const currentUser = useContext(LoginContext);
   const location = useLocation();
   let searchQuery;
   if (location.state.searchQuery) {
@@ -18,6 +25,8 @@ const Main = (props) => {
   }
   // console.log(searchQuery);
   const history2 = useHistory();
+  const [bookmark, setBookmark] = useState(null);
+  const [bookmarked, setBookmarked] = useState(false);
   const params = useParams();
   const [data, setData] = useState(null);
   const [Movie, setMovie] = useState(null);
@@ -30,6 +39,24 @@ const Main = (props) => {
   let movie;
   const title = params.title.slice(0, params.title.length - 5);
   const year = params.title.slice(-4);
+  const toggleBookmark = (id) => {
+    console.log(currentUser.uid);
+    updateDoc(doc(db, "users", `${currentUser.uid}`), {
+      bookmarks: arrayUnion({ movieId: id }),
+    });
+  };
+  // useEffect(() => {
+  //   const checkBookmark = async (id) => {
+  //     const col = collection(db, `users`);
+  //     const data = await getDocs(col);
+  //     console.log(
+  //       data.docs.map((doc) => {
+  //         setBookmark({ ...doc.data() });
+  //       })
+  //     );
+  //   };
+  //   checkBookmark(Movie ? Movie.id : "");
+  // },[]);
   useEffect(() => {
     let mahir = null;
     async function fetchData() {
@@ -37,10 +64,8 @@ const Main = (props) => {
         `https://yts.mx/api/v2/list_movies.json?query_term=${searchQuery}&limit=50`
       );
       const data = await response.json();
-      // console.log(data);
       if (data.data.movies && data.data) {
         for (let i = 0; i < data.data.movies.length; i++) {
-          // console.log(data.data.movies[i].slug);
           if (data.data.movies[i].slug === params.title) {
             mahir = data.data.movies[i];
           }
@@ -69,17 +94,12 @@ const Main = (props) => {
     fetchData();
   }, [title, year, history2, params.title, searchQuery]);
   if (data) {
-    // console.log(data);
     for (let i = 0; i < data.length; i++) {
       if (data[i].slug === params.title) {
         movie = data[i];
       }
     }
   }
-  // if (suggestions && Movie) {
-  //   console.log(suggestions);
-  //   console.log(Movie);
-  // }
   return (
     <section className={classes.main}>
       <div
@@ -263,6 +283,28 @@ const Main = (props) => {
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
                 </div>
+                {currentUser && (
+                  <div className={classes.item}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`${classes.icon} ${classes.bookmark}`}
+                      onClick={() => {
+                        toggleBookmark(Movie ? Movie.data.movie.id : "");
+                      }}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+                      />
+                    </svg>
+                    <h3>Bookmark</h3>
+                  </div>
+                )}
               </div>
             </div>
           </div>

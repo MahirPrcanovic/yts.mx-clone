@@ -265,6 +265,13 @@ const Header = (props) => {
               />
             )}
           </ul>
+          {currentUser ? (
+            <Link to="/" className={`${classes.list} ${classes.bookmark}`}>
+              Bookmarks
+            </Link>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       {show === true && (
