@@ -20,8 +20,9 @@ const Main = (props) => {
   const currentUser = useContext(LoginContext);
   //SUGGESTE MOVIES STAVITI SLUG DA SE SALJE URL !!!!!
   const location = useLocation();
+  console.log(location);
   let searchQuery;
-  if (location.state.searchQuery) {
+  if (location && location.state && location.state.searchQuery) {
     searchQuery = location.state.searchQuery;
   }
   // console.log(searchQuery);
@@ -90,6 +91,11 @@ const Main = (props) => {
       }
     }
   }
+  if (suggestions) {
+    console.log(suggestions.data.movies[0]);
+  }
+  //http://localhost:3000/movies/best-of-the-best-3-no-turning-back-1995
+  //http://localhost:3000/movies/best-of-the-best-3-no-turning-back-1995
   if (currentUser) {
     const doc2 = doc(db, "users", `${currentUser ? currentUser.uid : ""}`);
     console.log(getDoc(doc2).then((res) => console.log(res.data())));
@@ -305,15 +311,23 @@ const Main = (props) => {
           <div className={classes.similar}>
             <h3 className={classes.similarTitle}>Similar Movies</h3>
             <div className={classes.similarContainer}>
-              <Link
+              <div
                 className={classes.similarBlock}
-                to={`/movies/${
-                  suggestions && suggestions.data.movies[0]
-                    ? `${suggestions.data.movies[0].title
-                        .split(" ")
-                        .join("-")}-${suggestions.data.movies[0].year}`
-                    : ""
-                }`}
+                onClick={() => {
+                  history2.push(
+                    `/movies/${
+                      suggestions && suggestions.data.movies[0]
+                        ? `${suggestions.data.movies[0].slug}`
+                        : ""
+                    }`,
+                    { searchQuery: suggestions.data.movies[0].title }
+                  );
+                }}
+                // to={`/movies/${
+                //   suggestions && suggestions.data.movies[0]
+                //     ? `${suggestions.data.movies[0].slug}`
+                //     : ""
+                // }`}
                 style={{
                   backgroundImage: `url(${
                     suggestions && suggestions.data.movies[0]
@@ -324,16 +338,19 @@ const Main = (props) => {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                 }}
-              ></Link>
-              <Link
+              ></div>
+              <div
                 className={classes.similarBlock}
-                to={`/movies/${
-                  suggestions && suggestions.data.movies[1]
-                    ? `${suggestions.data.movies[1].title
-                        .split(" ")
-                        .join("-")}-${suggestions.data.movies[1].year}`
-                    : ""
-                }`}
+                onClick={() => {
+                  history2.push(
+                    `/movies/${
+                      suggestions && suggestions.data.movies[1]
+                        ? `${suggestions.data.movies[1].slug}`
+                        : ""
+                    }`,
+                    { searchQuery: suggestions.data.movies[1].title }
+                  );
+                }}
                 style={{
                   backgroundImage: `url(${
                     suggestions && suggestions.data.movies[1]
@@ -344,16 +361,19 @@ const Main = (props) => {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                 }}
-              ></Link>
-              <Link
+              ></div>
+              <div
                 className={classes.similarBlock}
-                to={`/movies/${
-                  suggestions && suggestions.data.movies[2]
-                    ? `${suggestions.data.movies[2].title
-                        .split(" ")
-                        .join("-")}-${suggestions.data.movies[2].year}`
-                    : ""
-                }`}
+                onClick={() => {
+                  history2.push(
+                    `/movies/${
+                      suggestions && suggestions.data.movies[2]
+                        ? `${suggestions.data.movies[2].slug}`
+                        : ""
+                    }`,
+                    { searchQuery: suggestions.data.movies[2].title }
+                  );
+                }}
                 style={{
                   backgroundImage: `url(${
                     suggestions && suggestions.data.movies[2]
@@ -364,16 +384,19 @@ const Main = (props) => {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                 }}
-              ></Link>
-              <Link
+              ></div>
+              <div
                 className={classes.similarBlock}
-                to={`/movies/${
-                  suggestions && suggestions.data.movies[3]
-                    ? `${suggestions.data.movies[3].title
-                        .split(" ")
-                        .join("-")}-${suggestions.data.movies[3].year}`
-                    : ""
-                }`}
+                onClick={() => {
+                  history2.push(
+                    `/movies/${
+                      suggestions && suggestions.data.movies[3]
+                        ? `${suggestions.data.movies[3].slug}`
+                        : ""
+                    }`,
+                    { searchQuery: suggestions.data.movies[3].title }
+                  );
+                }}
                 style={{
                   backgroundImage: `url(${
                     suggestions && suggestions.data.movies[3]
@@ -384,7 +407,7 @@ const Main = (props) => {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                 }}
-              ></Link>
+              ></div>
             </div>
           </div>
         </div>
