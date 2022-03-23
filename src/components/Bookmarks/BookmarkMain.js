@@ -8,15 +8,20 @@ import { collection } from "firebase/firestore";
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { deleteField } from "firebase/firestore";
+import { Redirect } from "react-router-dom";
 const BookmarkMain = () => {
-  // let niz;
   const history = useHistory();
   const location = useLocation();
-  console.log(location.state.userId);
-  const id = location.state.userId;
+  console.log(location);
+  let id;
+  if (location && location.state && location.state.userId) {
+    console.log(location.state.userId);
+    id = location.state.userId;
+  }
   const [bookMarks, setBookMarks] = useState([]);
   let niz = [];
   const currentUser = useContext(LoginContext);
+  console.log(id);
   let doc2;
   if (currentUser) {
     doc2 = doc(db, `users`, `${currentUser ? currentUser.uid : ""}`);
@@ -43,8 +48,14 @@ const BookmarkMain = () => {
   console.log(bookMarks.length);
   return (
     <section className={classes.container}>
+      {!currentUser && (
+        <div className={`${classes.error}`}>
+          You are not singed in to see bookmarks!
+        </div>
+      )}
       <div className={classes.main}>
-        {bookMarks.length > 0 &&
+        {currentUser &&
+          bookMarks.length > 0 &&
           bookMarks.map((book, index) => {
             return (
               <div>
