@@ -245,7 +245,6 @@ const Header = (props) => {
             )}
             {!currentUser && (
               <button
-                href="#"
                 className={`${classes.button} ${classes.hidden1}`}
                 onClick={() => {
                   setViewLogin(true);
@@ -266,12 +265,16 @@ const Header = (props) => {
             )}
           </ul>
           {currentUser ? (
-            <Link
-              to="/bookmarks"
+            <a
+              onClick={() => {
+                history.push("/bookmarks", {
+                  userId: currentUser ? currentUser.uid : "",
+                });
+              }}
               className={`${classes.list} ${classes.bookmark}`}
             >
               Bookmarks
-            </Link>
+            </a>
           ) : (
             ""
           )}

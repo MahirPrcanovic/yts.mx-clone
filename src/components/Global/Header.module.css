@@ -108,6 +108,7 @@
 }
 .bookmark {
   padding-left: 2rem;
+  cursor: pointer;
 }
 .imdb {
   border: none;

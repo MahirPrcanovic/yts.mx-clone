@@ -1,5 +1,23 @@
 .container {
-  height: 50rem;
   width: 100%;
+  min-height: calc(100vh - 55px - 100px);
   background-color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main {
+  width: 90%;
+  background-color: white;
+  color: black;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.tank {
+  height: 20rem;
+  background-color: blue;
 }
