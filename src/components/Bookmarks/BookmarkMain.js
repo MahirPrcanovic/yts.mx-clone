@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import classes from "./BookmarkMain.module.css";
-import { doc, query } from "firebase/firestore";
+import { doc, query, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { getDoc } from "firebase/firestore";
 import { LoginContext } from "../../Context/AuthContext";
 import { collection } from "firebase/firestore";
 import { useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { deleteField } from "firebase/firestore";
 const BookmarkMain = () => {
   // let niz;
+  const history = useHistory();
   const location = useLocation();
   console.log(location.state.userId);
   const id = location.state.userId;
@@ -29,14 +32,50 @@ const BookmarkMain = () => {
     };
     getData();
   }, []);
+  const removeDoc = async (movieId) => {
+    let deleteDoc = doc(db, "users", `${id}`);
+    await updateDoc(deleteDoc, {
+      bookmarks: bookMarks.filter((book) => book.movieId !== movieId),
+    });
+    setBookMarks(bookMarks.filter((book) => book.movieId !== movieId));
+  };
   console.log(bookMarks[0]);
   console.log(bookMarks.length);
   return (
     <section className={classes.container}>
       <div className={classes.main}>
         {bookMarks.length > 0 &&
-          bookMarks.map((book) => {
-            return <div className={classes.tank}>{book.movieId}</div>;
+          bookMarks.map((book, index) => {
+            return (
+              <div>
+                <div
+                  onClick={() => {
+                    history.push(`/movies/${book.slug}`, {
+                      searchQuery: book.title,
+                    });
+                  }}
+                  className={classes.tank}
+                  style={{
+                    backgroundImage: `url(${book.image})`,
+                    backgroundPosition: "centre",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                ></div>
+                <button
+                  className={classes.removeButton}
+                  onClick={() => {
+                    removeDoc(book.movieId);
+                  }}
+                >
+                  Remove Bookmark
+                </button>
+                <div className={classes.text}>
+                  {book.title.split("-").join(" ")}
+                </div>
+                <div className={classes.text}>{book.year}</div>
+              </div>
+            );
           })}
       </div>
     </section>

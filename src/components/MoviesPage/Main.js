@@ -44,7 +44,13 @@ const Main = (props) => {
   const toggleBookmark = (id, image, slug) => {
     console.log(currentUser.uid);
     updateDoc(doc(db, "users", `${currentUser.uid}`), {
-      bookmarks: arrayUnion({ movieId: id, image: image, slug: slug }),
+      bookmarks: arrayUnion({
+        movieId: id,
+        image: image,
+        slug: slug,
+        title: title,
+        year: year,
+      }),
     });
   };
 
@@ -292,7 +298,9 @@ const Main = (props) => {
                         toggleBookmark(
                           Movie ? Movie.data.movie.id : "",
                           Movie ? Movie.data.movie.large_cover_image : "",
-                          Movie ? Movie.data.movie.slug : ""
+                          Movie ? Movie.data.movie.slug : "",
+                          Movie ? Movie.data.movie.title : "",
+                          Movie ? Movie.data.movie.year : ""
                         );
                       }}
                       fill="none"
