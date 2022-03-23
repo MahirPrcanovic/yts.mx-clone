@@ -41,10 +41,10 @@ const Main = (props) => {
   let movie;
   const title = params.title.slice(0, params.title.length - 5);
   const year = params.title.slice(-4);
-  const toggleBookmark = (id) => {
+  const toggleBookmark = (id, image, slug) => {
     console.log(currentUser.uid);
     updateDoc(doc(db, "users", `${currentUser.uid}`), {
-      bookmarks: arrayUnion({ movieId: id }),
+      bookmarks: arrayUnion({ movieId: id, image: image, slug: slug }),
     });
   };
 
@@ -289,7 +289,11 @@ const Main = (props) => {
                       xmlns="http://www.w3.org/2000/svg"
                       className={`${classes.icon} ${classes.bookmark}`}
                       onClick={() => {
-                        toggleBookmark(Movie ? Movie.data.movie.id : "");
+                        toggleBookmark(
+                          Movie ? Movie.data.movie.id : "",
+                          Movie ? Movie.data.movie.large_cover_image : "",
+                          Movie ? Movie.data.movie.slug : ""
+                        );
                       }}
                       fill="none"
                       viewBox="0 0 24 24"
