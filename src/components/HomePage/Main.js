@@ -1,12 +1,13 @@
 import classes from "./Main.module.css";
 import { Link } from "react-router-dom";
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useState } from "react";
 import MovieDetail from "../Global/MovieDetail";
 import useFetch from "../../hooks/useFetch";
 import { LoginContext } from "../../Context/AuthContext";
 const Main = () => {
   const currentUser = useContext(LoginContext);
   // console.log(currentUser);
+  const [loading, setLoading] = useState(true);
   let rand = Math.floor(1 + Math.random() * (1970 - 1));
   const data = useFetch({
     url: "https://yts.mx/api/v2/list_movies.json?page=",
@@ -69,6 +70,7 @@ const Main = () => {
             })}
         </div>
       </div>
+      )
     </Fragment>
   );
 };

@@ -16,6 +16,8 @@ import { doc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { getDocs } from "firebase/firestore";
 import { collection } from "firebase/firestore";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Main = (props) => {
   const currentUser = useContext(LoginContext);
   //SUGGESTE MOVIES STAVITI SLUG DA SE SALJE URL !!!!!
@@ -29,6 +31,7 @@ const Main = (props) => {
   const history2 = useHistory();
   const [bookmark, setBookmark] = useState(null);
   const [bookmarked, setBookmarked] = useState(false);
+  const [color, setColor] = useState(0);
   const params = useParams();
   const [data, setData] = useState(null);
   const [Movie, setMovie] = useState(null);
@@ -43,6 +46,9 @@ const Main = (props) => {
   const year = params.title.slice(-4);
   const toggleBookmark = (id, image, slug) => {
     console.log(currentUser.uid);
+    const promis = new Promise((resolve, reject) => {
+      setTimeout(resolve, 500);
+    });
     updateDoc(doc(db, "users", `${currentUser.uid}`), {
       bookmarks: arrayUnion({
         movieId: id,
@@ -51,6 +57,11 @@ const Main = (props) => {
         title: title,
         year: year,
       }),
+    });
+    toast.promise(promis, {
+      pending: "Saving bookmark....",
+      success: "Movie saved!",
+      error: "Could not execute bookmarking, sorry!",
     });
   };
 
@@ -108,6 +119,7 @@ const Main = (props) => {
   }
   return (
     <section className={classes.main}>
+      <ToastContainer autoClose={2000} />
       <div
         className={classes.overviewContainer} //WHOLE OVERVIEW CONTAINER
         style={{
@@ -335,11 +347,6 @@ const Main = (props) => {
                     { searchQuery: suggestions.data.movies[0].title }
                   );
                 }}
-                // to={`/movies/${
-                //   suggestions && suggestions.data.movies[0]
-                //     ? `${suggestions.data.movies[0].slug}`
-                //     : ""
-                // }`}
                 style={{
                   backgroundImage: `url(${
                     suggestions && suggestions.data.movies[0]

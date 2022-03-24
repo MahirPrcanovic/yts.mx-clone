@@ -59,6 +59,7 @@
   width: 2rem;
   height: 2rem;
   stroke: #428e21;
+  stroke: rgb(65, 139, 5);
 }
 .text {
   display: flex;

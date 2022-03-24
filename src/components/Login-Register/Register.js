@@ -5,6 +5,7 @@ import React from "react";
 import { useRef, useState, useContext } from "react";
 import { LoginContext } from "../../Context/AuthContext";
 import { setDoc, collection, doc } from "firebase/firestore";
+import ClipLoader from "react-spinners/ClipLoader";
 const Register = (props) => {
   const currentUser = useContext(LoginContext);
   const [error, setError] = useState("");
