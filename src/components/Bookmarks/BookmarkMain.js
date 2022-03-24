@@ -44,8 +44,9 @@ const BookmarkMain = () => {
     });
     setBookMarks(bookMarks.filter((book) => book.movieId !== movieId));
   };
-  console.log(bookMarks[0]);
-  console.log(bookMarks.length);
+  if (!bookMarks) {
+    console.log("No bookmarks added!");
+  }
   return (
     <section className={classes.container}>
       {!currentUser && (
@@ -53,8 +54,21 @@ const BookmarkMain = () => {
           You are not singed in to see bookmarks!
         </div>
       )}
+      {!bookMarks ||
+        (bookMarks.length === 0 && (
+          <>
+            <div>
+              <h2 className={`${classes.error}`}>No bookmarks added !</h2>
+              <h2 className={`${classes.error}`}>
+                Bookmark a film to view it up here!
+              </h2>
+              <div className={classes.picture}></div>
+            </div>
+          </>
+        ))}
       <div className={classes.main}>
         {currentUser &&
+          bookMarks &&
           bookMarks.length > 0 &&
           bookMarks.map((book, index) => {
             return (

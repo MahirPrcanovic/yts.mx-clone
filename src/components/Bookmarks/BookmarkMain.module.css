@@ -47,6 +47,14 @@
 .removeButton:hover {
   background-color: rgb(1, 95, 1);
 }
+.picture {
+  width: 60rem;
+  height: 40rem;
+  background-image: url("../../images/bookmarks.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 .text {
   font-family: "Ubuntu", sans-serif;
   color: gray;
@@ -71,10 +79,21 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+@media (max-width: 600px) {
+  .picture {
+    width: 50rem;
+    height: 30rem;
+  }
+}
 @media (max-width: 550px) {
   .main {
     display: grid;
     grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 500px) {
+  .picture {
+    display: none;
   }
 }
 @media (max-width: 380px) {
