@@ -223,7 +223,7 @@ const Header = (props) => {
             )}
             {currentUser && currentUser.email ? (
               <Link
-                className={classes.button}
+                className={`${classes.button} ${classes.hidden1}`}
                 to={`/user/${currentUser.email.slice(0, index)}`}
               >
                 {currentUser.email.slice(0, index)}
@@ -233,7 +233,7 @@ const Header = (props) => {
             )}
             {currentUser ? (
               <button
-                className={`${classes.button}`}
+                className={`${classes.button} ${classes.hidden1}`}
                 onClick={() => {
                   signOut(auth);
                 }}
@@ -271,7 +271,7 @@ const Header = (props) => {
                   userId: currentUser ? currentUser.uid : "",
                 });
               }}
-              className={`${classes.list} ${classes.bookmark}`}
+              className={`${classes.list} ${classes.bookmark} ${classes.hidden1}`}
             >
               Bookmarks
             </a>

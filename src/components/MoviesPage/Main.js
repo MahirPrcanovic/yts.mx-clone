@@ -529,7 +529,7 @@ const Main = (props) => {
                 ? Movie.data.movie.description_full
                 : ""}
             </p>
-            <p className={classes.introText}>
+            <p className={`${classes.introText} ${classes.mahir}`}>
               Coded By: <strong>Mahir</strong>
               <br />
               March 11, 2022 at 3:24 PM

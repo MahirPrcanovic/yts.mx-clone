@@ -127,6 +127,11 @@
   color: green;
   cursor: pointer;
 }
+@media (max-width: 1250px) {
+  .header {
+    grid-template-columns: 0.4fr 0.7fr 1fr;
+  }
+}
 @media (max-width: 1050px) {
   .links {
     margin-right: 1rem;
@@ -137,7 +142,7 @@
     font-size: 1.2rem;
   }
 }
-@media (max-width: 990px) {
+@media (max-width: 1100px) {
   .header {
     display: grid;
     grid-template-columns: 0.4fr 1fr 0.5fr;
@@ -253,6 +258,16 @@
     display: none;
   }
   .search {
+    display: none;
+  }
+}
+@media (max-width: 280px) {
+  .header {
+    grid-template-columns: 1fr;
+    align-content: center;
+    justify-items: center;
+  }
+  .image {
     display: none;
   }
 }

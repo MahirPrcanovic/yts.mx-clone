@@ -9,7 +9,7 @@
   align-items: center;
 }
 .main {
-  width: 80%;
+  width: 90%;
   color: black;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -56,7 +56,30 @@
 .error {
   color: white;
   width: 100%;
-  /* grid-column: 3/4; */
   font-size: 1.6rem;
   text-align: center;
+}
+@media (max-width: 900px) {
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 700px) {
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 550px) {
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 380px) {
+  .main {
+    width: 60%;
+    grid-template-columns: 1fr;
+  }
 }
