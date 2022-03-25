@@ -34,7 +34,7 @@ const Footer = () => {
             Requests
           </Link>{" "}
           -{" "}
-          <Link to="/login" className={classes.link}>
+          <Link to="/login-user" className={classes.link}>
             Login
           </Link>
         </h3>
