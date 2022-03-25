@@ -7,15 +7,18 @@ import { doc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { LoginContext } from "../../Context/AuthContext";
 import ClipLoader from "react-spinners/ClipLoader";
+import Loading from "../Global/Loading";
 const Login = (props) => {
   //<ClipLoader color={color} loading={loading} css={override} size={150} />
   const currentUser = useContext(LoginContext);
   const [loggedIn, setLoggedIn] = useState(currentUser ? true : false);
+  const [loggingIn, setLoggingIn] = useState(false);
   const email = useRef();
   const password = useRef();
   const [error, setError] = useState(" ");
   const submitHandler = async (e) => {
     e.preventDefault();
+    setLoggingIn(true);
     try {
       const user = await signInWithEmailAndPassword(
         auth,
@@ -28,6 +31,7 @@ const Login = (props) => {
         updateDoc(doc(db, "users", `${userData.user.uid}`), {
           lastSeen: date,
         });
+        setLoggingIn(false);
       });
       {
         props.loginClose();
@@ -41,7 +45,9 @@ const Login = (props) => {
   return (
     <div className={classes.main}>
       {error !== " " && <h3 className={classes.errorMessage}>{error}</h3>}
-      {
+      {loggingIn ? (
+        <Loading />
+      ) : (
         <form onSubmit={submitHandler} className={classes.form}>
           <div className={classes.username}>
             <svg
@@ -128,7 +134,7 @@ const Login = (props) => {
             Login
           </button>
         </form>
-      }
+      )}
     </div>
   );
 };
