@@ -8,6 +8,8 @@ import TrendingMovies from "./pages/TrendingMovies";
 import Movies from "./pages/Movies";
 import User from "./pages/User";
 import Bookmarks from "./pages/Bookmarks";
+import CreateUser from "./pages/CreateUser";
+import LoginUser from "./pages/LoginUser";
 function App() {
   //       /browse-movies/:a/:b/:c/:e/:f/:g
   return (
@@ -39,6 +41,12 @@ function App() {
       </Route>
       <Route path="/bookmarks">
         <Bookmarks />
+      </Route>
+      <Route path="/create-user">
+        <CreateUser />
+      </Route>
+      <Route path="/login-user">
+        <LoginUser />
       </Route>
     </Switch>
   );

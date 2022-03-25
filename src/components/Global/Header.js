@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { LoginContext } from "../../Context/AuthContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
+import { Redirect } from "react-router-dom";
 const orders = [
   "Title",
   "Year",
@@ -60,6 +61,8 @@ const Header = (props) => {
   const [viewLogin, setViewLogin] = useState(false);
   const [trigger, setTrigger] = useState(" ");
   const selectedQuality = useRef();
+  let emailIndex = currentUser ? currentUser.email.indexOf("@") : "";
+  let name = currentUser ? currentUser.email.slice(0, index) : "";
   const selectedTerm = useRef();
   const selectedGenre = useRef();
   const selectedRating = useRef();
@@ -142,25 +145,28 @@ const Header = (props) => {
               />
             </svg>
             <Link
-              to="/"
+              to="/browse-movies/0/2160p/All/A/Dsc/Title"
               className={`${classes.list} ${classes.hidden} ${classes.fourk}`}
             >
               4K
             </Link>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className={`${classes.hiddenSearchIcon} ${classes.hidden}`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-              />
-            </svg>
+            <Link to="/trending-movies">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`${classes.hiddenSearchIcon} ${classes.hidden}`}
+                onClick={() => console.log("Mahir")}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                />
+              </svg>
+            </Link>
             <Link to="/browse-movies">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -177,19 +183,25 @@ const Header = (props) => {
                 />
               </svg>
             </Link>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className={`${classes.hiddenSearchIcon} ${classes.hidden}`}
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                clipRule="evenodd"
-              />
-            </svg>
-
+            <Link to={currentUser ? `/user/${name}` : "/create-user"}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`${classes.hiddenSearchIcon} ${classes.hidden}`}
+                onClick={() => {
+                  if (!currentUser) {
+                    <Redirect to="/" />;
+                  }
+                }}
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </Link>
             <Link
               to="/browse-movies/0/2160p/All/A/Dsc/Title"
               className={`${classes.list} ${classes.hidden1}`}

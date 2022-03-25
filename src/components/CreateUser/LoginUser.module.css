@@ -1,0 +1,68 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: calc(100vh - 55px - 100px);
+  background-color: #1d1d1d;
+}
+.form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+.errorMessage {
+  padding-bottom: 1rem;
+  color: red;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+.username {
+  background-color: black;
+  width: 90%;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  border: 1px solid white;
+  border-radius: 2px;
+}
+.input {
+  font-family: "Arimo", sans-serif;
+  background-color: #1d1d1d;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding-left: 1rem;
+  color: white;
+}
+.form > h1 {
+  color: white;
+  font-size: 2rem;
+  color: green;
+}
+.input:focus {
+  outline: none;
+}
+.icon {
+  padding-left: 0.5rem;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+.button {
+  color: white;
+  background-color: green;
+  border: none;
+  cursor: pointer;
+  width: 90%;
+  height: 5rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  font-family: "Arimo", sans-serif;
+}
+.button:hover {
+  background-color: rgb(8, 100, 8);
+}

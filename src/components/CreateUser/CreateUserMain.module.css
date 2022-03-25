@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
+.main {
+  width: 100%;
+  background-color: black;
+  min-height: calc(100vh - 55px - 100px);
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 52rem;
+  height: 48rem;
+  background-color: #1d1d1d;
+  /* border-radius: 10px; */
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+.form > h1 {
+  font-size: 2rem;
+  color: green;
+}
+.errorMessage {
+  padding-bottom: 1rem;
+  color: red;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+.username {
+  width: 90%;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  background-color: black;
+  /* border: 1px solid black; */
+  border: 1px solid white;
+  border-radius: 2px;
+}
+.input {
+  background-color: black;
+  font-family: "Arimo", sans-serif;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding-left: 1rem;
+  color: white;
+}
+.input:focus {
+  outline: none;
+}
+.icon {
+  padding-left: 0.5rem;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+.button {
+  color: white;
+  background-color: green;
+  border: none;
+  cursor: pointer;
+  width: 90%;
+  height: 5rem;
+  border-radius: 4px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  font-family: "Arimo", sans-serif;
+}
+.button:hover {
+  background-color: rgb(8, 100, 8);
+}
