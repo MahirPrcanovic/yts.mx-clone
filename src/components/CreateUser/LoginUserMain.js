@@ -9,7 +9,10 @@ import { db } from "../../firebase";
 import { LoginContext } from "../../Context/AuthContext";
 import ClipLoader from "react-spinners/ClipLoader";
 import Loading from "../Global/Loading";
+import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 const LoginUser = () => {
+  const history = useHistory();
   const currentUser = useContext(LoginContext);
   const [loggedIn, setLoggedIn] = useState(currentUser ? true : false);
   const [loggingIn, setLoggingIn] = useState(false);
@@ -32,6 +35,7 @@ const LoginUser = () => {
           lastSeen: date,
         });
         setLoggingIn(false);
+        history.push("/");
       });
     } catch (error) {
       setLoggingIn(false);

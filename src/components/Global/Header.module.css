@@ -22,6 +22,7 @@
   justify-content: flex-end;
   align-items: center;
 }
+
 .logo {
   display: flex;
   justify-content: center;
@@ -102,9 +103,6 @@
 .login:hover {
   color: #919191;
 }
-.hidden {
-  display: none;
-}
 .bookmark {
   padding-left: 2rem;
   cursor: pointer;
@@ -125,6 +123,12 @@
   font-size: 3rem;
   color: green;
   cursor: pointer;
+}
+.hide {
+  display: none;
+}
+.hidden {
+  display: none;
 }
 @media (max-width: 1250px) {
   .header {

@@ -5,10 +5,12 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import { useState, useContext } from "react";
 import { LoginContext } from "../../Context/AuthContext";
-import { setDoc, collection, doc } from "firebase/firestore";
-import ClipLoader from "react-spinners/ClipLoader";
+import { setDoc, doc } from "firebase/firestore";
 import Loading from "../Global/Loading";
+import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 const CreateUserMain = () => {
+  const history = useHistory();
   const currentUser = useContext(LoginContext);
   const [registering, setReggistering] = useState(false);
   const [error, setError] = useState("");
@@ -35,6 +37,7 @@ const CreateUserMain = () => {
             lastSeen: date,
           });
           setReggistering(false);
+          history.push("/");
         });
       } catch (error) {
         setReggistering(false);

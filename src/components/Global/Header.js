@@ -150,7 +150,7 @@ const Header = (props) => {
             >
               4K
             </Link>
-            <Link to="/trending-movies">
+            <Link to="/trending-movies" className={classes.hidden}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className={`${classes.hiddenSearchIcon} ${classes.hidden}`}
@@ -167,7 +167,7 @@ const Header = (props) => {
                 />
               </svg>
             </Link>
-            <Link to="/browse-movies">
+            <Link to="/browse-movies" className={classes.hidden}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className={`${classes.hiddenSearchIcon} ${classes.hidden}`}
@@ -183,7 +183,10 @@ const Header = (props) => {
                 />
               </svg>
             </Link>
-            <Link to={currentUser ? `/user/${name}` : "/create-user"}>
+            <Link
+              to={currentUser ? `/user/${name}` : "/create-user"}
+              className={classes.hidden}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className={`${classes.hiddenSearchIcon} ${classes.hidden}`}
