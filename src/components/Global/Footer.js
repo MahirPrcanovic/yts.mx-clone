@@ -6,21 +6,41 @@ const Footer = () => {
       <div className={classes.row}>
         <h3 className={classes.ha3}>
           YTS &copy; 2011-2022 - {""}
-          <Link to="/blog" className={classes.link}>
+          <a
+            href="https://yts.mx/blog"
+            className={classes.link}
+            target="_blank"
+            rel="noreferrer"
+          >
             Blog
-          </Link>{" "}
+          </a>{" "}
           -{" "}
-          <Link to="/dmca" className={classes.link}>
+          <a
+            href="https://yts.mx/dmca"
+            className={classes.link}
+            target="_blank"
+            rel="noreferrer"
+          >
             DMCA
-          </Link>{" "}
+          </a>{" "}
           -{" "}
-          <Link to="/api" className={classes.link}>
+          <a
+            href="https://yts.mx/api"
+            className={classes.link}
+            target="_blank"
+            rel="noreferrer"
+          >
             API
-          </Link>{" "}
+          </a>{" "}
           -{" "}
-          <Link to="/rss-guide" className={classes.link}>
+          <a
+            href="https://yts.mx/rss-guide"
+            target="_blank"
+            rel="noreferrer"
+            className={classes.link}
+          >
             RSS
-          </Link>{" "}
+          </a>{" "}
           -{" "}
           <Link to="/contact" className={classes.link}>
             Contact
@@ -30,9 +50,14 @@ const Footer = () => {
             Browse Movies
           </Link>{" "}
           -{" "}
-          <Link to="/requests" className={classes.link}>
+          <a
+            href="https://yts.mx/requests"
+            className={classes.link}
+            target="_blank"
+            rel="noreferrer"
+          >
             Requests
-          </Link>{" "}
+          </a>{" "}
           -{" "}
           <Link to="/login-user" className={classes.link}>
             Login
@@ -70,13 +95,23 @@ const Footer = () => {
       <div className={classes.row}>
         <h3 className={classes.ha3}>
           By using this site you agree to and accept our{" "}
-          <Link to="/terms" className={classes.link}>
+          <a
+            href="https://yts.mx/terms"
+            className={classes.link}
+            target="_blank"
+            rel="noreferrer"
+          >
             User Agreement
-          </Link>
+          </a>
           , which can be read{" "}
-          <Link to="/terms" className={classes.link}>
+          <a
+            href="https://yts.mx/terms"
+            className={classes.link}
+            target="_blank"
+            rel="noreferrer"
+          >
             here
-          </Link>
+          </a>
           .
         </h3>
       </div>

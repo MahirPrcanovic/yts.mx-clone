@@ -10,6 +10,7 @@ import User from "./pages/User";
 import Bookmarks from "./pages/Bookmarks";
 import CreateUser from "./pages/CreateUser";
 import LoginUser from "./pages/LoginUser";
+import Contact from "./pages/Contact";
 function App() {
   //       /browse-movies/:a/:b/:c/:e/:f/:g
   return (
@@ -47,6 +48,9 @@ function App() {
       </Route>
       <Route path="/login-user">
         <LoginUser />
+      </Route>
+      <Route path="/contact">
+        <Contact />
       </Route>
     </Switch>
   );

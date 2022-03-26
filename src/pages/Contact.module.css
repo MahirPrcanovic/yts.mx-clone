@@ -1,0 +1,27 @@
+.main {
+  min-height: calc(100vh - 55px - 100px);
+  background-color: #1d1d1d;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+.info > a {
+  text-decoration: none;
+  color: gray;
+}
+.info > a:hover {
+  color: white;
+}
+.link {
+  text-decoration: none;
+  color: gray;
+}
+.link:hover {
+  color: white;
+}
+.here {
+  padding-left: 0.5rem;
+}

@@ -17,9 +17,14 @@ const Upcoming = () => {
     <div className={classes.container}>
       <div className={classes.title}>
         <h2>Upcoming YIFY Movies</h2>
-        <Link to="/requests" className={classes.link}>
+        <a
+          href="https://yts.mx/requests"
+          className={classes.link}
+          target="_blank"
+          rel="noreferrer"
+        >
           Request a Movie
-        </Link>
+        </a>
       </div>
       <div className={classes.movies}>
         {data &&
@@ -27,7 +32,7 @@ const Upcoming = () => {
           movies.map((movie) => {
             return (
               <MovieDetail
-              slug={movie.slug}
+                slug={movie.slug}
                 key={movie.id}
                 image={movie.medium_cover_image}
                 genre={movie.genres}
