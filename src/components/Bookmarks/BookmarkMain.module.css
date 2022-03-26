@@ -13,8 +13,6 @@
   color: black;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  /* justify-items: center;
-  align-items: center; */
   gap: 1rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -22,7 +20,7 @@
 }
 .tank {
   height: 30rem;
-  background-color: blue;
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: flex-end;

@@ -74,6 +74,7 @@ const Header = (props) => {
   let quality, term, genre, rating, year, orderBy;
   //https://yts.mx/api/v2/list_movies.json?query_term=spider-man ZA SEARCHANJE
   //Pomocu ovog koristiti i napraviti search
+  const valu = useRef();
   const submitHandler = (e) => {
     e.preventDefault();
     quality = selectedQuality.current.value;
@@ -89,6 +90,11 @@ const Header = (props) => {
       }/${quality}/${genre}/${rating.slice(0, 1)}/${year}/${orderBy}`
     );
   };
+  const inputHandler = (e) => {
+    e.preventDefault();
+    console.log(valu.current.value);
+    history.push(`/browse-movies/${valu.current.value}/All/All/A/Dsc/Title`);
+  };
   return (
     <Fragment>
       <div
@@ -103,6 +109,7 @@ const Header = (props) => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className={classes.searchIcon}
+              type="submit"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -114,11 +121,14 @@ const Header = (props) => {
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               />
             </svg>
-            <input
-              type="text"
-              className={classes.input}
-              placeholder="Quick Search"
-            />
+            <form onSubmit={inputHandler}>
+              <input
+                type="search"
+                className={classes.input}
+                placeholder="Quick Search"
+                ref={valu}
+              />
+            </form>
           </div>
         </div>
         <div className={classes.links}>
