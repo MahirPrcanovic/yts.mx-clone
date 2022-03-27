@@ -11,6 +11,7 @@ import Bookmarks from "./pages/Bookmarks";
 import CreateUser from "./pages/CreateUser";
 import LoginUser from "./pages/LoginUser";
 import Contact from "./pages/Contact";
+import ErrorBoundary from "./components/ErrorBoundary/SearchNotFoundError";
 function App() {
   //       /browse-movies/:a/:b/:c/:e/:f/:g
   return (
@@ -51,6 +52,9 @@ function App() {
       </Route>
       <Route path="/contact">
         <Contact />
+      </Route>
+      <Route path="*">
+        <ErrorBoundary />
       </Route>
     </Switch>
   );

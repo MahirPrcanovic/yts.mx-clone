@@ -1,5 +1,7 @@
-import React from "react";
-
+import React, { Fragment } from "react";
+import Footer from "../Global/Footer";
+import Header from "../Global/Header";
+import ErrorMain from "./ErrorMain";
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -13,7 +15,13 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>;
+      return (
+        <Fragment>
+          <Header sticky={true} />
+          <ErrorMain />
+          <Footer />
+        </Fragment>
+      );
     }
 
     return this.props.children;

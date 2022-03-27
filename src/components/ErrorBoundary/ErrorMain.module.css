@@ -1,0 +1,24 @@
+.main {
+  min-height: calc(100vh - 55px - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1d1d1d;
+  flex-direction: column;
+}
+.title {
+  color: green;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+.text {
+  color: #829191;
+  font-size: 1.6rem;
+}
+.link {
+  color: #427a92;
+  text-decoration: none;
+}
+.link:hover {
+  color: #325f72;
+}
