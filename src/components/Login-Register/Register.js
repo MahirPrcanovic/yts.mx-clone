@@ -32,6 +32,7 @@ const Register = (props) => {
             email: userData.user.email,
             dateJoined: date,
             lastSeen: date,
+            bookmarks: [],
           });
           setReggistering(false);
         });
