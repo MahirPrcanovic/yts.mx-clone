@@ -12,6 +12,7 @@ import CreateUser from "./pages/CreateUser";
 import LoginUser from "./pages/LoginUser";
 import Contact from "./pages/Contact";
 import ErrorBoundary from "./components/ErrorBoundary/SearchNotFoundError";
+import ErrorPage from "./ErrorPage";
 function App() {
   //       /browse-movies/:a/:b/:c/:e/:f/:g
   return (
@@ -54,7 +55,7 @@ function App() {
         <Contact />
       </Route>
       <Route path="/404">
-        <ErrorBoundary />
+        <ErrorPage />
       </Route>
       <Route path="*">
         <ErrorBoundary />
