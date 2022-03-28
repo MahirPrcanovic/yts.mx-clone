@@ -16,7 +16,6 @@ const MovieDetail = (props) => {
       <div
         className={`${classes.movie}`}
         onClick={() => {
-          
           history.push(`/movies/${props.slug}`, { searchQuery: props.title });
         }}
       >
@@ -73,9 +72,14 @@ const MovieDetail = (props) => {
           </button>
         </div>
       </div>
-      <Link to="/movies/id" className={classes.title}>
+      <h3
+        className={classes.title}
+        onClick={() => {
+          history.push(`/movies/${props.slug}`, { searchQuery: props.title });
+        }}
+      >
         {props.title}
-      </Link>
+      </h3>
       <p className={classes.year}>{props.year}</p>
     </div>
   );
