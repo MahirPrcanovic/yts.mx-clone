@@ -19,7 +19,7 @@ const Main = (props) => {
   let broj;
   let word = "";
   if (props.data) {
-    console.log(props.data);
+    //console.log(props.data);
   }
   if (props.params.term !== undefined) {
     word = `${props.params.term}/${props.params.quality}/${props.params.genre}/${props.params.rating}/${props.params.sort}/${props.params.order}`;
@@ -44,7 +44,7 @@ const Main = (props) => {
         movies.push(props.data.data.movies[i]);
       }
     }
-    console.log(activePage, broj);
+    //console.log(activePage, broj);
   }
   activeIndex = niz.indexOf(activePage);
   return (

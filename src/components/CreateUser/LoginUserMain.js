@@ -3,14 +3,13 @@ import classes from "./LoginUser.module.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useContext, useRef, useState } from "react";
 import { auth } from "../../firebase";
-import { setDoc, updateDoc } from "firebase/firestore";
+import { updateDoc } from "firebase/firestore";
 import { doc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { LoginContext } from "../../Context/AuthContext";
-import ClipLoader from "react-spinners/ClipLoader";
 import Loading from "../Global/Loading";
-import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 const LoginUser = () => {
   const history = useHistory();
   const currentUser = useContext(LoginContext);
@@ -30,7 +29,7 @@ const LoginUser = () => {
       ).then((userData) => {
         setLoggedIn(true);
         const date = new Date().toLocaleDateString("bos");
-        console.log(date);
+        //console.log(date);
         updateDoc(doc(db, "users", `${userData.user.uid}`), {
           lastSeen: date,
         });
@@ -40,7 +39,7 @@ const LoginUser = () => {
     } catch (error) {
       setLoggingIn(false);
       setLoggedIn(false);
-      console.log(error);
+      // console.log(error);
       setError("Email or password are incorrect!");
     }
   };
@@ -138,6 +137,13 @@ const LoginUser = () => {
           </button>
         </form>
       )}
+      <h3 className={classes.linkText}>
+        or{" "}
+        <Link to="/create-user" className={classes.link}>
+          Register
+        </Link>{" "}
+        a new account.
+      </h3>
     </div>
   );
 };

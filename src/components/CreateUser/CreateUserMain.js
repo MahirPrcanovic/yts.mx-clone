@@ -7,8 +7,8 @@ import { useState, useContext } from "react";
 import { LoginContext } from "../../Context/AuthContext";
 import { setDoc, doc } from "firebase/firestore";
 import Loading from "../Global/Loading";
-import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 const CreateUserMain = () => {
   const history = useHistory();
   const currentUser = useContext(LoginContext);
@@ -29,7 +29,7 @@ const CreateUserMain = () => {
           password.current.value
         ).then((userData) => {
           const date = new Date().toLocaleDateString("bos");
-          console.log(date);
+          //console.log(date);
           setDoc(doc(db, "users", `${userData.user.uid}`), {
             id: userData.user.uid,
             email: userData.user.email,
@@ -41,7 +41,7 @@ const CreateUserMain = () => {
         });
       } catch (error) {
         setReggistering(false);
-        console.log(error.message);
+        //console.log(error.message);
         setError(error.message);
       }
     } else {
@@ -185,6 +185,13 @@ const CreateUserMain = () => {
             </button>
           </form>
         )}
+        <h3 className={classes.linkText}>
+          or{" "}
+          <Link to="/login-user" className={classes.link}>
+            Login
+          </Link>{" "}
+          with an existing account.
+        </h3>
       </div>
     </div>
   );

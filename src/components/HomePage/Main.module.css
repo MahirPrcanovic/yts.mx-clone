@@ -58,9 +58,9 @@
   font-size: 1.4rem;
   color: #428bca;
 }
-.linkTxt:hover {
+/* .linkTxt:hover {
   color: #2b5d8a;
-}
+} */
 .popular {
   width: 90%;
   height: 45rem;
@@ -133,5 +133,24 @@
 @media (max-width: 350px) {
   .popular {
     height: 65rem;
+  }
+}
+@media (max-width: 315px) {
+  .popular {
+    grid-template-columns: 1fr;
+    padding-left: 4rem;
+  }
+  .popular {
+    height: 115rem;
+  }
+}
+@media (max-width: 260px) {
+  .popular {
+    padding-left: 1rem;
+  }
+}
+@media (max-width: 175px) {
+  .popular {
+    padding-left: 0;
   }
 }

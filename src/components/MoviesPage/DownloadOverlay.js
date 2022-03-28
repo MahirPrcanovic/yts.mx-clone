@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import classes from "./DownloadOverlay.module.css";
 import ReactDom from "react-dom";
 const DownloadOverlay = (props) => {
-  console.log(props.data);
+  //console.log(props.data);
   return ReactDom.createPortal(
     <Fragment>
       <div className={classes.overlay} onClick={props.close}></div>

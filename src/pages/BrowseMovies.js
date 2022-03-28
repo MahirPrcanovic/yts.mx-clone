@@ -13,8 +13,8 @@ const BrowseMovies = () => {
   queryParams = new URLSearchParams(window.location.search);
   name = queryParams.get("page");
   const [sentData, setSentData] = useState(null);
-  console.log(params);
-  console.log(name);
+  //console.log(params);
+  //console.log(name);
   let word;
   word = `?page=${name !== null ? name : "1"}${
     params.term !== undefined

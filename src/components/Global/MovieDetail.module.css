@@ -169,3 +169,18 @@
     width: 100%;
   }
 }
+@media (max-width: 315px) {
+  /* .block,
+  .try {
+    width: 10rem;
+    height: 19rem;
+  }
+  .movie {
+    width: 10rem;
+    height: 19rem;
+  } */
+  .main {
+    width: 10rem;
+    /* height: 19rem; */
+  }
+}

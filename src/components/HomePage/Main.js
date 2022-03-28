@@ -1,10 +1,8 @@
 import classes from "./Main.module.css";
-import { Link } from "react-router-dom";
 import { Fragment, useContext, useState } from "react";
 import MovieDetail from "../Global/MovieDetail";
 import useFetch from "../../hooks/useFetch";
 import { LoginContext } from "../../Context/AuthContext";
-import Loading from "../Global/Loading";
 const Main = () => {
   const currentUser = useContext(LoginContext);
   const [loading, setLoading] = useState(true);
@@ -18,7 +16,7 @@ const Main = () => {
     for (let i = 0; i < 4; i++) {
       movieData.push(data.data.movies[i]);
     }
-    console.log(movieData);
+    //console.log(movieData);
   }
   return (
     <Fragment>
@@ -34,13 +32,10 @@ const Main = () => {
               quality, all at the smallest file size. YTS Movies Torrents.
             </div>
             <div className={classes.link}>
-              <Link
-                to="/blog/yts-mx-is-the-only-new-official-domain-for-yify-movies"
-                className={classes.linkTxt}
-              >
+              <h2 className={classes.linkTxt}>
                 IMPORTANT - YTS.MX is the only new official domain for YIFY
                 Movies
-              </Link>
+              </h2>
             </div>
             <div className={classes.popularText}>
               <svg

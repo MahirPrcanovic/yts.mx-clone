@@ -7,7 +7,7 @@ const Main = () => {
     url: "https://yts.mx/api/v2/list_movies.json?page=",
     page: 1,
   });
-  console.log(data);
+  //console.log(data);
   const movies = [];
   if (data && data.data.movies) {
     for (let i = 0; i < data.data.movies.length; i++) {

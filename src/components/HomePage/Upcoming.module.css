@@ -68,3 +68,25 @@
     row-gap: 0;
   }
 }
+@media (max-width: 315px) {
+  .container {
+    justify-content: flex-start;
+    /* align-items: flex-start; */
+    align-items: center;
+    height: 115rem;
+  }
+  .movies {
+    padding-left: 4rem;
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 260px) {
+  .movies {
+    padding-left: 1rem;
+  }
+}
+@media (max-width: 175px) {
+  .movies {
+    padding-left: 0;
+  }
+}

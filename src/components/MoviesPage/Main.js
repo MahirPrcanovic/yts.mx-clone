@@ -4,25 +4,23 @@ import { useContext, useEffect, useState } from "react";
 import image from "../../images/Background-home.jpg";
 import image2 from "../../images/logo-imdb.svg";
 import rottenTomatoes from "../../images/rt-upright.png";
-import { Link } from "react-router-dom";
 import OverlayMovies from "./OverlayMovies";
 import DefaultAvatar from "../../images/default_avatar.webp";
 import DownloadOverlay from "./DownloadOverlay";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { LoginContext } from "../../Context/AuthContext";
-import { arrayUnion, getDoc, updateDoc } from "firebase/firestore";
+import { arrayUnion,  updateDoc } from "firebase/firestore";
 import { doc } from "firebase/firestore";
 import { db } from "../../firebase";
-import { getDocs } from "firebase/firestore";
-import { collection } from "firebase/firestore";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Main = (props) => {
   const currentUser = useContext(LoginContext);
   //SUGGESTE MOVIES STAVITI SLUG DA SE SALJE URL !!!!!
   const location = useLocation();
-  console.log(location);
+  //console.log(location);
   let searchQuery;
   if (location && location.state && location.state.searchQuery) {
     searchQuery = location.state.searchQuery;
@@ -45,7 +43,7 @@ const Main = (props) => {
   const title = params.title.slice(0, params.title.length - 5);
   const year = params.title.slice(-4);
   const toggleBookmark = (id, image, slug) => {
-    console.log(currentUser.uid);
+    //console.log(currentUser.uid);
     const promis = new Promise((resolve, reject) => {
       setTimeout(resolve, 500);
     });
@@ -109,13 +107,13 @@ const Main = (props) => {
     }
   }
   if (suggestions) {
-    console.log(suggestions.data.movies[0]);
+    //console.log(suggestions.data.movies[0]);
   }
   //http://localhost:3000/movies/best-of-the-best-3-no-turning-back-1995
   //http://localhost:3000/movies/best-of-the-best-3-no-turning-back-1995
   if (currentUser) {
     const doc2 = doc(db, "users", `${currentUser ? currentUser.uid : ""}`);
-    console.log(getDoc(doc2).then((res) => console.log(res.data())));
+    //console.log(getDoc(doc2).then((res) => console.log(res.data())));
   }
   return (
     <section className={classes.main}>

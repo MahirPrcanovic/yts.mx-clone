@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import classes from "./UserMain.module.css";
 import { LoginContext } from "../../Context/AuthContext";
-import image from "../../images/default_avatar.webp";
 import { Redirect } from "react-router-dom";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
@@ -9,7 +8,7 @@ const UserMain = () => {
   const currentUser = useContext(LoginContext);
   let index = currentUser ? currentUser.email.indexOf("@") : "";
   if (currentUser) {
-    console.log(currentUser);
+    //console.log(currentUser);
   }
   if (!currentUser) {
     <Redirect to="/" />;

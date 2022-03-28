@@ -40,6 +40,20 @@
   font-style: italic;
   font-size: 1.2rem;
 }
+.link {
+  text-decoration: none;
+  font-size: 2rem;
+  color: gray;
+  cursor: pointer;
+}
+.link:hover {
+  color: white;
+}
+.linkText {
+  padding-top: 1rem;
+  color: white;
+  font-size: 2rem;
+}
 .username {
   width: 90%;
   height: 5rem;

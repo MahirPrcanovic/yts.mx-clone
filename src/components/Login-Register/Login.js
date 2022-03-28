@@ -2,11 +2,10 @@ import classes from "./Login.module.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useContext, useRef, useState } from "react";
 import { auth } from "../../firebase";
-import { setDoc, updateDoc } from "firebase/firestore";
+import { updateDoc } from "firebase/firestore";
 import { doc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { LoginContext } from "../../Context/AuthContext";
-import ClipLoader from "react-spinners/ClipLoader";
 import Loading from "../Global/Loading";
 const Login = (props) => {
   //<ClipLoader color={color} loading={loading} css={override} size={150} />
@@ -27,7 +26,7 @@ const Login = (props) => {
       ).then((userData) => {
         setLoggedIn(true);
         const date = new Date().toLocaleDateString("bos");
-        console.log(date);
+        //console.log(date);
         updateDoc(doc(db, "users", `${userData.user.uid}`), {
           lastSeen: date,
         });
@@ -38,7 +37,7 @@ const Login = (props) => {
       }
     } catch (error) {
       setLoggedIn(false);
-      console.log(error);
+      //console.log(error);
       setError("Email or password are incorrect!");
     }
   };

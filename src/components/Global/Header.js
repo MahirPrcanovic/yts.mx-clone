@@ -57,7 +57,7 @@ const Header = (props) => {
   if (currentUser && currentUser.email) {
     index = currentUser.email.indexOf("@");
   }
-  console.log(currentUser ? currentUser.email : "");
+  //console.log(currentUser ? currentUser.email : "");
   const [viewLogin, setViewLogin] = useState(false);
   const [trigger, setTrigger] = useState(" ");
   const selectedQuality = useRef();
@@ -92,7 +92,7 @@ const Header = (props) => {
   };
   const inputHandler = (e) => {
     e.preventDefault();
-    console.log(valu.current.value);
+    //console.log(valu.current.value);
     history.push(`/browse-movies/${valu.current.value}/All/All/A/Dsc/Title`);
   };
   return (
@@ -141,7 +141,7 @@ const Header = (props) => {
               className={`${classes.hiddenSearchIcon} ${classes.hidden}`}
               onClick={() => {
                 setShow((prevState) => !prevState);
-                console.log("Kliknuto!");
+                //console.log("Kliknuto!");
               }}
               fill="none"
               viewBox="0 0 24 24"
@@ -164,7 +164,6 @@ const Header = (props) => {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className={`${classes.hiddenSearchIcon} ${classes.hidden}`}
-                onClick={() => console.log("Mahir")}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

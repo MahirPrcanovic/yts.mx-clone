@@ -5,7 +5,6 @@ import React from "react";
 import { useRef, useState, useContext } from "react";
 import { LoginContext } from "../../Context/AuthContext";
 import { setDoc, collection, doc } from "firebase/firestore";
-import ClipLoader from "react-spinners/ClipLoader";
 import Loading from "../Global/Loading";
 const Register = (props) => {
   const currentUser = useContext(LoginContext);
@@ -27,7 +26,7 @@ const Register = (props) => {
           password.current.value
         ).then((userData) => {
           const date = new Date().toLocaleDateString("bos");
-          console.log(date);
+          //console.log(date);
           setDoc(doc(db, "users", `${userData.user.uid}`), {
             id: userData.user.uid,
             email: userData.user.email,
@@ -41,7 +40,7 @@ const Register = (props) => {
         }
       } catch (error) {
         setReggistering(false);
-        console.log(error.message);
+        //console.log(error.message);
         setError(error.message);
       }
     } else {

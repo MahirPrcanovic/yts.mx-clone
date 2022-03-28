@@ -39,6 +39,20 @@
   padding-left: 1rem;
   color: white;
 }
+.link {
+  text-decoration: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+.link:hover {
+  color: gray;
+}
+.linkText {
+  padding-top: 1rem;
+  color: gray;
+  font-size: 2rem;
+}
 .form > h1 {
   color: white;
   font-size: 2rem;

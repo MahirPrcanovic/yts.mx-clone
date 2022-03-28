@@ -84,3 +84,23 @@
   color: green;
   font-size: 2rem;
 }
+@media (max-width: 360px) {
+  .userInfo {
+    display: flex;
+    flex-direction: column;
+  }
+  .text {
+    width: 100%;
+  }
+  .image {
+    padding-top: 5rem;
+    width: 100%;
+  }
+  .userText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+  }
+}
