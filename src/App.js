@@ -54,7 +54,7 @@ function App() {
       <Route path="/contact">
         <Contact />
       </Route>
-      <Route path="/404">
+      <Route path="/error">
         <ErrorPage />
       </Route>
       <Route path="*">

@@ -10,7 +10,7 @@ import DownloadOverlay from "./DownloadOverlay";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { LoginContext } from "../../Context/AuthContext";
-import { arrayUnion,  updateDoc } from "firebase/firestore";
+import { arrayUnion, updateDoc } from "firebase/firestore";
 import { doc } from "firebase/firestore";
 import { db } from "../../firebase";
 
@@ -114,6 +114,9 @@ const Main = (props) => {
   if (currentUser) {
     const doc2 = doc(db, "users", `${currentUser ? currentUser.uid : ""}`);
     //console.log(getDoc(doc2).then((res) => console.log(res.data())));
+  }
+  if (Movie) {
+    console.log(Movie);
   }
   return (
     <section className={classes.main}>

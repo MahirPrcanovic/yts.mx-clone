@@ -210,7 +210,7 @@
 }
 .cast {
   font-family: "Arimo", sans-serif;
-  height: 45rem;
+  /* height: 45rem; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -244,24 +244,25 @@
 }
 .castInfo {
   width: 50%;
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 .castContainer {
   width: 70%;
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding-bottom: 2rem;
 }
 .castMember {
-  height: 13.5%;
+  /* height: 13.5%; */
   width: 100%;
   border-bottom: 2px solid #302f2f;
   display: flex;
+  padding: 0.5rem;
   align-items: center;
   color: #919191;
   text-decoration: none;
@@ -402,17 +403,17 @@
   }
 }
 @media (max-width: 770px) {
-  .cast {
-    height: 70rem;
-  }
+  /* .cast {
+    height: 90rem;
+  } */
   .container {
     display: flex;
     flex-direction: column;
-    height: 65rem;
+    /* height: 65rem; */
   }
   .castInfo {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     justify-content: flex-start;
   }
   .castContainer {
@@ -420,8 +421,8 @@
     align-items: flex-start;
   }
   .castMember {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
   .block {
     height: 35rem;
@@ -503,9 +504,9 @@
   .download {
     font-size: 1.3rem;
   }
-  .cast {
+  /* .cast {
     height: 80rem;
-  }
+  } */
 }
 @media (max-width: 360px) {
   .overviewContainer {
@@ -556,9 +557,6 @@
   .techInfo {
     padding-top: 1rem;
     height: 60rem;
-  }
-  .techContainer {
-    height: 50rem;
   }
 }
 @media (max-width: 300px) {
